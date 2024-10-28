@@ -11,7 +11,7 @@ import './styles/custom-bulma.css'; // Import the custom Bulma file
 import gl from './locales/gl.json';
 import da from './locales/da.json';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faGlobe, faLanguage, faSignOutAlt, faBus, faCircleXmark, faClock, faCopyright } from '@fortawesome/free-solid-svg-icons'; // Import specific icons
+import { faGlobe, faLanguage, faSignOutAlt, faBus, faCircleXmark, faClock, faCopyright, faUser } from '@fortawesome/free-solid-svg-icons'; // Import specific icons
 
 const pinia = createPinia();
 
@@ -27,7 +27,7 @@ const i18n = createI18n({
 setupAxiosCsrf();
 
 // Add icons to the library
-library.add(faGlobe, faLanguage, faSignOutAlt, faBus, faCircleXmark, faClock, faCopyright);
+library.add(faGlobe, faLanguage, faSignOutAlt, faBus, faCircleXmark, faClock, faCopyright, faUser);
 
 const app = createApp(App)
 

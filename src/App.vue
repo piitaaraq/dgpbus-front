@@ -35,6 +35,9 @@ export default {
   background-color: #ECF0F1;
 }
 
+.content {
+  height: 100vh;
+}
 
 .table {
   background-color: #ECF0F1;

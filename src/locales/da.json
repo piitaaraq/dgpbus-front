@@ -4,7 +4,8 @@
         "colored": "Bus",
         "logout": "Log ud",
         "newRide": "Bestil kørsel",
-        "showRides": "Dagens kørsler"
+        "showRides": "Dagens kørsler",
+        "user": "Personale"
     },
     "cookies": {
         "header": "Brug af cookies",

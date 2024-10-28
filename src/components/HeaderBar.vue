@@ -27,17 +27,6 @@
 
       <!-- Navbar end (right side) -->
       <div class="navbar-end">
-        <!-- Language selection as a dropdown using Bulma's has-dropdown class -->
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link has-text-primary-light">
-            <font-awesome-icon :icon="['fas', 'globe']" class="icons" />ka/da <!-- Language icon -->
-          </a>
-          <div class="navbar-dropdown is-right">
-            <a class="navbar-item has-background-primary has-text-primary-light"
-              @click="setLanguage('gl')">Kalaallisut</a>
-            <a class="navbar-item has-background-primary has-text-primary-light " @click="setLanguage('da')">Dansk</a>
-          </div>
-        </div>
         <a class="navbar-item has-text-primary-light" @click="toRegistration">
           <font-awesome-icon :icon="['fas', 'bus']" class="icons" />
           {{ $t("headerbar.newRide") }}
@@ -47,11 +36,25 @@
           {{ $t("headerbar.showRides") }}
         </a>
 
+        <a class="navbar-item is-small has-text-primary-light" @click="toLogin">
+          <font-awesome-icon :icon="['fas', 'user']" class="icons" />
+          {{ $t('headerbar.user') }}
+        </a>
         <!-- Show logout button only if the user is authenticated -->
         <a class="navbar-item is-small has-text-primary-light" v-if="isAuthenticated" @click="handleLogout">
           <font-awesome-icon :icon="['fas', 'sign-out-alt']" class="icons" />
           {{ $t('headerbar.logout') }}
         </a>
+        <!-- Language selection as a dropdown using Bulma's has-dropdown class -->
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link has-text-primary-light">
+            <font-awesome-icon :icon="['fas', 'globe']" class="icons" />ka/da <!-- Language icon -->
+          </a>
+          <div class="navbar-dropdown is-right">
+            <a class="navbar-item " @click="setLanguage('gl')">Kalaallisut</a>
+            <a class="navbar-item " @click="setLanguage('da')">Dansk</a>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
@@ -86,11 +89,14 @@ export default {
     goHome() {
       this.$router.push({ name: 'HomePage' });
     },
+    toLogin() {
+      this.$router.push({ name: 'LoginPage' });
+    },
     toRegistration() {
       this.$router.push({ name: 'HospitalList' });
     },
     toRides() {
-      this.$router.push({ name: 'RidesTodayLong' });
+      this.$router.push({ name: 'RidesToday' });
     },
     setLanguage(lang) {
       this.$i18n.locale = lang;
@@ -135,15 +141,15 @@ a:hover {
   color: #2C3E50;
 }
 
-
-.navbar-dropdown {
-  background-color: #34495E;
+/* When the navbar burger is active, set navbar items to black */
+.navbar-menu.is-active .navbar-item.has-text-primary-light {
+  color: black !important;
 }
 
-/* Burger active state styling */
-.navbar-burger.is-active span {
-  background-color: #2C3E50;
+.navbar-menu.is-active .navbar-link.has-text-primary-light {
+  color: black !important;
 }
+
 
 .icons {
   margin-right: 0.5rem;
