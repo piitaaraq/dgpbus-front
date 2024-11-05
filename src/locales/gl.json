@@ -78,7 +78,10 @@
         "radioN": "Naamik",
         "submit": "Ingerlaqqigit",
         "back": "Uterit",
-        "phone": "Tlf. normu"
+        "phone": "Tlf. normu",
+        "hospital":"Napparsimavik",
+        "registerAnother": "Nakorsiarnissamik nalunaaruteqarit",
+        "busTime": "Bussit aallarfissaat"
     },
     "confirm": {
         "para1": "Paasissutissat immersorsimasatit qimerloorluakkit, tamarmillu kukkuneqarsimanngippata akueralugit nassiutikkit. Quleriit arlaat aappalaartumik qalipaateqarpat, isumaqarpoq paasissutissat tamaasa immersorsimanngikkitit. Taamaammat uterlutit immersugassaq naammasseqqaassavat.",
@@ -144,7 +147,7 @@
         "Fredag": "Tallimanngorneq"
     },
     "homepage": {
-    "heading": "Kalaallit Peqqissartut Illuat · Peqqissartunik angallassineq",
+    "heading": "Kalaallit Peqqissartut Illuanni peqqissartunik angallassineq",
     "staffTitle": "Sulisunut",
     "patientTitle": "Peqqissartunut",
     "patientDescription": "Napparsimmaviliarnissat nalunaarutigiuk."

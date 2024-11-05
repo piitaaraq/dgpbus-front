@@ -61,6 +61,15 @@
         "para2": "Tryk på 'Videre' når du er færdig.",
         "para3": "Skulle du i stedet bestille kørsel tilbage til Patienthjemmet skal du trykke på 'tilbage'."
     },
+    "newPatient": {
+        "heading": "Dine oplysninger",
+        "name": "Navn",
+        "accommodation": "Indkvartering",
+        "room": "Værelsesnummer",
+        "proceed": "Fortsæt",
+        "info": "Vi har ikke registreret nogen lægeaftale for dig. Fortsæt venligst for at registrere en ny lægeaftale."
+
+    },
     "formular": {
         "heading": "Om din lægeaftale",
         "name": "Navn",
@@ -77,7 +86,10 @@
         "radioY": "Ja",
         "submit": "Videre",
         "back": "Tilbage",
-        "phone": "Tlf. nr."
+        "phone": "Tlf. nr.",
+        "hospital":"Hospital",
+        "busTime": "Bussens afgang",
+        "registerAnother": "Registrer ny aftale"
     },
     "confirm": {
         "para1": "Se godt efter om du har udfyldt formularen rigtigt og bekræft oplysningerne ved at sende formularen. Er der en rød række på tabellen, betyder det at du ikke har udfyldt det pågældende felt. Du skal derfor gå tilbage og færdiggøre formularen.",
@@ -143,7 +155,7 @@
         "Fredag": "Fredag"
     },
     "homepage": {
-    "heading": "Det grønlandske Patienthjem · Patientkørsel",
+    "heading": "Patientkørsel i Det grønlandske Patienthjem",
     "staffTitle": "Personaleadgang",
     "patientTitle": "Patientadgang",
     "patientDescription": "Registrer din lægeaftale."
