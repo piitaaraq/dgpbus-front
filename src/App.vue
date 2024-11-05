@@ -36,7 +36,7 @@ export default {
 }
 
 .content {
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .table {
