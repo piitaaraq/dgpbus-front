@@ -112,39 +112,42 @@
 </template>
 
 <script>
-import axios from 'axios';
 import { useFormStore } from '@/stores/formStore';
-const apiUrl = process.env.VUE_APP_BACKEND_URL
+import { useCheckPatientStore } from '@/stores/checkPatientStore';
+import axios from 'axios';
+const apiUrl = process.env.VUE_APP_BACKEND_URL;
 
 export default {
   props: ['id'],
   data() {
+    const checkPatientStore = useCheckPatientStore(); // Access checkPatientStore
+
     return {
       hospitalName: '',
-      accommodations: [],  // Array to hold fetched accommodations
+      accommodations: [],
       form: {
-        name: '',
-        accommodation: '',  // Bind selected accommodation
-        room: '',
+        name: checkPatientStore.name || '',
+        accommodation: checkPatientStore.accommodation || '',
+        room: checkPatientStore.room || '',
         phone_no: '',
         appointment_date: '',
         appointment_time: '',
         department: '',
         description: '',
         needs_translator: false,
-        hospital: this.id,  // Automatically associate the hospital ID
+        hospital: this.id,
       }
     };
   },
   mounted() {
-    this.fetchHospitalDetails(); // Fetch hospital details on mount
-    this.fetchAccommodations(); // Fetch accommodations on mount in order to list them in the form
+    this.fetchHospitalDetails();
+    this.fetchAccommodations();
   },
   methods: {
     async fetchHospitalDetails() {
       try {
         const response = await axios.get(`${apiUrl}/api/hospitals/${this.id}`);
-        this.hospitalName = response.data.hospital_name; // Store hospital_name
+        this.hospitalName = response.data.hospital_name;
       } catch (error) {
         console.error('Error fetching hospital details:', error);
       }
@@ -152,50 +155,49 @@ export default {
     async fetchAccommodations() {
       try {
         const response = await axios.get(`${apiUrl}/api/accommodations/`);
-        this.accommodations = response.data;  // Store the fetched accommodations
+        this.accommodations = response.data;
       } catch (error) {
         console.error('Error fetching accommodations:', error);
       }
     },
-
     async goToConfirmation() {
-      const formStore = useFormStore();  // Access the Pinia store
+      const formStore = useFormStore();
 
       // Find the accommodation by name and get its ID
-      const selectedAccommodation = this.accommodations.find(acc => acc.name === this.form.accommodation);
+      const selectedAccommodation = this.accommodations.find(
+        acc => acc.name === this.form.accommodation
+      );
       const formWithAccommodationId = {
         ...this.form,
-        accommodation_id: selectedAccommodation ? selectedAccommodation.id : null  // Use accommodation_id
+        accommodation_id: selectedAccommodation ? selectedAccommodation.id : null,
       };
 
-      // Only calculate bus time for hospital 1 and when the accommodation is "Det grønlandske Patienthjem"
       if (
-        [1, 3, 7].includes(Number(this.form.hospital)) && this.form.accommodation === 'Det grønlandske Patienthjem') {
+        [1, 3, 7].includes(Number(this.form.hospital)) &&
+        this.form.accommodation === 'Det grønlandske Patienthjem'
+      ) {
         try {
-          // Make the POST request to calculate the bus time
-          const response = await axios.post(`${apiUrl}/api/patients/calculate_bus_time/`, formWithAccommodationId);
+          const response = await axios.post(
+            `${apiUrl}/api/patients/calculate_bus_time/`,
+            formWithAccommodationId
+          );
           const busTime = response.data.bus_time;
-
-          // Set form data and busTime in the store
           formStore.setFormData({ ...formWithAccommodationId, busTime: busTime || null });
         } catch (error) {
           console.error('Error calculating bus time:', error);
           alert('An error occurred while calculating the bus time. Please try again.');
         }
       } else {
-        // No bus time calculation for other hospitals or accommodations
         formStore.setFormData(formWithAccommodationId);
       }
-
-      // Navigate to the confirmation page
       this.$router.push({ name: 'ConfirmForm' });
     },
-
     goBack() {
       this.$router.push({ name: 'HospitalList' });
     },
   },
-}
+};
+
 </script>
 
 <style scoped>

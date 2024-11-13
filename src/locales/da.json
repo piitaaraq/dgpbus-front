@@ -1,21 +1,13 @@
 {
-    "headerbar": {
-        "title": "dgp ",
-        "colored": "Bus",
-        "logout": "Log ud",
-        "newRide": "Bestil kørsel",
-        "showApps": "Dagens kørsler",
-        "showRides": "Med bus",
-        "showTaxi": "Med taxa",
-        "user": "Personale",
-        "schedule": "Køreplan"
-    },
-    "cookies": {
-        "header": "Brug af cookies",
-        "message": "Vi bruger cookies til at forbedre din brugeroplevelse af vores side. Ved at fortsætte, erklærer du dig enig i vores brug af cookies.",
-        "accept": "Accepter",
-        "decline": "Afvis",
-        "readmore": "Læs mere..."
+    "appointments": {
+        "heading": "Alle Aftaler",
+        "name": "Navn",
+        "accommodation": "Indkvartering",
+        "hospital": "Hospital",
+        "appointmentDate": "Aftaledato",
+        "appointmentTime": "Aftaletid",
+        "busTime": "Bustid",
+        "noAppointments": "Ingen aftaler fundet"
     },
     "breadcrumbs": {
         "home": "Home",
@@ -36,84 +28,9 @@
         "schedules": "Køreplaner",
         "privacy": "Privatlivspolitik"
     },
-    "pagination": {
-        "previous": "forrige",
-        "next": "næste"
-    },
-    "driver": {
-        "heading": "Checkliste til kørsler",
-        "departureTime": "Afgang",
-        "hospital": "Hospital",
-        "viewPassengers": "Vis passagerer",
-        "viewButton": "Vis",
-        "passengersHeading": "Passagerer",
-        "name": "Navn",
-        "room": "Værelsesnummer",
-        "status": "Status",
-        "checkedIn": "Med",
-        "notCheckedIn": "Ikke med"
-    },
-    "hospitals": {
-        "whereto": "Hvor skal du hen?",
-        "para1": "Du starter din registrering af din lægeaftale, med at vælge hvilket hospital du skal til. Du kan se de hospitaler i Region Hovedstaden, hvor patienter fra Grønland modtager behandling, på kortene nedenunder. På kortene kan du også se hvilke behandlingsformer, der bliver udført på disse hospitaler.",
-        "para2": "Du bliver ført videre til en formular, når du har valgt dit hospital. På formularen skal du udfylde oplysninger om din lægeaftale. Herefter får du en mulighed for at bekræfte de oplysninger du har indtastet, samt bussens afgang hvis du skal til Rigshospitalet."
-    },
-    "hospitalform": {
-        "para0": "Du har valgt at du skal til {hospital}",
-        "para1": "Du skal udfylde oplysninger om din lægeaftale. Du skal udfylde navn og udelad gerne dit efternavn. Dit værelsesnummer, tid og dato for din aftale skal du også skrive, sammen med hvilken afdeling du skal til. Til sidst skal du markere om du har brug for en tolk.",
-        "para2": "Tryk på 'Videre' når du er færdig.",
-        "para3": "Skulle du i stedet bestille kørsel tilbage til Patienthjemmet skal du trykke på 'tilbage'."
-    },
-    "newPatient": {
-        "heading": "Dine oplysninger",
-        "name": "Navn",
-        "accommodation": "Indkvartering",
-        "room": "Værelsesnummer",
-        "proceed": "Fortsæt",
-        "info": "Vi har ikke registreret nogen lægeaftale for dig. Fortsæt venligst for at registrere en ny lægeaftale."
-
-    },
-    "formular": {
-        "heading": "Om din lægeaftale",
-        "name": "Navn",
-        "accommodation": "Indkvartering",
-        "selectAccommodation": "Hvor bor du?",
-        "room": "Værelsesnummer",
-        "appDate": "Dato for lægeaftale",
-        "appTime": "Tidspunkt",
-        "department": "Afdeling på hospitalet",
-        "desc": "Formålet med lægeaftale og CPR nr.",
-        "placeholder": "Hvad skal patienten på hospitalet? CPR skal også skrives her",
-        "translator": "Har du brug for en tolk?",
-        "radioN": "Nej",
-        "radioY": "Ja",
-        "submit": "Videre",
-        "back": "Tilbage",
-        "phone": "Tlf. nr.",
-        "hospital":"Hospital",
-        "busTime": "Bussens afgang",
-        "registerAnother": "Registrer ny aftale",
-        "noAppointmentFound": "Vi har ikke fundet nogen lægeaftale der passer med de oplysninger du har givet os. Det kan være fordi, du stadigvæk ikke har registreret en lægeaftale. Det kan dog også skyldes at de oplysninger du har tastet ind, ikke passer med de oplysninger vi har om dig.",
-        "pleaseRegister": "Registrer en ny aftale eller gå tilbage, for at rette eventuelle fejl du havde i din indtastning.",
-        "goToHospitalList": "Registrer ny aftale",
-        "goBack": "Tilbage"
-    },
-    "patientinfo": {
-        "para1": "Vi tjekker om vi har eksisterende oplysninger om dig og din lægeaftale, ud fra det du tastede ind på forsiden."
-    },
-    "appointments": {
-        "heading": "Alle Aftaler",
-        "name": "Navn",
-        "accommodation": "Indkvartering",
-        "hospital": "Hospital",
-        "appointmentDate": "Aftaledato",
-        "appointmentTime": "Aftaletid",
-        "busTime": "Bustid",
-        "noAppointments": "Ingen aftaler fundet"
-    },
     "confirm": {
-        "para1": "Se godt efter om du har udfyldt formularen rigtigt og bekræft oplysningerne ved at sende formularen. Er der en rød række på tabellen, betyder det at du ikke har udfyldt det pågældende felt. Du skal derfor gå tilbage og færdiggøre formularen.",
-        "para2": "Vær opmærksom på at vi beregner tidspunktet for buskørsel, for at sikre afgnag fra patienthjemmet 30 minutter før din aftale.",
+        "para1": "Se godt efter om du har udfyldt formularen rigtigt...",
+        "para2": "Vær opmærksom på at vi beregner tidspunktet...",
         "name": "Navn",
         "accommodation": "Indkvartering",
         "room": "Værelsesnummer",
@@ -132,12 +49,117 @@
         "heading": "Bekræft dine oplysninger",
         "hasTaxi": "Bestilt taxa"
     },
+    "cookies": {
+        "header": "Brug af cookies",
+        "message": "Vi bruger cookies til at forbedre din brugeroplevelse...",
+        "accept": "Accepter",
+        "decline": "Afvis",
+        "readmore": "Læs mere..."
+    },
+    "days": {
+        "Mandag": "Mandag",
+        "Tirsdag": "Tirsdag",
+        "Onsdag": "Onsdag",
+        "Torsdag": "Torsdag",
+        "Fredag": "Fredag"
+    },
+    "driver": {
+        "heading": "Checkliste til kørsler",
+        "departureTime": "Afgang",
+        "hospital": "Hospital",
+        "viewPassengers": "Vis passagerer",
+        "viewButton": "Vis",
+        "passengersHeading": "Passagerer",
+        "name": "Navn",
+        "room": "Værelsesnummer",
+        "status": "Status",
+        "checkedIn": "Med",
+        "notCheckedIn": "Ikke med"
+    },
+    "formular": {
+        "heading": "Om din lægeaftale",
+        "name": "Navn",
+        "accommodation": "Indkvartering",
+        "selectAccommodation": "Hvor bor du?",
+        "room": "Værelsesnummer",
+        "appDate": "Dato for lægeaftale",
+        "appTime": "Tidspunkt",
+        "department": "Afdeling på hospitalet",
+        "desc": "Formålet med lægeaftale og CPR nr.",
+        "placeholder": "Hvad skal patienten på hospitalet? CPR skal også skrives her",
+        "translator": "Har du brug for en tolk?",
+        "radioN": "Nej",
+        "radioY": "Ja",
+        "submit": "Videre",
+        "back": "Tilbage",
+        "phone": "Tlf. nr.",
+        "hospital": "Hospital",
+        "busTime": "Bussens afgang",
+        "registerAnother": "Registrer ny aftale",
+        "noAppointmentFound": "Vi har ikke fundet nogen lægeaftale der passer med de oplysninger...",
+        "pleaseRegister": "Registrer en ny aftale eller gå tilbage...",
+        "goToHospitalList": "Registrer ny aftale",
+        "goBack": "Tilbage"
+    },
+    "headerbar": {
+        "title": "dgp ",
+        "colored": "Bus",
+        "logout": "Log ud",
+        "newRide": "Bestil kørsel",
+        "showApps": "Dagens kørsler",
+        "showRides": "Med bus",
+        "showTaxi": "Med taxa",
+        "user": "Personale",
+        "schedule": "Køreplan"
+    },
+    "homepage": {
+        "heading": "Patientkørsel i Det grønlandske Patienthjem",
+        "staffTitle": "Personaleadgang",
+        "patientTitle": "Patientadgang",
+        "patientDescription": "Registrer din lægeaftale."
+    },
+    "hospitalform": {
+        "para0": "Du har valgt at du skal til {hospital}",
+        "para1": "Du skal udfylde oplysninger om din lægeaftale...",
+        "para2": "Tryk på 'Videre' når du er færdig.",
+        "para3": "Skulle du i stedet bestille kørsel tilbage..."
+    },
+    "hospitals": {
+        "whereto": "Hvor skal du hen?",
+        "para1": "Du starter din registrering af din lægeaftale...",
+        "para2": "Du bliver ført videre til en formular..."
+    },
+    "newPatient": {
+        "heading": "Dine oplysninger",
+        "name": "Navn",
+        "accommodation": "Indkvartering",
+        "room": "Værelsesnummer",
+        "proceed": "Fortsæt",
+        "info": "Vi har ikke registreret nogen lægeaftale for dig..."
+    },
+    "pagination": {
+        "previous": "forrige",
+        "next": "næste"
+    },
+    "patientinfo": {
+        "para1": "Vi tjekker om vi har eksisterende oplysninger om dig..."
+    },
     "rides": {
         "heading": "Dagens buskørsler",
         "bustime": "Afgangstid",
         "name": "Navn",
         "room": "Værelsesnummer",
         "noRides": "Ingen kørsler registreret for i dag."
+    },
+    "schedules": {
+        "heading": "Køreplaner",
+        "toRiget": "Til Rigshospitalet, Gentofte Hospital og Bispebjerg Hospital",
+        "toDgp": "Til Patienthjemmet",
+        "Mandag": "Mandag",
+        "Tirsdag": "Tirsdag",
+        "Onsdag": "Onsdag",
+        "Torsdag": "Torsdag",
+        "Fredag": "Fredag"
     },
     "taxi": {
         "heading": "Patienter med behov for taxa",
@@ -155,31 +177,6 @@
         "cancel": "Annuller",
         "order": "Bestil",
         "today": "I dag",
-        "tomorrow": "I morgen" 
-        
-    },
-    "days": {
-        "Mandag": "Mandag",
-        "Tirsdag": "Tirsdag",
-        "Onsdag": "Onsdag",
-        "Torsdag": "Torsdag",
-        "Fredag": "Fredag"
-    },
-    "schedules": {
-        "heading": "Køreplaner",
-        "toRiget": "Til Rigshospitalet, Gentofte Hospital og Bispebjerg Hospital",
-        "toDgp": "Til Patienthjemmet",
-        "Mandag": "Mandag",
-        "Tirsdag": "Tirsdag",
-        "Onsdag": "Onsdag",
-        "Torsdag": "Torsdag",
-        "Fredag": "Fredag"
-    },
-    "homepage": {
-    "heading": "Patientkørsel i Det grønlandske Patienthjem",
-    "staffTitle": "Personaleadgang",
-    "patientTitle": "Patientadgang",
-    "patientDescription": "Registrer din lægeaftale."
-  }
-
+        "tomorrow": "I morgen"
+    }
 }
