@@ -31,20 +31,20 @@
           <font-awesome-icon :icon="['fas', 'bus']" class="icons" />
           {{ $t("headerbar.newRide") }}
         </a>
-        <a class="navbar-item has-text-primary-light" @click="toRides">
-          <font-awesome-icon :icon="['fas', 'clock']" class="icons" />
-          {{ $t("headerbar.showRides") }}
-        </a>
 
-        <a class="navbar-item is-small has-text-primary-light" @click="toLogin">
-          <font-awesome-icon :icon="['fas', 'user']" class="icons" />
-          {{ $t('headerbar.user') }}
-        </a>
-        <!-- Show logout button only if the user is authenticated -->
-        <a class="navbar-item is-small has-text-primary-light" v-if="isAuthenticated" @click="handleLogout">
-          <font-awesome-icon :icon="['fas', 'sign-out-alt']" class="icons" />
-          {{ $t('headerbar.logout') }}
-        </a>
+        <!-- dropdown for today's app.s -->
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link has-text-primary-light">
+            <font-awesome-icon :icon="['fas', 'clock']" class="icons" />
+            {{ $t("headerbar.showApps") }}
+          </a>
+          <div class="navbar-dropdown is-right">
+            <a class="navbar-item " @click="toRides">{{ $t("headerbar.showRides") }}</a>
+            <a class="navbar-item " @click="toTaxi">{{ $t("headerbar.showTaxi") }}</a>
+          </div>
+
+        </div>
+
         <!-- Language selection as a dropdown using Bulma's has-dropdown class -->
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link has-text-primary-light">
@@ -55,6 +55,15 @@
             <a class="navbar-item " @click="setLanguage('da')">Dansk</a>
           </div>
         </div>
+        <a class="navbar-item is-small has-text-primary-light" @click="toLogin">
+          <font-awesome-icon :icon="['fas', 'user']" class="icons" />
+          {{ $t('headerbar.user') }}
+        </a>
+        <!-- Show logout button only if the user is authenticated -->
+        <a class="navbar-item is-small has-text-primary-light" v-if="isAuthenticated" @click="handleLogout">
+          <font-awesome-icon :icon="['fas', 'sign-out-alt']" class="icons" />
+          {{ $t('headerbar.logout') }}
+        </a>
       </div>
     </div>
   </nav>
@@ -97,6 +106,9 @@ export default {
     },
     toRides() {
       this.$router.push({ name: 'RidesToday' });
+    },
+    toTaxi() {
+      this.$router.push({ name: 'TaxiUsersPublic' });
     },
     setLanguage(lang) {
       this.$i18n.locale = lang;

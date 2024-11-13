@@ -1,5 +1,5 @@
 <template>
-    <div class="bus-schedules-container container">
+    <div class="bus-schedules-container container is-fluid">
         <h2 class="title is-2">{{ $t("schedules.heading") }}</h2>
 
         <!-- Table for Departure Location 1 (Patienthjemmet) -->
@@ -8,33 +8,18 @@
             <table class="table is-fullwidth is-striped mb-5">
                 <thead>
                     <tr>
-                        <th v-for="day in sortedDaysOfWeek" :key="day">{{ $t(`days.${day}`) }}</th>
+                        <th class="is-size-3" v-for="day in sortedDaysOfWeek" :key="day">{{ $t(`days.${day}`) }}</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="times in sortedGroupedSchedules(departureLocation1Schedules)" :key="times.id">
-                        <td v-for="day in sortedDaysOfWeek" :key="day">{{ formatTime(times[day]) || '-' }}</td>
+                        <td class="is-size-4" v-for="day in sortedDaysOfWeek" :key="day">{{ formatTime(times[day]) ||
+                            '-' }}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- Table for Departure Location 2 (Rigshospitalet) -->
-        <div v-if="departureLocation2Schedules.length">
-            <h3 class="title is-3">{{ $t("schedules.toDgp") }}</h3>
-            <table class="table is-fullwidth is-striped">
-                <thead>
-                    <tr>
-                        <th v-for="day in sortedDaysOfWeek" :key="day">{{ $t(`days.${day}`) }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="times in sortedGroupedSchedules(departureLocation2Schedules)" :key="times.id">
-                        <td v-for="day in sortedDaysOfWeek" :key="day">{{ formatTime(times[day]) || '-' }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
     </div>
 </template>
 

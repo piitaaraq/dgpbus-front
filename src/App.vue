@@ -1,11 +1,11 @@
 <template>
   <div id="app" class="app-layout">
-    <HeaderBar class="has-background-primary" />
-    <BreadCrumb class="pt-3" />
+    <HeaderBar v-if="showHeaderFooter" class="has-background-primary" />
+    <BreadCrumb v-if="showHeaderFooter" class="pt-3" />
     <div class="content">
       <router-view class=""></router-view>
     </div>
-    <SiteFooter />
+    <SiteFooter v-if="showHeaderFooter" />
   </div>
 </template>
 
@@ -19,6 +19,12 @@ export default {
     HeaderBar,
     SiteFooter,
     BreadCrumb
+  },
+  computed: {
+    showHeaderFooter() {
+      // Use the route's meta field to determine whether to show the header/footer
+      return !this.$route.meta.hideHeaderFooter;
+    }
   }
 };
 </script>
@@ -35,9 +41,7 @@ export default {
   background-color: #ECF0F1;
 }
 
-.content {
-  min-height: 100vh;
-}
+
 
 .table {
   background-color: #ECF0F1;

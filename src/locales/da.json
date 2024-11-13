@@ -4,7 +4,9 @@
         "colored": "Bus",
         "logout": "Log ud",
         "newRide": "Bestil kørsel",
-        "showRides": "Dagens kørsler",
+        "showApps": "Dagens kørsler",
+        "showRides": "Med bus",
+        "showTaxi": "Med taxa",
         "user": "Personale"
     },
     "cookies": {
@@ -89,7 +91,24 @@
         "phone": "Tlf. nr.",
         "hospital":"Hospital",
         "busTime": "Bussens afgang",
-        "registerAnother": "Registrer ny aftale"
+        "registerAnother": "Registrer ny aftale",
+        "noAppointmentFound": "Vi har ikke fundet nogen lægeaftale der passer med de oplysninger du har givet os. Det kan være fordi, du stadigvæk ikke har registreret en lægeaftale. Det kan dog også skyldes at de oplysninger du har tastet ind, ikke passer med de oplysninger vi har om dig.",
+        "pleaseRegister": "Registrer en ny aftale eller gå tilbage, for at rette eventuelle fejl du havde i din indtastning.",
+        "goToHospitalList": "Registrer ny aftale",
+        "goBack": "Tilbage"
+    },
+    "patientinfo": {
+        "para1": "Vi tjekker om vi har eksisterende oplysninger om dig og din lægeaftale, ud fra det du tastede ind på forsiden."
+    },
+    "appointments": {
+        "heading": "Alle Aftaler",
+        "name": "Navn",
+        "accommodation": "Indkvartering",
+        "hospital": "Hospital",
+        "appointmentDate": "Aftaledato",
+        "appointmentTime": "Aftaletid",
+        "busTime": "Bustid",
+        "noAppointments": "Ingen aftaler fundet"
     },
     "confirm": {
         "para1": "Se godt efter om du har udfyldt formularen rigtigt og bekræft oplysningerne ved at sende formularen. Er der en rød række på tabellen, betyder det at du ikke har udfyldt det pågældende felt. Du skal derfor gå tilbage og færdiggøre formularen.",
@@ -121,6 +140,7 @@
     },
     "taxi": {
         "heading": "Patienter med behov for taxa",
+        "headingPublic": "Patienter der skal med taxa",
         "name": "Navn",
         "accommodation": "Indkvartering",
         "room": "Værelsesnummer",
@@ -130,7 +150,7 @@
         "hospital": "Hospital",
         "department": "Afdeling på hospitalet",
         "hasTaxi": "Har taxa",
-        "shiftTaxi": "Skift",
+        "statusTaxi": "Status",
         "cancel": "Annuller",
         "order": "Bestil",
         "today": "I dag",
@@ -146,7 +166,7 @@
     },
     "schedules": {
         "heading": "Køreplaner",
-        "toRiget": "Til Rigshospitalet",
+        "toRiget": "Til Rigshospitalet, Gentofte Hospital og Bispebjerg Hospital",
         "toDgp": "Til Patienthjemmet",
         "Mandag": "Mandag",
         "Tirsdag": "Tirsdag",

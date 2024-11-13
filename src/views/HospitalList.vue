@@ -45,7 +45,8 @@ export default {
     async fetchHospitals() {
       try {
         const response = await axios.get(`${apiUrl}/api/hospitals/`);
-        this.hospitals = response.data; // Assign the hospital data to the component's state
+        this.hospitals = response.data.filter(hospital => hospital.id !== 8); // Assign the hospital data to the component's state
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching hospital data:", error);
       }

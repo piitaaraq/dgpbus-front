@@ -1,5 +1,5 @@
 <template>
-    <div class="rides-today-container container">
+    <div class="rides-today-container container is-fluid">
         <h3 class="title is-1">{{ $t("rides.heading") }}</h3>
 
         <table v-if="paginatedRides.length > 0" class="table is-fullwidth">
@@ -90,6 +90,7 @@ export default {
         async fetchRides() {
             try {
                 const response = await axios.get(`${apiUrl}/api/rides/today_no_desc`);
+                console.log(response.data);
                 this.rides = response.data;
             } catch (error) {
                 console.error('Error fetching rides:', error);

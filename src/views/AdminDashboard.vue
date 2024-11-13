@@ -8,7 +8,8 @@
                     <div class="card is-info" @click="goToTodayRides">
                         <div class="card-content">
                             <p class="title is-5">Dagens kørsler</p>
-                            <p>Vis alle kørsler for i dag</p>
+                            <p>Patienter der skal til Rigshospitalet, Bispebjerg Hospital eller Gentofte Hospital med
+                                bussen i dag</p>
                         </div>
                     </div>
                 </div>
@@ -16,8 +17,8 @@
                 <div class="column is-one-third">
                     <div class="card is-info" @click="goToRidesLong">
                         <div class="card-content">
-                            <p class="title is-5">Dagens kørsler - lang liste</p>
-                            <p>Vis alle kørsler for i dag i en lang liste</p>
+                            <p class="title is-5">Alle aftaler</p>
+                            <p>Vis alle lægeaftaler; uanset om patienten skal med bus eller taxa</p>
                         </div>
                     </div>
                 </div>
@@ -78,7 +79,7 @@ export default {
             this.$router.push({ name: 'RidesToday' });
         },
         goToRidesLong() {
-            this.$router.push({ name: 'RidesTodayLong' });
+            this.$router.push({ name: 'AllAppointments' });
         },
         goToBusSchedules() {
             this.$router.push({ name: 'BusSchedules' });

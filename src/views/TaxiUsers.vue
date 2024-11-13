@@ -15,11 +15,11 @@
                     <th>{{ $t("taxi.hospital") }}</th>
                     <th>{{ $t("taxi.department") }}</th>
                     <th>{{ $t("taxi.hasTaxi") }}</th> <!-- Column for taxi status -->
-                    <th>{{ $t("taxi.shiftTaxi") }}</th> <!-- Button to order a taxi -->
+                    <th>{{ $t("taxi.statusTaxi") }}</th> <!-- Button to order a taxi -->
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="patient in todaysPatients" :key="patient.id" :class="{ 'has-taxi': patient.has_taxi }">
+                <tr v-for="patient in upcomingPatients" :key="patient.id" :class="{ 'has-taxi': patient.has_taxi }">
                     <td>{{ patient.name }}</td>
                     <td>{{ patient.phone_no }}</td>
                     <td>{{ patient.accommodation.name }} </td>
@@ -38,41 +38,6 @@
             </tbody>
         </table>
 
-        <!-- Table for tomorrow's appointments -->
-        <h3 class="title is-4">{{ $t("taxi.tomorrow") }}</h3>
-        <table class="table is-fullwidth is-striped">
-            <thead>
-                <tr>
-                    <th>{{ $t("taxi.name") }}</th>
-                    <th>{{ $t("taxi.phone") }}</th>
-                    <th>{{ $t("taxi.accommodation") }}</th>
-                    <th>{{ $t("taxi.appDate") }}</th>
-                    <th>{{ $t("taxi.appTime") }}</th>
-                    <th>{{ $t("taxi.hospital") }}</th>
-                    <th>{{ $t("taxi.department") }}</th>
-                    <th>{{ $t("taxi.hasTaxi") }}</th> <!-- Column for taxi status -->
-                    <th>{{ $t("taxi.shiftTaxi") }}</th> <!-- Button to order a taxi -->
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="patient in tomorrowsPatients" :key="patient.id" :class="{ 'has-taxi': patient.has_taxi }">
-                    <td>{{ patient.name }}</td>
-                    <td>{{ patient.phone_no }}</td>
-                    <td>{{ patient.accommodation.name }}</td>
-                    <td>{{ formatDate(patient.appointment_date) }}</td>
-                    <td>{{ formatTime(patient.appointment_time) }}</td>
-                    <td>{{ patient.hospital_name }}</td>
-                    <td>{{ patient.department }}</td>
-                    <td>{{ formatBoolean(patient.has_taxi) }}</td>
-                    <td>
-                        <button @click="toggleTaxi(patient)"
-                            :class="['button taxi-btn', patient.has_taxi ? 'is-warning' : 'is-success']">
-                            {{ patient.has_taxi ? $t('taxi.cancel') : $t('taxi.order') }}
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
     </div>
 </template>
 
@@ -87,15 +52,24 @@ export default {
         };
     },
     computed: {
-        todaysPatients() {
-            const today = new Date().toISOString().slice(0, 10);  // Get today's date in YYYY-MM-DD format
-            return this.patients.filter(patient => patient.appointment_date === today);
-        },
-        tomorrowsPatients() {
-            const tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);  // Get tomorrow's date
-            const tomorrowStr = tomorrow.toISOString().slice(0, 10);  // Format as YYYY-MM-DD
-            return this.patients.filter(patient => patient.appointment_date === tomorrowStr);
+        upcomingPatients() {
+            const todayStr = new Date().toISOString().slice(0, 10); // Get today's date in 'YYYY-MM-DD' format
+
+            return this.patients
+                .filter(patient => {
+                    // Ensure that appointment_date is in 'YYYY-MM-DD' format
+                    const appointmentDateStr = patient.appointment_date;
+                    // Include only appointments that are today or in the future
+                    return appointmentDateStr >= todayStr;
+                })
+                .sort((a, b) => {
+                    // Sort by appointment_date first, then by appointment_time
+                    const dateComparison = a.appointment_date.localeCompare(b.appointment_date);
+                    if (dateComparison === 0) {
+                        return a.appointment_time.localeCompare(b.appointment_time);
+                    }
+                    return dateComparison;
+                });
         }
     },
     mounted() {

@@ -17,7 +17,7 @@ export const useAuthStore = defineStore({
     async login(email, password) {
       try {
         const response = await axios.post(`${apiUrl}/api/token/`, {
-          email,
+          username: email,
           password,
         });
 

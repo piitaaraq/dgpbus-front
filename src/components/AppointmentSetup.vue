@@ -1,38 +1,57 @@
 <template>
-    <div>
-        <form @submit.prevent="submitForm">
-            <div class="field">
-                <label class="label">{{ $t("formular.accommodation") }}</label>
-                <div class="control">
-                    <div class="select is-medium">
-                        <select v-model="form.accommodation" required>
-                            <option value="">{{ $t("formular.selectAccommodation") }}</option>
-                            <option v-for="accommodation in accommodations" :key="accommodation.id"
-                                :value="accommodation.name">
-                                {{ accommodation.name }}
-                            </option>
-                        </select>
-                    </div>
-                </div>
+    <div class="container pt-4">
+        <div class="columns">
+            <div class="column">
+                <h3 class="title-is-3">
+                    Peqqissartunik angallassineq
+                </h3>
+                <p class="is-size-4">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis totam, odio a nesciunt laborum
+                    esse voluptates animi eum, voluptatum dolores harum omnis perferendis vero maxime corporis dolore
+                    voluptate, officiis optio!
+                </p>
+                <p class="is-size-4">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti quibusdam aut harum maiores hic et
+                    voluptates eum delectus cum sequi necessitatibus dolores earum reiciendis aliquam voluptatum quasi
+                    eius, ullam ut!
+                </p>
             </div>
-            <div class="columns">
-                <div class="field column">
-                    <label class="label">{{ $t("formular.name") }}</label>
-                    <div class="control">
-                        <input class="input is-medium" type="text" v-model="form.name" required />
+            <div class="column">
+                <form @submit.prevent="submitForm">
+                    <div class="field">
+                        <label class="label">{{ $t("formular.accommodation") }}</label>
+                        <div class="control">
+                            <div class="select is-medium">
+                                <select v-model="form.accommodation" required>
+                                    <option value="">{{ $t("formular.selectAccommodation") }}</option>
+                                    <option v-for="accommodation in accommodations" :key="accommodation.id"
+                                        :value="accommodation.name">
+                                        {{ accommodation.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="field column">
-                    <label class="label">{{ $t("formular.room") }}</label>
-                    <div class="control">
-                        <input class="input is-medium" type="text" v-model="form.room" required />
+                    <div class="columns">
+                        <div class="field column">
+                            <label class="label">{{ $t("formular.name") }}</label>
+                            <div class="control">
+                                <input class="input is-medium" type="text" v-model="form.name" required />
+                            </div>
+                        </div>
+                        <div class="field column">
+                            <label class="label">{{ $t("formular.room") }}</label>
+                            <div class="control">
+                                <input class="input is-medium" type="text" v-model="form.room" required />
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <button class="button is-medium is-primary" type="submit">
+                        {{ $t("formular.submit") }}
+                    </button>
+                </form>
             </div>
-            <button class="button is-medium is-primary" type="submit">
-                {{ $t("formular.submit") }}
-            </button>
-        </form>
+        </div>
     </div>
 </template>
 

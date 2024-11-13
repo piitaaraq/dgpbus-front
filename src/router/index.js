@@ -11,12 +11,13 @@ import RidesToday from '../views/RidesToday.vue';
 import AdminDashboard from '@/views/AdminDashboard.vue';
 import BusSchedules from '@/views/BusSchedules.vue';
 import TaxiUsers from '@/views/TaxiUsers.vue';
+import TaxiUsersPublic from '@/views/TaxiUsersPublic.vue';
 import DriverView from '@/views/DriverView.vue';
 import TranslatorView from '@/views/TranslatorView.vue';
 import PendingApprovals from '@/views/PendingApprovals.vue';
 import PrivacyPage from '@/views/PrivacyPage.vue';
 import Cookies from 'js-cookie';  // Import js-cookie to access the token from cookies
-import RidesTodayLong from '@/views/RidesTodayLong.vue';
+import AllAppointments from '@/views/AllAppointments.vue';
 
 
 const routes = [
@@ -74,7 +75,7 @@ const routes = [
 
   },
   {
-    path: '/hospitals',
+    path: '/hospitaler',
     name: 'HospitalList',
     component: HospitalList,
     meta: {
@@ -98,7 +99,7 @@ const routes = [
     }
   },
   {
-  path: '/confirm',
+  path: '/bekraeft',
   name: 'ConfirmForm',
   component: ConfirmForm,
   props: route => ({
@@ -115,9 +116,9 @@ const routes = [
   }
   },
   {
-    path: '/rides-today-long',
-    name: 'RidesTodayLong',
-    component: RidesTodayLong,
+    path: '/alle-aftaler',
+    name: 'AllAppointments',
+    component: AllAppointments,
     meta: {
       breadcrumbs: [
         { name: "home", link: "/" },
@@ -127,7 +128,7 @@ const routes = [
     }
   },
   {
-    path: '/rides-today',
+    path: '/dagens',
     name: 'RidesToday',
     component: RidesToday,
     meta: {
@@ -135,7 +136,21 @@ const routes = [
         { name: "home", link: "/" },
         { name: "dashboard", link: "/dashboard" },
         { name: "ridestoday" }
-      ]
+      ],
+      hideHeaderFooter: false
+    }
+  },
+  {
+    path: '/info/dagens',
+    name: 'RidesTodayInfo',
+    component: RidesToday,
+    meta: {
+      breadcrumbs: [
+        { name: "home", link: "/" },
+        { name: "dashboard", link: "/dashboard" },
+        { name: "ridestoday" }
+      ],
+      hideHeaderFooter: true 
     }
   },
   {
@@ -176,7 +191,7 @@ const routes = [
     },
   },
   {
-    path: '/bus-schedules',
+    path: '/bus-plan',
     name: 'BusSchedules',
     component: BusSchedules,
     meta: {
@@ -188,7 +203,7 @@ const routes = [
     }
   },
   {
-    path: '/taxi-users',
+    path: '/taxa-patienter',
     name: 'TaxiUsers',
     component: TaxiUsers,
     meta: { requiresStaff: true,
@@ -200,7 +215,33 @@ const routes = [
      },
   },
   {
-    path: '/translators',
+    path: '/med-taxa',
+    name: 'TaxiUsersPublic',
+    component: TaxiUsersPublic,
+    meta: { requiresStaff: false,
+    breadcrumbs: [
+      { name: "home", link: "/" },
+      { name: "dashboard", link: "/dashboard" },
+      { name: "taxi" }
+      ],
+      hideHeaderFooter: false
+     },
+  },
+  {
+    path: '/info/med-taxa',
+    name: 'TaxiUsersPublicInfo',
+    component: TaxiUsersPublic,
+    meta: { requiresStaff: false,
+    breadcrumbs: [
+      { name: "home", link: "/" },
+      { name: "dashboard", link: "/dashboard" },
+      { name: "taxi" }
+      ],
+      hideHeaderFooter: true
+     },
+  },
+  {
+    path: '/tolke',
     name: 'TranslatorView',
     component: TranslatorView,
     meta: { requiresStaff: true,
@@ -212,7 +253,7 @@ const routes = [
      },  
   },
   {
-    path: '/driver-view',
+    path: '/busdriver',
     name: 'DriverView',
     component: DriverView,
     meta: { requiresStaff: true,
@@ -229,6 +270,15 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    // If there is a saved position (e.g., user clicked back), restore it
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      // Otherwise, scroll to the top of the page
+      return { top: 0 };
+    }
+  }
 });
 
 

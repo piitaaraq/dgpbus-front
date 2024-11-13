@@ -1,37 +1,57 @@
 <template>
-  <div class="homepage-container container">
-    <h1 class="title is-1 is-size-3-mobile has-text-centered">{{ $t("homepage.heading") }} </h1>
-    <div class="home-cards">
-      <div class="card" @click="goToStaffArea">
-        <h3 class="title is-3 is-size-4-mobile has-text-success">{{ $t('homepage.staffTitle') }}</h3>
-      </div>
-
-      <div class="card" @click="goToPatientArea">
-        <h3 class="title is-3 is-size-4-mobile has-text-success">{{ $t('homepage.patientTitle') }}</h3>
-      </div>
-
+  <div class="homepage-container container pt-4">
+    <div v-if="currentView === 'appointmentSetup'">
+      <AppointmentSetup @basicInfoSubmitted="handleBasicInfo" />
+    </div>
+    <div v-else-if="currentView === 'patientInfo'">
+      <PatientInfo :appointment="patientStore.appointment" :noMatchFound="patientStore.noMatchFound"
+        @goBack="resetToAppointmentSetup" />
     </div>
     <CookieConsent />
 
+    <!-- Show error message if there's an actual error -->
+    <div v-if="patientStore.errorMessage" class="notification is-danger">
+      {{ patientStore.errorMessage }}
+    </div>
   </div>
 </template>
 
 <script>
+import AppointmentSetup from '@/components/AppointmentSetup.vue';
+import PatientInfo from '@/components/PatientInfo.vue';
 import CookieConsent from '@/components/CookieConsent.vue';
+import { useCheckPatientStore } from '@/stores/checkPatientStore';
 
 export default {
   name: 'HomePage',
   components: {
+    AppointmentSetup,
+    PatientInfo,
     CookieConsent,
   },
+  setup() {
+    const patientStore = useCheckPatientStore();
+    return { patientStore };
+  },
+  data() {
+    return {
+      currentView: 'appointmentSetup',
+    };
+  },
   methods: {
-    goToStaffArea() {
-      this.$router.push({ name: 'AdminDashboard' });
+    async handleBasicInfo(form) {
+      this.patientStore.name = form.name;
+      this.patientStore.room = form.room;
+      this.patientStore.accommodation = form.accommodation;
+
+      await this.patientStore.checkPatient();
+      this.currentView = 'patientInfo';
     },
-    goToPatientArea() {
-      this.$router.push({ name: 'HospitalList' });
-    }
-  }
+    resetToAppointmentSetup() {
+      this.patientStore.resetStore();
+      this.currentView = 'appointmentSetup';
+    },
+  },
 };
 </script>
 
@@ -39,58 +59,12 @@ export default {
 .homepage-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 80vh;
-}
-
-.home-cards {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
   justify-content: center;
-  align-items: stretch;
+  min-height: 80vh;
 }
 
-.card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 250px;
-  height: 170px;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: border-color 0.2s;
-  background-color: #34495E;
-}
-
-.card:hover {
-  background-color: #2C3E50;
-}
-
-.title {
-  margin: 2rem;
-  font-weight: 400;
-}
-
-
-/* Media Queries for Responsive Design */
-@media (max-width: 768px) {
-  .home-cards {
-    flex-direction: column;
-    /* Stack cards vertically on smaller screens */
-  }
-
-  .card {
-    width: 100%;
-    max-width: 300px;
-  }
-}
-
-@media (max-width: 480px) {
-  .card {
-    min-width: 200px;
-    height: 150px;
-  }
+.notification {
+  margin-top: 1rem;
 }
 </style>

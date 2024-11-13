@@ -4,7 +4,9 @@
         "colored": "Illuat",
         "logout": "Anigit",
         "newRide": "Inniminniigit",
-        "showRides": "Ullumi angallassassat",
+        "showApps": "Ullumi nakorsiartussat",
+        "showRides": "Busserlutik nakorsiartussat",
+        "showTaxi": "Taxarlutik nakorsiartussat",
         "user": "Sulisut"
     },
     "cookies": {
@@ -62,17 +64,27 @@
         "para2": "Immersugassat tamakkerukkit ingerlaqqissaatit",
         "para3": "Kalaallit Peqqissartut Illuannut utertussaasimaguit 'Uterit' tuussavat"
     },
+    "appointments": {
+        "heading": "Nakorsiartussat tamaasa",
+        "name": "Ateq",
+        "accommodation": "Inissinneqarfik",
+        "hospital": "Napparsimavik",
+        "appointmentDate": "Nakorsiarfissap ullua",
+        "appointmentTime": "Nakorsiarfissap piffissaa",
+        "busTime": "Busserfissaq",
+        "noAppointments": "Nakorsiartussaqanngilaq"
+    },
     "formular": {
         "heading": "Nakorsiarnissat pillugu",
         "name": "Atit",
         "accommodation": "Inissinneqarfik",
         "selectAccommodation": "Sumi ineqarpit?",
-        "room": "Inivit normua",
-        "appDate": "Nakorsiarfissavit ullua",
-        "appTime": "Piffissaq",
+        "room": "Inip normua",
+        "appDate": "Nakorsiarfissap ullua",
+        "appTime": "Nakorsiarnissamut piffissaq",
         "department": "Napparsimmavimmi immikkoortoq",
         "desc": "Napparsimmaviliarnerup siunertaa CPR normulu",
-        "placeholder": "Napparsimmavimmi peqqissartoq suniarpa? CPR nr. uani ilanngutissaaq",
+        "placeholder": "Napparsimmavimmi peqqissartoq suniarpa?",
         "translator": "Oqalutsimik pisariaqartitsivit?",
         "radioY": "Aap",
         "radioN": "Naamik",
@@ -113,6 +125,7 @@
     },
     "taxi": {
         "heading": "Taxamik pisariaqartitsisut",
+        "headingPublic": "Taxarlutik nakorsiartussat",
         "name": "Ateq",
         "accommodation": "Inissinneqarfik",
         "room": "Inip normua",
@@ -122,7 +135,7 @@
         "hospital": "Napparsimavik",
         "department": "Napparsimavimmi immikkoortoq",
         "hasTaxi": "Taxassaqarpoq",
-        "shiftTaxi": "Inniminniineq",
+        "statusTaxi": "Status",
         "cancel": "Annuller",
         "order": "Bestil",
         "today": "Ullumi",
@@ -131,7 +144,7 @@
     },
     "schedules": {
         "heading": "Bussit angalanerannut pilersaarutit",
-        "toRiget": "Rigshospitalimut",
+        "toRiget": "Rigshospitalimut, Gentofte Hospitalimut Bispebjerg Hospitalimullu",
         "toDgp": "Peqqissartut illuannut",
         "Mandag": "Ataasinngorneq",
         "Tirsdag": "Marlunngorneq",

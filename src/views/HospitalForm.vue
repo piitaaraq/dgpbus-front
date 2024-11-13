@@ -169,7 +169,8 @@ export default {
       };
 
       // Only calculate bus time for hospital 1 and when the accommodation is "Det grønlandske Patienthjem"
-      if (Number(this.form.hospital) === 1 && this.form.accommodation === 'Det grønlandske Patienthjem') {
+      if (
+        [1, 3, 7].includes(Number(this.form.hospital)) && this.form.accommodation === 'Det grønlandske Patienthjem') {
         try {
           // Make the POST request to calculate the bus time
           const response = await axios.post(`${apiUrl}/api/patients/calculate_bus_time/`, formWithAccommodationId);
