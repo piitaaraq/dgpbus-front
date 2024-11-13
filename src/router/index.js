@@ -9,7 +9,7 @@ import HospitalList from '@/views/HospitalList.vue';
 import EditForm from '../views/EditForm.vue';
 import RidesToday from '../views/RidesToday.vue';
 import AdminDashboard from '@/views/AdminDashboard.vue';
-import BusSchedules from '@/views/BusSchedules.vue';
+import BusSchedule from '@/views/BusSchedules.vue';
 import TaxiUsers from '@/views/TaxiUsers.vue';
 import TaxiUsersPublic from '@/views/TaxiUsersPublic.vue';
 import DriverView from '@/views/DriverView.vue';
@@ -191,15 +191,29 @@ const routes = [
     },
   },
   {
-    path: '/bus-plan',
-    name: 'BusSchedules',
-    component: BusSchedules,
+    path: '/info/bus-plan',
+    name: 'BusScheduleInfo',
+    component: BusSchedule,
     meta: {
       breadcrumbs: [
         { name: "home", link: "/" },
         { name: "dashboard", link: "/dashboard" },
         { name: "schedules"}
-      ]
+      ],
+      hideHeaderFooter: true
+    }
+  },
+  {
+    path: '/bus-plan',
+    name: 'BusSchedule',
+    component: BusSchedule,
+    meta: {
+      breadcrumbs: [
+        { name: "home", link: "/" },
+        { name: "dashboard", link: "/dashboard" },
+        { name: "schedules"}
+      ],
+      hideHeaderFooter: false
     }
   },
   {

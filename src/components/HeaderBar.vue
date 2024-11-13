@@ -28,27 +28,36 @@
       <!-- Navbar end (right side) -->
       <div class="navbar-end">
         <a class="navbar-item has-text-primary-light" @click="toRegistration">
-          <font-awesome-icon :icon="['fas', 'bus']" class="icons" />
+          <font-awesome-icon :icon="['fa', 'calendar-check']" class="icons" />
           {{ $t("headerbar.newRide") }}
         </a>
 
         <!-- dropdown for today's app.s -->
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link has-text-primary-light">
-            <font-awesome-icon :icon="['fas', 'clock']" class="icons" />
+            <font-awesome-icon :icon="['fa', 'clock']" class="icons" />
             {{ $t("headerbar.showApps") }}
           </a>
           <div class="navbar-dropdown is-right">
-            <a class="navbar-item " @click="toRides">{{ $t("headerbar.showRides") }}</a>
-            <a class="navbar-item " @click="toTaxi">{{ $t("headerbar.showTaxi") }}</a>
+            <a class="navbar-item " @click="toRides">
+              <font-awesome-icon :icon="['fa', 'bus']" class="icons" />
+              {{ $t("headerbar.showRides") }}</a>
+            <a class="navbar-item " @click="toTaxi">
+              <font-awesome-icon :icon="['fa', 'taxi']" class="icons" />
+              {{ $t("headerbar.showTaxi") }}</a>
           </div>
 
         </div>
 
+        <a class="navbar-item has-text-primary-light" @click="toSchedule">
+          <font-awesome-icon :icon="['fa', 'bus']" class="icons" />
+          {{ $t("headerbar.schedule") }}
+        </a>
+
         <!-- Language selection as a dropdown using Bulma's has-dropdown class -->
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link has-text-primary-light">
-            <font-awesome-icon :icon="['fas', 'globe']" class="icons" />ka/da <!-- Language icon -->
+            <font-awesome-icon :icon="['fa', 'globe']" class="icons" />ka/da <!-- Language icon -->
           </a>
           <div class="navbar-dropdown is-right">
             <a class="navbar-item " @click="setLanguage('gl')">Kalaallisut</a>
@@ -56,12 +65,12 @@
           </div>
         </div>
         <a class="navbar-item is-small has-text-primary-light" @click="toLogin">
-          <font-awesome-icon :icon="['fas', 'user']" class="icons" />
+          <font-awesome-icon :icon="['fa', 'user']" class="icons" />
           {{ $t('headerbar.user') }}
         </a>
         <!-- Show logout button only if the user is authenticated -->
         <a class="navbar-item is-small has-text-primary-light" v-if="isAuthenticated" @click="handleLogout">
-          <font-awesome-icon :icon="['fas', 'sign-out-alt']" class="icons" />
+          <font-awesome-icon :icon="['fa', 'sign-out-alt']" class="icons" />
           {{ $t('headerbar.logout') }}
         </a>
       </div>
@@ -103,6 +112,9 @@ export default {
     },
     toRegistration() {
       this.$router.push({ name: 'HospitalList' });
+    },
+    toSchedule() {
+      this.$router.push({ name: 'BusSchedule' });
     },
     toRides() {
       this.$router.push({ name: 'RidesToday' });

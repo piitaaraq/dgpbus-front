@@ -7,7 +7,8 @@
         "showApps": "Ullumi nakorsiartussat",
         "showRides": "Busserlutik nakorsiartussat",
         "showTaxi": "Taxarlutik nakorsiartussat",
-        "user": "Sulisut"
+        "user": "Sulisut",
+        "schedule": "Bussit ingerlaffii"
     },
     "cookies": {
         "header": "Cookiesinik atuineq",
