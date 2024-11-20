@@ -6,13 +6,7 @@
         {{ $t("hospitalform.para0", { hospital: hospitalName }) }}
       </p>
       <p class="is-size-4 content">
-        {{ $t('hospitalform.para1') }}
-      </p>
-      <p class="is-size-4 content">
         {{ $t('hospitalform.para2') }}
-      </p>
-      <p class="is-size-4 content">
-        {{ $t('hospitalform.para3') }}
       </p>
     </div>
 
@@ -21,7 +15,8 @@
         <div class="field">
           <label class="label">{{ $t("formular.name") }}</label>
           <div class="control">
-            <input class="input is-medium" type="text" v-model="form.name" required />
+            <input class="input is-medium" type="text" :placeholder="$t('formular.namePlaceholder')" v-model="form.name"
+              required />
           </div>
         </div>
 
@@ -177,14 +172,16 @@ export default {
         this.form.accommodation === 'Det grønlandske Patienthjem'
       ) {
         try {
+          console.log("Sending data for bus time calculation:...", formWithAccommodationId);
           const response = await axios.post(
             `${apiUrl}/api/patients/calculate_bus_time/`,
             formWithAccommodationId
           );
+          console.log("Bus time response:", response.data);
           const busTime = response.data.bus_time;
           formStore.setFormData({ ...formWithAccommodationId, busTime: busTime || null });
         } catch (error) {
-          console.error('Error calculating bus time:', error);
+          console.error('Error calculating bus time:...', error);
           alert('An error occurred while calculating the bus time. Please try again.');
         }
       } else {

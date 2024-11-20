@@ -60,11 +60,17 @@
             <font-awesome-icon :icon="['fa', 'globe']" class="icons" />ka/da <!-- Language icon -->
           </a>
           <div class="navbar-dropdown is-right">
-            <a class="navbar-item " @click="setLanguage('gl')">Kalaallisut</a>
-            <a class="navbar-item " @click="setLanguage('da')">Dansk</a>
+            <a class="navbar-item " @click="setLanguage('gl')">
+              <font-awesome-icon :icon="['fa', 'language']" class="icons" />
+              Kalaallisut
+            </a>
+            <a class="navbar-item " @click="setLanguage('da')">
+              <font-awesome-icon :icon="['fa', 'language']" class="icons" />
+              Dansk
+            </a>
           </div>
         </div>
-        <a class="navbar-item is-small has-text-primary-light" @click="toLogin">
+        <a class="navbar-item is-small has-text-primary-light" @click="toAdmin">
           <font-awesome-icon :icon="['fa', 'user']" class="icons" />
           {{ $t('headerbar.user') }}
         </a>
@@ -107,8 +113,8 @@ export default {
     goHome() {
       this.$router.push({ name: 'HomePage' });
     },
-    toLogin() {
-      this.$router.push({ name: 'LoginPage' });
+    toAdmin() {
+      this.$router.push({ name: 'AdminDashboard' });
     },
     toRegistration() {
       this.$router.push({ name: 'HospitalList' });
@@ -182,6 +188,7 @@ a:hover {
 .bus-icon {
   margin-right: 0.5rem;
 }
+
 
 
 .heading {

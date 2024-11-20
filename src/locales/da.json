@@ -9,6 +9,11 @@
         "busTime": "Bustid",
         "noAppointments": "Ingen aftaler fundet"
     },
+        "appSetup": {
+        "heading": "Kørsel af patienter i Det Grønlandske Patienthjem",
+        "para1": "Velkommen. Du kan registrere dine lægeaftaler i denne hjemmeside. Afhængigt af hvor din aftale er, vil du kunne se om du skal med bus eller taxa til hospitalet.",
+        "para2": "Du kan indtaste grundlæggende oplsyninger om dig på denne side og vil kunne se oplysninger om din lægeaftale, hvis du har registreret din næste lægeaftale."
+    },
     "breadcrumbs": {
         "home": "Home",
         "dashboard": "For ansatte",
@@ -79,6 +84,7 @@
     "formular": {
         "heading": "Om din lægeaftale",
         "name": "Navn",
+        "namePlaceholder": "Kun fornavn",
         "accommodation": "Indkvartering",
         "selectAccommodation": "Hvor bor du?",
         "room": "Værelsesnummer",
@@ -96,8 +102,8 @@
         "hospital": "Hospital",
         "busTime": "Bussens afgang",
         "registerAnother": "Registrer ny aftale",
-        "noAppointmentFound": "Vi har ikke fundet nogen lægeaftale der passer med de oplysninger...",
-        "pleaseRegister": "Registrer en ny aftale eller gå tilbage...",
+        "noAppointmentFound": "Vi har ikke fundet nogen lægeaftale der passer med de oplysninger du gav os.",
+        "pleaseRegister": "Registrer en ny aftale så du kan se om du skal med bus eller taxa for at komme til din lægeaftale.",
         "goToHospitalList": "Registrer ny aftale",
         "goBack": "Tilbage"
     },
@@ -119,10 +125,8 @@
         "patientDescription": "Registrer din lægeaftale."
     },
     "hospitalform": {
-        "para0": "Du har valgt at du skal til {hospital}",
-        "para1": "Du skal udfylde oplysninger om din lægeaftale...",
-        "para2": "Tryk på 'Videre' når du er færdig.",
-        "para3": "Skulle du i stedet bestille kørsel tilbage..."
+        "para0": "Du har valgt at du skal til {hospital}. Du skal nu udfylde oplysninger om din lægeaftale.",
+        "para2": "Tryk på 'Videre' når du er færdig."
     },
     "hospitals": {
         "whereto": "Hvor skal du hen?",
@@ -142,7 +146,7 @@
         "next": "næste"
     },
     "patientinfo": {
-        "para1": "Vi tjekker om vi har eksisterende oplysninger om dig..."
+        "para1": "Vi tjekker om vi har eksisterende oplysninger om dig. Oplysninger om din lægeaftale bliver vist på siden her, hvis vi har registreret en lægeaftale for dig. Du skal registrere din lægeaftale hvis du ikke har gjort det endnu."
     },
     "rides": {
         "heading": "Dagens buskørsler",
@@ -177,6 +181,7 @@
         "cancel": "Annuller",
         "order": "Bestil",
         "today": "I dag",
-        "tomorrow": "I morgen"
+        "tomorrow": "I morgen",
+        "noRides": "Der er ingen patienter der skal med taxa i dag. Har du registreret en lægeaftale til i dag og du ved at, du skal med taxa, kan du henvende dig ved skranken i patienthjemmet."
     }
 }

@@ -1,19 +1,15 @@
 <template>
-    <div class="container pt-4">
+    <div class="container pt-4 px-2">
         <div class="columns">
             <div class="column">
                 <h3 class="title-is-3">
-                    Peqqissartunik angallassineq
+                    {{ $t("appSetup.heading") }}
                 </h3>
                 <p class="is-size-4">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis totam, odio a nesciunt laborum
-                    esse voluptates animi eum, voluptatum dolores harum omnis perferendis vero maxime corporis dolore
-                    voluptate, officiis optio!
+                    {{ $t("appSetup.para1") }}
                 </p>
                 <p class="is-size-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti quibusdam aut harum maiores hic et
-                    voluptates eum delectus cum sequi necessitatibus dolores earum reiciendis aliquam voluptatum quasi
-                    eius, ullam ut!
+                    {{ $t("appSetup.para2") }}
                 </p>
             </div>
             <div class="column">
@@ -36,7 +32,8 @@
                         <div class="field column">
                             <label class="label">{{ $t("formular.name") }}</label>
                             <div class="control">
-                                <input class="input is-medium" type="text" v-model="form.name" required />
+                                <input class="input is-medium" :placeholder="$t('formular.namePlaceholder')" type="text"
+                                    v-model="form.name" required />
                             </div>
                         </div>
                         <div class="field column">

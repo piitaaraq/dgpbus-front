@@ -24,7 +24,7 @@
             </tbody>
         </table>
 
-        <p v-else class="is-size-2">{{ $t("rides.noRides") }}</p>
+        <p v-else class="is-size-4">{{ $t("taxi.noRides") }}</p>
 
         <!-- Pagination Controls -->
         <nav class="pagination is-small" role="navigation" aria-label="pagination">

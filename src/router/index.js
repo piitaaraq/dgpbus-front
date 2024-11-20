@@ -93,7 +93,7 @@ const routes = [
     meta: {
       breadcrumbs: [
         { name: "home", link: "/" },
-        { name: "hospitals", link: "/hospitals" },
+        { name: "hospitals", link: "/hospitaler" },
         { name: "hospitalform" }
       ]
     }
@@ -109,7 +109,7 @@ const routes = [
   meta: {
     breadcrumbs: [
       { name: "home", link: "/" },
-      { name: "hospitals", link: "/hospitals" },
+      { name: "hospitals", link: "/hospitaler" },
       { name: "confirmform" },
     ]
 

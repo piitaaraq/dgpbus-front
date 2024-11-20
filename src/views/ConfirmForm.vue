@@ -67,28 +67,32 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script>
 import axios from 'axios';
 import { useFormStore } from '@/stores/formStore';
-const apiUrl = process.env.VUE_APP_BACKEND_URL
+import { useCheckPatientStore } from '@/stores/checkPatientStore'; // Adjust the path if necessary
+const apiUrl = process.env.VUE_APP_BACKEND_URL;
 
 export default {
-  setup() {
-    const formStore = useFormStore();  // Access the form store
-    const { formData } = formStore;    // Get formData from store
-    const busTime = formData.busTime;  // Get busTime from formData
-
-    return { formData, busTime };  // Return formData and busTime for template usage
+  data() {
+    const formStore = useFormStore();
+    return {
+      formData: formStore.formData, // Bind formData from the store
+      busTime: formStore.formData.busTime, // Extract busTime for easier use
+    };
   },
   methods: {
     async submitUserData() {
       try {
-
         // Submit formData to the backend via POST request
         await axios.post(`${apiUrl}/api/patients/`, this.formData);
+        alert('Submission success!');
+
+        // Reset the store after successful submission
+        const checkPatientStore = useCheckPatientStore(); // Access the store instance
+        checkPatientStore.resetStore();
 
         // On successful submission, navigate to the homepage or a success page
         this.$router.push({ name: 'HomePage' });
@@ -97,12 +101,11 @@ export default {
       }
     },
     goBack() {
-      this.$router.go(-1);  // Navigate back to the form page
-    }
-  }
+      this.$router.go(-1); // Navigate back to the form page
+    },
+  },
 };
 </script>
-
 
 <style scoped>
 .confirmation-form-container {

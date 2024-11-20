@@ -103,9 +103,6 @@ export default {
                 const token = this.authStore.token;  // Get the token from authStore
                 if (token) {
                     const response = await axios.get(`${apiUrl}/api/patients/translator-view/`, {
-                        headers: {
-                            'Authorization': `Bearer ${token}` // Attach the JWT token
-                        }
                     });
                     this.patients = response.data;
                 } else {

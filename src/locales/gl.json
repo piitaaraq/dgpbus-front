@@ -9,6 +9,11 @@
         "busTime": "Busserfissaq",
         "noAppointments": "Nakorsiartussaqanngilaq"
     },
+    "appSetup": {
+        "heading": "Peqqissartunik angallassineq",
+        "para1": "Tikilluarit. Nittartakkami maani nakorsiarnissatit nalunaarutigisinnaavatit. Sumi nakorsiarnissat apeqqutaatillugu, bussinut taxanulluunniit ilaassanerlutit paasissavat bussertussaaguillu qassinut ilaassanerlutit aamma paasissavat.",
+        "para2": "Uani quppernermi tunngaviusumi paasissutissat ilinnut tunngasut immersorsinnaavatit, nakorsiarnissamillu nalunaaruteqareersimaguit nalunaarsorsimasat takusinnaavat."
+    },
     "breadcrumbs": {
         "home": "Home",
         "dashboard": "Sulisunut",
@@ -79,6 +84,7 @@
     "formular": {
         "heading": "Nakorsiarnissat pillugu",
         "name": "Atit",
+        "namePlaceholder": "Siulequt kisiat",
         "accommodation": "Inissinneqarfik",
         "selectAccommodation": "Sumi ineqarpit?",
         "room": "Inip normua",
@@ -95,7 +101,11 @@
         "phone": "Tlf. normu",
         "hospital": "Napparsimavik",
         "registerAnother": "Nakorsiarnissamik nalunaaruteqarit",
-        "busTime": "Bussit aallarfissaat"
+        "busTime": "Bussit aallarfissaat",
+        "noAppointmentFound": "Nakorsiarnissat pillugu allattukkanik nassaanngilagut.",
+        "pleaseRegister": "Nakorsiarnissat nalunaarutingigukku bussinut taxanulluunniit ilaallutit nakorsiassanerlutit paasissavat.",
+        "goToHospitalList": "Nalunaaruteqarit",
+        "goBack": "Uterit"
     },
     "headerbar": {
         "title": "Kalaallit Peqqissartut",
@@ -115,10 +125,8 @@
         "patientDescription": "Napparsimmaviliarnissat nalunaarutigiuk."
     },
     "hospitalform": {
-        "para0": "{hospital}imukassallutit toqqarpat.",
-        "para1": "Nakorsiarnissat pillugu paasissutissat immersussavatit...",
-        "para2": "Immersugassat tamakkerukkit ingerlaqqissaatit",
-        "para3": "Kalaallit Peqqissartut Illuannut utertussaasimaguit 'Uterit' tuussavat"
+        "para0": "{hospital}imukassallutit toqqarpat. Nakorsiarnissat pillugu paasissutissat quppernermi uani immersussavatit.",
+        "para2": "Immersugassat tamakkerukkit ingerlaqqissaatit"
     },
     "hospitals": {
         "whereto": "Sumunnassavit?",
@@ -128,6 +136,9 @@
     "pagination": {
         "previous": "siulia",
         "next": "tullia"
+    },
+    "patientinfo": {
+        "para1": "Nakorsiarnissat pillugu allattungaateqarnerluta misissorparput. Peqarsimagutta nakorsiarnissat pillugu paasissutissat quppernermi uani nuissapput. Peqarsimanngikkutta nutaamik nalunaarsuissaatit."
     },
     "rides": {
         "heading": "Ullumi bussertussat",
@@ -162,6 +173,7 @@
         "cancel": "Annuller",
         "order": "Bestil",
         "today": "Ullumi",
-        "tomorrow": "Aqagu"
+        "tomorrow": "Aqagu",
+        "noRides": "Ullumikkut taxarluni nakorsiartussaqanngilaq. Ullumi nakorsiarnissat nalunaarutigereersimagukku nalunagulu taxanik ingerlasussaallutit, peqqissartut illuanni saaffiginnittarfimmut paasiniaasinnaavutit."
     }
 }

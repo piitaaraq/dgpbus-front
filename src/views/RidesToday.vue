@@ -89,7 +89,7 @@ export default {
     methods: {
         async fetchRides() {
             try {
-                const response = await axios.get(`${apiUrl}/api/rides/today_no_desc`);
+                const response = await axios.get(`${apiUrl}/api/rides/today`);
                 console.log(response.data);
                 this.rides = response.data;
             } catch (error) {

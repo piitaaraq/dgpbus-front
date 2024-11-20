@@ -1,32 +1,37 @@
 <template>
-    <div class="overlay" v-if="ride">
-        <div class="overlay-content">
-            <!-- Close button -->
-            <button class="close-btn" @click="closeOverlay"><font-awesome-icon
-                    :icon="['fas', 'circle-xmark']" /></button>
+    <div class="ride-details">
+        <!-- Back button to return to the schedule -->
+        <button class="button is-light mb-4" @click="closeDetails">
+            <font-awesome-icon :icon="['fas', 'arrow-left']" /> {{ $t("driver.backButton") }}
+        </button>
 
-            <!-- Passenger check-off details -->
-            <h3 class="title is-4">{{ $t("driver.passengersHeading") }}</h3>
-            <table class="table is-fullwidth">
-                <thead>
-                    <tr>
-                        <th>{{ $t("driver.name") }}</th>
-                        <th>{{ $t("driver.room") }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="patient in ride.patients" :key="patient.id">
-                        <td>{{ patient.name }}</td>
-                        <td>{{ patient.room }}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <h3 class="title is-4">{{ $t("driver.passengersHeading") }}</h3>
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th>{{ $t("driver.name") }}</th>
+                    <th>{{ $t("driver.room") }}</th>
+                    <th>{{ $t("driver.status") }}</th>
+                    <th>{{ $t("driver.checkedIn") }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="ridePatient in ridePatients" :key="ridePatient.id">
+                    <td>{{ ridePatient.patient.name }}</td>
+                    <td>{{ ridePatient.patient.room }}</td>
+                    <td>{{ ridePatient.checked_in ? $t("driver.checkedIn") : $t("driver.notCheckedIn") }}</td>
+                    <td>
+                        <input type="checkbox" :checked="ridePatient.checked_in" @change="toggleCheckIn(ridePatient)" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
 <script>
 import axios from 'axios';
+const apiUrl = process.env.VUE_APP_BACKEND_URL;
 
 export default {
     props: {
@@ -35,57 +40,57 @@ export default {
             required: true
         }
     },
+    data() {
+        return {
+            ridePatients: [], // Holds the patients assigned to the ride along with check-in status
+            isLoading: false
+        };
+    },
+    async mounted() {
+        await this.fetchRidePatients();
+    },
     methods: {
-        closeOverlay() {
-            this.$emit('close');
-        },
-        async toggleStatus(patient) {
+        async fetchRidePatients() {
             try {
-                const token = sessionStorage.getItem('token');
-                const response = await axios.patch(`http://localhost:8000/api/rides/${patient.id}/toggle_status/`, {}, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-                patient.status = response.data.status;
+                const response = await axios.get(`${apiUrl}/api/rides/${this.ride.id}/patients/`);
+                this.ridePatients = response.data;
             } catch (error) {
-                console.error('Error toggling status:', error);
+                console.error('Error fetching ride patients:', error);
             }
+        },
+        async toggleCheckIn(ridePatient) {
+            try {
+                const response = await axios.patch(`${apiUrl}/api/rides/${this.ride.id}/toggle-check-in/`, {
+                    patient_id: ridePatient.patient.id
+                });
+                ridePatient.checked_in = response.data.checked_in;
+            } catch (error) {
+                console.error('Error toggling check-in status:', error);
+                alert(this.$t("driver.updateError"));
+            }
+        },
+        closeDetails() {
+            this.$emit('close');
         }
     }
 };
+
 </script>
 
+
 <style scoped>
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.overlay-content {
-    position: relative;
-    background: white;
+.ride-details {
     padding: 20px;
-    border-radius: 10px;
-    max-width: 600px;
-    width: 100%;
 }
 
-.close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
+.button {
+    margin-bottom: 15px;
+}
+
+.table th,
+.table td {
+    width: 25%;
+    text-align: left;
+    white-space: nowrap;
 }
 </style>
