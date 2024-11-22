@@ -1,30 +1,59 @@
 <template>
   <div id="app" class="app-layout">
-    <HeaderBar v-if="showHeaderFooter" class="has-background-primary" />
-    <BreadCrumb v-if="showHeaderFooter" class="pt-3" />
+    <!-- Conditional HeaderBar rendering -->
+    <template v-if="!hideHeader">
+      <HeaderBar v-if="useDefaultHeader" class="has-background-primary" />
+      <HeaderBarAlt v-else class="has-background-primary" />
+    </template>
+    <!-- Conditional Breadcrumbs rendering -->
+    <BreadCrumb v-if="showBreadcrumbs" :breadcrumbs="$route.meta.breadcrumbs" class="pt-3" />
+
+    <!-- Main content -->
     <div class="content">
       <router-view class=""></router-view>
     </div>
-    <SiteFooter v-if="showHeaderFooter" />
+
+    <!-- Footer -->
+    <SiteFooter v-if="!hideFooter" />
   </div>
 </template>
 
 <script>
 import HeaderBar from './components/HeaderBar.vue';
+import HeaderBarAlt from './components/HeaderBarAlt.vue'; // Import the alternate header
 import SiteFooter from './components/SiteFooter.vue';
 import BreadCrumb from './components/BreadCrumb.vue';
+
 export default {
   name: 'App',
   components: {
     HeaderBar,
+    HeaderBarAlt,
     SiteFooter,
     BreadCrumb
   },
   computed: {
     showHeaderFooter() {
-      // Use the route's meta field to determine whether to show the header/footer
+      // General toggle for both header and footer
       return !this.$route.meta.hideHeaderFooter;
+    },
+    useDefaultHeader() {
+      // Determine which header to use
+      return !this.$route.meta.useAltHeader;
+    },
+    hideHeader() {
+      // Specifically hide the header
+      return this.$route.meta.hideHeaderFooter;
+    },
+    hideFooter() {
+      // Specifically hide the footer; default to true if hideHeaderFooter is true
+      return this.$route.meta.hideHeaderFooter || this.$route.meta.hideFooter;
+    },
+    showBreadcrumbs() {
+      // Show breadcrumbs unless explicitly hidden
+      return this.showHeaderFooter && !this.$route.meta.hideBreadcrumbs;
     }
+
   }
 };
 </script>
@@ -34,14 +63,11 @@ export default {
   font-family: 'Poppins', sans-serif;
 }
 
-
 .body {
   font-family: 'Roboto', sans-serif;
   color: #2C3E50;
   background-color: #ECF0F1;
 }
-
-
 
 .table {
   background-color: #ECF0F1;

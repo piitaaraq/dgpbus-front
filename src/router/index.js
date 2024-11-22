@@ -200,7 +200,9 @@ const routes = [
         { name: "dashboard", link: "/dashboard" },
         { name: "schedules"}
       ],
-      hideHeaderFooter: true
+      hideFooter: true,
+      useAltHeader: true,
+      hideBreadcrumbs: true
     }
   },
   {
