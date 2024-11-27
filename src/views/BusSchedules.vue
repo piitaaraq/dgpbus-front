@@ -1,27 +1,33 @@
 <template>
     <div class="bus-schedules-container container is-fluid">
-        <h2 class="title is-2">{{ $t("schedules.heading") }}</h2>
+        <h2>{{ $t("schedules.heading") }}</h2>
 
         <!-- Table for Departure Location 1 (Patienthjemmet) -->
         <div v-if="departureLocation1Schedules.length">
-            <h3 class="title is-3">{{ $t("schedules.toRiget") }}</h3>
-            <table class="table is-fullwidth is-striped mb-5">
-                <thead>
-                    <tr>
-                        <th class="is-size-3" v-for="day in sortedDaysOfWeek" :key="day">{{ $t(`days.${day}`) }}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="times in sortedGroupedSchedules(departureLocation1Schedules)" :key="times.id">
-                        <td class="is-size-4" v-for="day in sortedDaysOfWeek" :key="day">{{ formatTime(times[day]) ||
-                            '-' }}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <h3>{{ $t("schedules.toRiget") }}</h3>
+            <div class="table-wrapper">
+                <table class="table is-fullwidth is-striped mb-5">
+                    <thead>
+                        <tr>
+                            <th v-for="day in sortedDaysOfWeek" :key="day">{{ $t(`days.${day}`) }}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="times in sortedGroupedSchedules(departureLocation1Schedules)" :key="times.id">
+                            <td v-for="day in sortedDaysOfWeek" :key="day">{{ formatTime(times[day])
+                                ||
+                                '-' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
         </div>
 
     </div>
 </template>
+
 
 <script>
 import axios from 'axios';
@@ -97,5 +103,28 @@ export default {
 
 .table {
     margin-top: 20px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+th {
+    font-size: 1.5rem;
+}
+
+td {
+    font-size: 1.5rem;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    th {
+        font-size: 1rem;
+    }
+
+    td {
+        font-size: 1rem;
+    }
 }
 </style>

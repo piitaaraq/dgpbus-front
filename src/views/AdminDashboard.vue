@@ -59,14 +59,6 @@
                     </div>
                 </div>
 
-                <div class="column is-one-third">
-                    <div class="card" @click="goToApproveUsers">
-                        <div class="card-content">
-                            <p class="title is-5">Godkendelse af brugere</p>
-                            <p>Personale der venter på at blive godkendt som brugere af systemet</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -82,7 +74,7 @@ export default {
             this.$router.push({ name: 'AllAppointments' });
         },
         goToBusSchedules() {
-            this.$router.push({ name: 'BusSchedules' });
+            this.$router.push({ name: 'BusSchedule' });
         },
         goToTaxiUsers() {
             this.$router.push({ name: 'TaxiUsers' });
@@ -95,9 +87,6 @@ export default {
         },
         goToDriverView() {
             this.$router.push({ name: 'DriverView' });
-        },
-        goToApproveUsers() {
-            this.$router.push({ name: 'PendingApprovals' });
         }
     }
 };

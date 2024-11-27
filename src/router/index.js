@@ -14,7 +14,6 @@ import TaxiUsers from '@/views/TaxiUsers.vue';
 import TaxiUsersPublic from '@/views/TaxiUsersPublic.vue';
 import DriverView from '@/views/DriverView.vue';
 import TranslatorView from '@/views/TranslatorView.vue';
-import PendingApprovals from '@/views/PendingApprovals.vue';
 import PrivacyPage from '@/views/PrivacyPage.vue';
 import Cookies from 'js-cookie';  // Import js-cookie to access the token from cookies
 import AllAppointments from '@/views/AllAppointments.vue';
@@ -59,20 +58,6 @@ const routes = [
       { name: "register" }
     ]
   }
-  },
-  {
-  path: '/admin/pending-approvals',
-  name: 'PendingApprovals',
-  component: PendingApprovals,
-  meta: { 
-    requiresAuth: true,
-    breadcrumbs: [
-      { name: "home", link: "/" },
-      { name: "dashboard", link: "/dashboard" },
-      { name: "approve" }
-    ] 
-  }, 
-
   },
   {
     path: '/hospitaler',

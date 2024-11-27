@@ -21,17 +21,6 @@
                 </div>
             </div>
             <div class="field">
-                <label class="label">Rolle</label>
-                <div class="control">
-                    <div class="select">
-                        <select v-model="role" required>
-                            <option value="staff">Staff</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="field">
                 <div class="control">
                     <button class="button is-primary" type="submit">Registrer</button>
                 </div>
@@ -50,7 +39,7 @@
 
 <script>
 import axios from 'axios';
-const apiUrl = process.env.VUE_APP_BACKEND_URL
+const apiUrl = process.env.VUE_APP_BACKEND_URL;
 
 export default {
     name: "RegisterUser",
@@ -59,7 +48,6 @@ export default {
             email: '',
             password: '',
             confirmPassword: '',
-            role: 'staff',  // Default role
             errorMessage: '',
             successMessage: '',
         };
@@ -75,13 +63,13 @@ export default {
             }
 
             try {
-                await axios.post(`${apiUrl}/api/register/`, {
+                // Send registration request for SiteUser
+                await axios.post(`${apiUrl}/api/siteusers/register/`, {
                     email: this.email,
                     password: this.password,
-                    role: this.role,
                 });
 
-                this.successMessage = 'Brugeren er oprettet. Vent på godkendelse fra administrator.';
+                this.successMessage = 'Brugeren er oprettet. Afvent godkendelse.';
                 this.errorMessage = ''; // Clear error message
             } catch (error) {
                 this.errorMessage = 'Der var en fejl ved brugeroprettelse. Prøv venligst igen.';
