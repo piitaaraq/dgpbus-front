@@ -5,7 +5,7 @@
       <p class="is-size-4">
         {{ $t("confirm.para1") }}
       </p>
-      <p class="is-size-4">
+      <p v-if="busTime" class="is-size-4">
         {{ $t("confirm.para2") }}
       </p>
     </div>
@@ -30,6 +30,10 @@
           <td>{{ formData.room }}</td>
         </tr>
         <tr>
+          <th>{{ $t("confirm.hospital") }}</th>
+          <td>{{ hospitalName }}</td>
+        </tr>
+        <tr>
           <th>{{ $t("confirm.appDate") }}</th>
           <td>{{ formData.appointment_date }}</td>
         </tr>
@@ -47,7 +51,19 @@
         </tr>
         <tr>
           <th>{{ $t("confirm.translator") }}</th>
-          <td>{{ formData.needs_translator ? 'Yes' : 'No' }}</td>
+          <td>{{ formData.needs_translator ? $t("formular.radioY") : $t("formular.radioN") }}</td>
+        </tr>
+        <tr>
+          <th>{{ $t("confirm.wheelchair") }}</th>
+          <td>{{ formData.wheelchair ? $t("formular.radioY") : $t("formular.radioN") }}</td>
+        </tr>
+        <tr>
+          <th>{{ $t("confirm.trolley") }}</th>
+          <td>{{ formData.trolley ? $t("formular.radioY") : $t("formular.radioN") }}</td>
+        </tr>
+        <tr>
+          <th>{{ $t("confirm.companion") }}</th>
+          <td>{{ formData.companion ? $t("formular.radioY") : $t("formular.radioN") }}</td>
         </tr>
         <tr v-if="busTime">
           <th>{{ $t("confirm.bustime") }}</th>
@@ -78,10 +94,17 @@ const apiUrl = process.env.VUE_APP_BACKEND_URL;
 export default {
   data() {
     const formStore = useFormStore();
+    console.log('FormData on load:', formStore.formData);
     return {
+      hospitalName: '',
       formData: formStore.formData, // Bind formData from the store
       busTime: formStore.formData.busTime, // Extract busTime for easier use
     };
+  },
+  mounted() {
+    if (this.formData.hospital) {
+      this.fetchHospitalDetails();
+    }
   },
   methods: {
     async submitUserData() {
@@ -98,6 +121,15 @@ export default {
         this.$router.push({ name: 'HomePage' });
       } catch (error) {
         console.error('Error creating user:', error);
+      }
+    },
+    async fetchHospitalDetails() {
+      try {
+        const response = await axios.get(`${apiUrl}/api/hospitals/${this.formData.hospital}`);
+        this.hospitalName = response.data.hospital_name;
+        console.log(this.hospitalName)
+      } catch (error) {
+        console.error('Error fetching hospital details:', error);
       }
     },
     goBack() {

@@ -41,13 +41,12 @@ const apiUrl = process.env.VUE_APP_BACKEND_URL;
 
 export default {
     components: {
-        RideDetailsOverlay
+        RideDetailsOverlay,
     },
     data() {
         return {
-            rides: [],
-            selectedRide: null,
-            ridePatients: []
+            rides: [], // List of rides
+            selectedRide: null, // Currently selected ride details
         };
     },
     mounted() {
@@ -57,34 +56,40 @@ export default {
         // Access the auth store to get the token
         authStore() {
             return useAuthStore();
-        }
+        },
     },
     methods: {
         // Fetch the list of rides
         async fetchRides() {
             try {
                 const response = await axios.get(`${apiUrl}/api/rides/driver_view`);
+                console.log('Fetched rides:', response.data); // Log the fetched rides
                 this.rides = response.data;
             } catch (error) {
                 console.error('Error fetching rides:', error);
             }
         },
-        // Fetch the patients assigned to a specific ride
+        // Fetch the passengers for a specific ride
         async viewPassengers(rideId) {
             try {
-                // Fetch ride details along with patients
                 const response = await axios.get(`${apiUrl}/api/rides/${rideId}/patients/`);
-                this.selectedRide = { id: rideId, patients: response.data };
+                console.log('API Response for passengers:', response.data); // Debugging log
+                this.selectedRide = {
+                    id: rideId,
+                    patients: response.data.patients || [], // Ensure patients is an array
+                };
+                console.log('Selected Ride:', this.selectedRide); // Confirm selectedRide structure
             } catch (error) {
                 console.error('Error fetching passengers:', error);
+                this.selectedRide = null; // Reset on failure
             }
         },
+        // Format time strings
         formatTime(time) {
-            return time ? time.substring(0, 5) : '';
-        }
-    }
+            return time ? time.substring(0, 5) : 'N/A'; // Handle missing time
+        },
+    },
 };
-
 </script>
 
 <style scoped>

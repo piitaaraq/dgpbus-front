@@ -34,8 +34,8 @@
         "privacy": "Privatlivspolitik"
     },
     "confirm": {
-        "para1": "Paasissutissat immersorsimasatit qimerloorluakkit...",
-        "para2": "Malugiuk Peqqissartut Illuanniit aallarnissarnut...",
+        "para1": "Paasissutissat immersorsimasatit qimerloorluakkit eqqortumik immersuisimanerit qulakkeerniarlugu. Immersukkatit tamarmik eqqortumik ajunngippata ingerlaqqissaatit, taamaangippallu uterlutit.",
+        "para2": "Malugiuk Peqqissartut Illuanniit aallarnissarnut piffissaq naatsorsorneqareermat taannalu bussit aallarfissaannik ateqarluni.",
         "name": "Peqqissartup aqqa",
         "accommodation": "Inissinneqarfik",
         "room": "Inaata normua",
@@ -43,8 +43,8 @@
         "appTime": "Piffissaq",
         "hospital": "Napparsimavik",
         "department": "Napparsimavimmi immikkoortoq",
-        "desc": "Napparsimaviliarnerup siunertaa CPR normulu",
-        "placeholder": "Napparsimavimmi peqqissartoq suniarpa? CPR nr...",
+        "desc": "Napparsimaviliarnerup siunertaa",
+        "placeholder": "Napparsimavimmi peqqissartoq suniarpa?",
         "translator": "Oqalutsimik pisariaqartitsiva?",
         "bustime": "Bussit aallarfissaat",
         "confirm": "Akuerikkit",
@@ -52,7 +52,10 @@
         "back": "Uterit",
         "phone": "Tlf. normu",
         "heading": "Paasissutissat akuerikkit",
-        "hasTaxi": "Taxamik inniminniissunneqarpoq"
+        "hasTaxi": "Taxamik inniminniissunneqarpoq",
+        "wheelchair":"Kaassuartakkanik issiasuua?",
+        "trolley":"Aneerussivinnik nassarpa?",
+        "companion":"Qanigisarnik nakorsiaqateqassava?"
     },
     "cookies": {
         "header": "Cookiesinik atuineq",
@@ -79,7 +82,11 @@
         "room": "Inip normua",
         "status": "Ilaava?",
         "checkedIn": "Aap",
-        "notCheckedIn": "Naamik"
+        "notCheckedIn": "Naamik",
+        "backButton": "Utimut",
+        "toggle": "y/n",
+        "ikkeMed": "Ilaanngilaq",
+        "med": "Ilaavoq"
     },
     "formular": {
         "heading": "Nakorsiarnissat pillugu",
@@ -91,7 +98,7 @@
         "appDate": "Nakorsiarfissap ullua",
         "appTime": "Nakorsiarfissamut piffissaq",
         "department": "Napparsimmavimmi immikkoortoq",
-        "desc": "Napparsimmaviliarnerup siunertaa CPR normulu",
+        "desc": "Napparsimmaviliarnerup siunertaa",
         "placeholder": "Napparsimmavimmi peqqissartoq suniarpa?",
         "translator": "Oqalutsimik pisariaqartitsivit?",
         "radioY": "Aap",
@@ -105,7 +112,10 @@
         "noAppointmentFound": "Nakorsiarnissat pillugu allattukkanik nassaanngilagut.",
         "pleaseRegister": "Nakorsiarnissat nalunaarutingigukku bussinut taxanulluunniit ilaallutit nakorsiassanerlutit paasissavat.",
         "goToHospitalList": "Nalunaaruteqarit",
-        "goBack": "Uterit"
+        "goBack": "Uterit",
+        "wheelchair": "Kaassuartakkanik issiasuuit?",
+        "trolley": "Aneerussivinnik nassarpit?",
+        "companion": "Qanigisarnik nakorsiaqateqassavit?"
     },
     "headerbar": {
         "title": "Kalaallit Peqqissartut",
@@ -130,8 +140,7 @@
     },
     "hospitals": {
         "whereto": "Sumunnassavit?",
-        "para1": "Napparsimavimmut sorlermukarnissat toqqarlugu nakorsiarnissarnik...",
-        "para2": "Napparsimavimmik toqqaareeruit immersugassamut ingerlatinneqassaatit..."
+        "para1": "Napparsimavimmut sorlermukarnissat toqqarlugu nakorsiarnissarnik nalunaarsuinerit aallartissavat. Napparsimavimmik toqqaareeruit immersugassamut ingerlatinneqassaatit."
     },
     "pagination": {
         "previous": "siulia",

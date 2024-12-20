@@ -80,6 +80,7 @@ export default {
             try {
                 const response = await axios.get(`${apiUrl}/api/patients/taxi-users/`);
                 this.patients = response.data;
+                console.log(response.data);
             } catch (error) {
                 console.error('Error fetching patients:', error);
             }

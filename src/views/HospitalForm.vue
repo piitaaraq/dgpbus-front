@@ -12,6 +12,8 @@
 
     <div class="form-section">
       <form @submit.prevent="submitForm">
+
+        <!-- name -->
         <div class="field">
           <label class="label">{{ $t("formular.name") }}</label>
           <div class="control">
@@ -20,6 +22,7 @@
           </div>
         </div>
 
+        <!-- phone -->
         <div class="field">
           <div class="field">
             <label class="label">{{ $t("formular.phone") }}</label>
@@ -27,27 +30,32 @@
               <input class="input is-medium" type="text" v-model="form.phone_no" required />
             </div>
           </div>
+        </div>
 
-          <div class="field">
-            <label class="label">{{ $t("formular.accommodation") }}</label>
-            <div class="control">
-              <div class="select is-medium">
-                <select v-model="form.accommodation" required>
-                  <option value="">{{ $t("formular.selectAccommodation") }}</option>
-                  <option v-for="accommodation in accommodations" :key="accommodation.id" :value="accommodation.name">
-                    {{ accommodation.name }}
-                  </option>
-                </select>
-              </div>
+        <!-- accommodation -->
+        <div class="field">
+          <label class="label">{{ $t("formular.accommodation") }}</label>
+          <div class="control">
+            <div class="select is-medium">
+              <select v-model="form.accommodation" required>
+                <option value="">{{ $t("formular.selectAccommodation") }}</option>
+                <option v-for="accommodation in accommodations" :key="accommodation.id" :value="accommodation.name">
+                  {{ accommodation.name }}
+                </option>
+              </select>
             </div>
           </div>
+        </div>
 
+        <!-- room -->
+        <div class="field">
           <label class="label">{{ $t("formular.room") }}</label>
           <div class="control">
             <input class="input is-medium" type="text" v-model="form.room" required />
           </div>
         </div>
 
+        <!-- appointment date -->
         <div class="field">
           <label class="label">{{ $t("formular.appDate") }}</label>
           <div class="control">
@@ -55,6 +63,7 @@
           </div>
         </div>
 
+        <!-- appointment time -->
         <div class="field">
           <label class="label">{{ $t("formular.appTime") }}</label>
           <div class="control">
@@ -62,6 +71,7 @@
           </div>
         </div>
 
+        <!-- department -->
         <div class="field">
           <label class="label">{{ $t("formular.department") }}</label>
           <div class="control">
@@ -69,6 +79,7 @@
           </div>
         </div>
 
+        <!-- description -->
         <div class="field">
           <label class="label">{{ $t("formular.desc") }}</label>
           <div class="control">
@@ -76,6 +87,7 @@
           </div>
         </div>
 
+        <!-- translator  -->
         <div class="field">
           <label class="label">{{ $t("formular.translator") }}</label>
           <div class="control">
@@ -89,6 +101,53 @@
             </label>
           </div>
         </div>
+
+        <!-- wheelchair -->
+        <div class="field">
+          <label class="label">{{ $t("formular.wheelchair") }}</label>
+          <div class="control">
+            <label class="radio">
+              <input type="radio" v-model="form.wheelchair" :value="true" />
+              {{ $t("formular.radioY") }}
+            </label>
+            <label class="radio">
+              <input type="radio" v-model="form.wheelchair" :value="false" />
+              {{ $t("formular.radioN") }}
+            </label>
+          </div>
+        </div>
+
+        <!-- trolley -->
+        <div class="field">
+          <label class="label">{{ $t("formular.trolley") }}</label>
+          <div class="control">
+            <label class="radio">
+              <input type="radio" v-model="form.trolley" :value="true" />
+              {{ $t("formular.radioY") }}
+            </label>
+            <label class="radio">
+              <input type="radio" v-model="form.trolley" :value="false" />
+              {{ $t("formular.radioN") }}
+            </label>
+          </div>
+        </div>
+
+        <!-- companion -->
+        <div class="field">
+          <label class="label">{{ $t("formular.companion") }}</label>
+          <div class="control">
+            <label class="radio">
+              <input type="radio" v-model="form.companion" :value="true" />
+              {{ $t("formular.radioY") }}
+            </label>
+            <label class="radio">
+              <input type="radio" v-model="form.companion" :value="false" />
+              {{ $t("formular.radioN") }}
+            </label>
+          </div>
+        </div>
+
+        <!-- navbuttons -->
         <div class="field is-grouped mt-4" style="display: flex; gap: 10px">
           <div class="control">
             <button class="button is-large is-primary" type="button" @click="goToConfirmation">
@@ -131,6 +190,9 @@ export default {
         description: '',
         needs_translator: false,
         hospital: this.id,
+        trolley: false,
+        wheelchair: false,
+        companion: false,
       }
     };
   },

@@ -14,7 +14,10 @@ export const useFormStore = defineStore('form', {
       needs_translator: false,
       busTime: null,  // Ensure busTime is initialized
       hospital: null, // Add hospital to store hospital ID
-
+      // new fields:
+      trolley: false,
+      wheelchair: false,
+      companion: false
     },
   }),
   actions: {

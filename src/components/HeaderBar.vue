@@ -86,6 +86,7 @@
 
 <script>
 import { useAuthStore } from '@/stores/auth';
+import { useCheckPatientStore } from '@/stores/checkPatientStore';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'; // Import FontAwesome
 
 export default {
@@ -117,6 +118,8 @@ export default {
       this.$router.push({ name: 'AdminDashboard' });
     },
     toRegistration() {
+      const checkPatientStore = useCheckPatientStore();
+      checkPatientStore.resetStore();
       this.$router.push({ name: 'HospitalList' });
     },
     toSchedule() {

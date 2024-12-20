@@ -43,8 +43,8 @@
         "appTime": "Tidspunkt",
         "hospital": "Hospital",
         "department": "Afdeling på hospitalet",
-        "desc": "Formålet med lægeaftale og CPR nr.",
-        "placeholder": "Hvad skal patienten på hospitalet? CPR skal også skrives her",
+        "desc": "Formålet med lægeaftale",
+        "placeholder": "Hvad skal patienten på hospitalet?",
         "translator": "Har du brug for en tolk?",
         "bustime": "Bussens afgang",
         "confirm": "Send",
@@ -78,8 +78,12 @@
         "name": "Navn",
         "room": "Værelsesnummer",
         "status": "Status",
-        "checkedIn": "Med",
-        "notCheckedIn": "Ikke med"
+        "checkedIn": "Er med",
+        "notCheckedIn": "Ikke med",
+        "backButton": "Tilbage",
+        "toggle": "y/n",
+        "ikkeMed": "Ikke med",
+        "med": "Er med"
     },
     "formular": {
         "heading": "Om din lægeaftale",
@@ -91,7 +95,7 @@
         "appDate": "Dato for lægeaftale",
         "appTime": "Tidspunkt",
         "department": "Afdeling på hospitalet",
-        "desc": "Formålet med lægeaftale og CPR nr.",
+        "desc": "Formålet med lægeaftale",
         "placeholder": "Hvad skal patienten på hospitalet? CPR skal også skrives her",
         "translator": "Har du brug for en tolk?",
         "radioN": "Nej",
@@ -105,7 +109,10 @@
         "noAppointmentFound": "Vi har ikke fundet nogen lægeaftale der passer med de oplysninger du gav os.",
         "pleaseRegister": "Registrer en ny aftale så du kan se om du skal med bus eller taxa for at komme til din lægeaftale.",
         "goToHospitalList": "Registrer ny aftale",
-        "goBack": "Tilbage"
+        "goBack": "Tilbage",
+        "wheelchair": "Bruger du en kørestol?",
+        "trolley": "Har du en barnevogn med?",
+        "companion": "Skal du have en ledsager med?"
     },
     "headerbar": {
         "title": "dgp ",
@@ -130,8 +137,7 @@
     },
     "hospitals": {
         "whereto": "Hvor skal du hen?",
-        "para1": "Du starter din registrering af din lægeaftale...",
-        "para2": "Du bliver ført videre til en formular..."
+        "para1": "Du starter din registrering af din lægeaftale ved at vælge hvilket hospital du skal til. Ved at vælge et hospital, bliver du ført videre til formularen til registering af din lægeaftale."
     },
     "newPatient": {
         "heading": "Dine oplysninger",

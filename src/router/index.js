@@ -119,7 +119,6 @@ const routes = [
     meta: {
       breadcrumbs: [
         { name: "home", link: "/" },
-        { name: "dashboard", link: "/dashboard" },
         { name: "ridestoday" }
       ],
       hideHeaderFooter: false
@@ -210,7 +209,6 @@ const routes = [
     meta: { requiresStaff: true,
     breadcrumbs: [
       { name: "home", link: "/" },
-      { name: "dashboard", link: "/dashboard" },
       { name: "taxi" }
       ]
      },
@@ -222,7 +220,6 @@ const routes = [
     meta: { requiresStaff: false,
     breadcrumbs: [
       { name: "home", link: "/" },
-      { name: "dashboard", link: "/dashboard" },
       { name: "taxi" }
       ],
       hideHeaderFooter: false

@@ -15,14 +15,8 @@
 
 ## patientinfo
 
-- kørestolsbruger?
-- ledsager?
-- spædbarn og barnevogn?
-
 ## Taxa side
 
-- Rediger "skift" til "Status"
-- Rediger "Ja" er til "bestilt"
 - Vis alle aftaler i fremtiden
 
 ## Dagens kørsler - long list

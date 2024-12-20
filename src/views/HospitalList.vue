@@ -2,7 +2,6 @@
   <div class="container">
     <h1 class="title is-size-3 is-size-4-mobile">{{ $t('hospitals.whereto') }}</h1> <!-- Welcome in Kalaallisut -->
     <p class="p-content">{{ $t("hospitals.para1") }} </p>
-    <p class="p-content">{{ $t("hospitals.para2") }} </p>
     <div class="columns is-multiline">
       <!-- Loop through hospitals and display each as a card -->
       <div class="column is-one-third-desktop is-half-tablet is-full-mobile" v-for="hospital in hospitals"
