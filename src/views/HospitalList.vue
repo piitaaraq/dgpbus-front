@@ -11,7 +11,8 @@
           <div class="card-image logo-wrapper">
             <figure class="image">
               <div class="logo-container">
-                <img :src="getImagePath(hospital.image_path)" :alt="hospital.hospital_name" class="hospital-logo" />
+                <img v-if="hospital.image_path" :src="getImagePath(hospital.image_path)" :alt="hospital.hospital_name"
+                  class="hospital-logo" />
               </div>
             </figure>
           </div>
