@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <h3 class="title">Privatlivspolitik</h3>
+        <a href="#" id="open_preferences_center">Opdater dine cookie indstillinger</a>
         <ol>
             <li>
                 <h4 class="title is-4 mb-0">

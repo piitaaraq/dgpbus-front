@@ -1,26 +1,28 @@
 <template>
     <div class="ride-details">
         <button class="button is-light mb-4" @click="goBack">
-            <font-awesome-icon :icon="['fas', 'arrow-left']" /> {{ $t("driver.backButton") }}
+            {{ $t("driver.backButton") }}
         </button>
 
-        <h3 class="title is-4">{{ $t("driver.passengersHeading") }}</h3>
+        <h3 class="title is-4">
+            {{ $t("driver.passengersHeading") }} - {{ ride.departure_time }}
+        </h3>
         <table class="table is-fullwidth">
             <thead>
                 <tr>
                     <th>{{ $t("driver.name") }}</th>
                     <th>{{ $t("driver.room") }}</th>
-                    <th>{{ $t("driver.status") }}</th>
+                    <th>{{ $t("driver.hospital") }}</th>
                     <th>{{ $t("driver.checkedIn") }}</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="patient in ride.patients" :key="patient.id">
+                <tr v-for="(patient, index) in ride.patients" :key="index">
                     <td>{{ patient.name }}</td>
                     <td>{{ patient.room }}</td>
-                    <td>{{ patient.status ? $t("driver.checkedIn") : $t("driver.notCheckedIn") }}</td>
+                    <td>{{ patient.destination }}</td>
                     <td>
-                        <input type="checkbox" v-model="patient.status" />
+                        <input type="checkbox" v-model="patient.checked_in" />
                     </td>
                 </tr>
             </tbody>
@@ -32,6 +34,7 @@
     </div>
 </template>
 
+
 <script>
 import axios from 'axios';
 const apiUrl = process.env.VUE_APP_BACKEND_URL;
@@ -39,8 +42,8 @@ const apiUrl = process.env.VUE_APP_BACKEND_URL;
 export default {
     data() {
         return {
-            ride: null,
-            isLoading: false
+            ride: null, // Holds the current ride details
+            isLoading: false,
         };
     },
     async created() {
@@ -48,10 +51,31 @@ export default {
     },
     methods: {
         async fetchRideDetails() {
-            const rideId = this.$route.params.id;
+            const rideId = parseInt(this.$route.params.id);
             try {
-                const response = await axios.get(`${apiUrl}/api/rides/${rideId}/`);
-                this.ride = response.data;
+                // Fetch all rides for today
+                const response = await axios.get(`${apiUrl}/api/rides/today`);
+                const todayRides = response.data;
+
+                // Find the departure_time of the selected ride
+                const currentRide = todayRides.find(ride => ride.id === rideId);
+                if (!currentRide) {
+                    throw new Error('Ride not found');
+                }
+
+                // Filter rides with the same departure_time
+                const groupedRides = todayRides.filter(
+                    ride => ride.departure_time === currentRide.departure_time
+                );
+
+                // Combine patients from all rides with the same departure_time
+                const combinedPatients = groupedRides.flatMap(ride => ride.patients);
+
+                // Set the ride data with combined patients
+                this.ride = {
+                    ...currentRide,
+                    patients: combinedPatients,
+                };
             } catch (error) {
                 console.error('Error fetching ride details:', error);
             }
@@ -71,7 +95,7 @@ export default {
         },
         goBack() {
             this.$router.go(-1);
-        }
-    }
+        },
+    },
 };
 </script>

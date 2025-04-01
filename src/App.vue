@@ -63,13 +63,31 @@ export default {
   font-family: 'Poppins', sans-serif;
 }
 
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
 .body {
   font-family: 'Roboto', sans-serif;
   color: #2C3E50;
   background-color: #ECF0F1;
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 .table {
   background-color: #ECF0F1;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 </style>

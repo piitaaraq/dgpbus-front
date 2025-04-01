@@ -218,6 +218,14 @@ export default {
       }
     },
     async goToConfirmation() {
+      console.log("goToConfirmation started!");
+      console.log("Full form data before processing:", this.form);
+      // ✅ Log the accommodation_id specifically
+      console.log("Accommodation ID before setting in store:", this.form.accommodation_id);
+
+      if (!this.form.accommodation_id) {
+        console.warn("⚠️ Accommodation ID is missing! Check the dropdown selection.");
+      }
       const formStore = useFormStore();
 
       // Find the accommodation by name and get its ID
@@ -228,6 +236,13 @@ export default {
         ...this.form,
         accommodation_id: selectedAccommodation ? selectedAccommodation.id : null,
       };
+
+      console.log("Accommodation value:", this.form.accommodation);
+      console.log(
+        "Comparison of accommodation result:",
+        this.form.accommodation === 'Det grønlandske Patienthjem'
+      );
+
 
       if (
         [1, 3, 7].includes(Number(this.form.hospital)) &&

@@ -5,7 +5,7 @@ export const useFormStore = defineStore('form', {
   state: () => ({
     formData: {
       name: '',
-      accommodation: '',
+      accommodation_id: null,
       room: '',
       appointment_date: '',
       appointment_time: '',

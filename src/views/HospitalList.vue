@@ -66,7 +66,8 @@ export default {
 <style scoped>
 .card {
   cursor: pointer;
-  height: 460px;
+  min-height: 460px;
+  height: auto;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-radius: 10px;
   overflow: hidden;

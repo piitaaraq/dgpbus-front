@@ -1,7 +1,7 @@
 // src/router/index.js
 
 import { createRouter, createWebHistory } from 'vue-router';
-import HomePage from '../views/HomePage.vue';  // Ensure the paths are correct
+// import HomePage from '../views/HomePage.vue';  // Ensure the paths are correct
 import AboutPage from '../views/AboutPage.vue'; // Ensure the paths are correct
 import HospitalForm from '../views/HospitalForm.vue'; // Import HospitalForm component
 import ConfirmForm from '../views/ConfirmForm.vue';
@@ -22,20 +22,20 @@ import AllAppointments from '@/views/AllAppointments.vue';
 const routes = [
   {
     path: '/',
-    name: 'HomePage',
-    component: HomePage,
-    
+    name: 'HospitalList',
+    component: HospitalList,
+
   },
   {
-  path: '/login',
-  name: 'LoginPage',
-  component: () => import('@/views/LoginPage.vue'),
-  meta: {
-    breadcrumbs: [
-      { name: "home", link: "/" },
-      { name: "login", }
-    ]
-  }
+    path: '/login',
+    name: 'LoginPage',
+    component: () => import('@/views/LoginPage.vue'),
+    meta: {
+      breadcrumbs: [
+        { name: "home", link: "/" },
+        { name: "login", }
+      ]
+    }
   },
   {
     path: '/privacy',
@@ -43,33 +43,33 @@ const routes = [
     component: PrivacyPage,
     meta: {
       breadcrumbs: [
-        {name: "home", link: "/" },
-        {name : "privacy" }
+        { name: "home", link: "/" },
+        { name: "privacy" }
       ]
     }
   },
   {
-  path: '/registrer',
-  name: 'RegisterUser',
-  component: () => import('@/views/Register.vue'),
-  meta: {
-    breadcrumbs: [
-      { name: "home", link: "/" },
-      { name: "register" }
-    ]
-  }
-  },
-  {
-    path: '/hospitaler',
-    name: 'HospitalList',
-    component: HospitalList,
+    path: '/registrer',
+    name: 'RegisterUser',
+    component: () => import('@/views/Register.vue'),
     meta: {
       breadcrumbs: [
-      { name: "home", link: "/" },
-      { name: "hospitals" }
+        { name: "home", link: "/" },
+        { name: "register" }
       ]
     }
   },
+  // {
+  //   path: '/hospitaler',
+  //   name: 'HospitalList',
+  //   component: HospitalList,
+  //   meta: {
+  //     breadcrumbs: [
+  //       { name: "home", link: "/" },
+  //       { name: "hospitals" }
+  //     ]
+  //   }
+  // },
   {
     path: '/hospital/:id', // Dynamic route for HospitalForm with :id as a parameter
     name: 'HospitalForm',
@@ -84,21 +84,21 @@ const routes = [
     }
   },
   {
-  path: '/bekraeft',
-  name: 'ConfirmForm',
-  component: ConfirmForm,
-  props: route => ({
-    formData: route.params.formData,
-    busTime: route.params.busTime
-  }),
-  meta: {
-    breadcrumbs: [
-      { name: "home", link: "/" },
-      { name: "hospitals", link: "/hospitaler" },
-      { name: "confirmform" },
-    ]
+    path: '/bekraeft',
+    name: 'ConfirmForm',
+    component: ConfirmForm,
+    props: route => ({
+      formData: route.params.formData,
+      busTime: route.params.busTime
+    }),
+    meta: {
+      breadcrumbs: [
+        { name: "home", link: "/" },
+        { name: "hospitals", link: "/hospitaler" },
+        { name: "confirmform" },
+      ]
 
-  }
+    }
   },
   {
     path: '/alle-aftaler',
@@ -134,7 +134,7 @@ const routes = [
         { name: "dashboard", link: "/dashboard" },
         { name: "ridestoday" }
       ],
-      hideHeaderFooter: true 
+      hideHeaderFooter: true
     }
   },
   {
@@ -149,7 +149,7 @@ const routes = [
         { name: "edit" }
       ]
     }
-    
+
   },
   {
     path: '/about',
@@ -158,7 +158,7 @@ const routes = [
     meta: {
       breadcrumbs: [
         { name: "home", link: "/" },
-        { name: "about"}
+        { name: "about" }
       ]
     }
   },
@@ -166,7 +166,7 @@ const routes = [
     path: '/dashboard',
     name: 'AdminDashboard',
     component: AdminDashboard,
-    meta: { 
+    meta: {
       requiresStaff: true,
       breadcrumbs: [
         { name: "home", link: "/" },
@@ -182,7 +182,7 @@ const routes = [
       breadcrumbs: [
         { name: "home", link: "/" },
         { name: "dashboard", link: "/dashboard" },
-        { name: "schedules"}
+        { name: "schedules" }
       ],
       hideFooter: true,
       useAltHeader: true,
@@ -197,7 +197,7 @@ const routes = [
       breadcrumbs: [
         { name: "home", link: "/" },
         { name: "dashboard", link: "/dashboard" },
-        { name: "schedules"}
+        { name: "schedules" }
       ],
       hideHeaderFooter: false
     }
@@ -206,62 +206,67 @@ const routes = [
     path: '/taxa-patienter',
     name: 'TaxiUsers',
     component: TaxiUsers,
-    meta: { requiresStaff: true,
-    breadcrumbs: [
-      { name: "home", link: "/" },
-      { name: "taxi" }
+    meta: {
+      requiresStaff: true,
+      breadcrumbs: [
+        { name: "home", link: "/" },
+        { name: "taxi" }
       ]
-     },
+    },
   },
   {
     path: '/med-taxa',
     name: 'TaxiUsersPublic',
     component: TaxiUsersPublic,
-    meta: { requiresStaff: false,
-    breadcrumbs: [
-      { name: "home", link: "/" },
-      { name: "taxi" }
+    meta: {
+      requiresStaff: false,
+      breadcrumbs: [
+        { name: "home", link: "/" },
+        { name: "taxi" }
       ],
       hideHeaderFooter: false
-     },
+    },
   },
   {
     path: '/info/med-taxa',
     name: 'TaxiUsersPublicInfo',
     component: TaxiUsersPublic,
-    meta: { requiresStaff: false,
-    breadcrumbs: [
-      { name: "home", link: "/" },
-      { name: "dashboard", link: "/dashboard" },
-      { name: "taxi" }
+    meta: {
+      requiresStaff: false,
+      breadcrumbs: [
+        { name: "home", link: "/" },
+        { name: "dashboard", link: "/dashboard" },
+        { name: "taxi" }
       ],
       hideHeaderFooter: true
-     },
+    },
   },
   {
     path: '/tolke',
     name: 'TranslatorView',
     component: TranslatorView,
-    meta: { requiresStaff: true,
-    breadcrumbs: [
-      { name: "home", link: "/" },
-      { name: "dashboard", link: "/dashboard" },
-      { name: "translators" }
+    meta: {
+      requiresStaff: true,
+      breadcrumbs: [
+        { name: "home", link: "/" },
+        { name: "dashboard", link: "/dashboard" },
+        { name: "translators" }
       ]
-     },  
+    },
   },
   {
     path: '/busdriver',
     name: 'DriverView',
     component: DriverView,
-    meta: { requiresStaff: true,
-    breadcrumbs: [
-      { name: "home", link: "/" },
-      { name: "dashboard", link: "/dashboard" },
-      { name: "drivers" }
+    meta: {
+      requiresStaff: true,
+      breadcrumbs: [
+        { name: "home", link: "/" },
+        { name: "dashboard", link: "/dashboard" },
+        { name: "drivers" }
       ]
 
-     },
+    },
   }
 ];
 
@@ -284,6 +289,8 @@ router.beforeEach((to, from, next) => {
   // Check if the route requires staff permissions
   if (to.matched.some(record => record.meta.requiresStaff)) {
     const token = Cookies.get('auth_token');  // Get the token from cookies
+    console.log('Auth Token:', Cookies.get('auth_token'));
+
     if (!token) {
       // If no token is found, redirect to the login page
       return next('/login');

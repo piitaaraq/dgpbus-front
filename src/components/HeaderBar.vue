@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar " role="navigation" aria-label="main navigation">
     <div class="navbar-brand ">
-      <a class="navbar-item heading is-size-1 has-text-primary-light" @click="goHome">
+      <a class="navbar-item heading has-text-primary-light" @click="goHome">
         Patientkørsel
       </a>
       <!-- Logo -->
@@ -112,7 +112,7 @@ export default {
       this.$router.push({ name: 'LoginPage' });
     },
     goHome() {
-      this.$router.push({ name: 'HomePage' });
+      this.$router.push({ name: 'HospitalList' });
     },
     toAdmin() {
       this.$router.push({ name: 'AdminDashboard' });
@@ -197,5 +197,20 @@ a:hover {
 .heading {
   font-family: 'Poppins';
   font-weight: 200;
+  font-size: 3rem;
+}
+
+/* 👇 Tablet or smaller (max-width: 768px) */
+@media (max-width: 768px) {
+  .heading {
+    font-size: 2rem;
+  }
+}
+
+/* 👇 Even smaller on mobile if needed */
+@media (max-width: 480px) {
+  .heading {
+    font-size: 1.5rem;
+  }
 }
 </style>

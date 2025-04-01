@@ -2,23 +2,24 @@
     <div class="rides-today-container container is-fluid">
         <h3 class="title is-1">{{ $t("rides.heading") }}</h3>
 
-        <table v-if="paginatedRides.length > 0" class="table is-fullwidth">
+        <table v-if="paginatedBusGroups.length > 0" class="table is-fullwidth">
             <thead>
                 <tr>
-                    <th class="is-size-2 ">{{ $t("rides.bustime") }} </th>
-                    <th class="is-size-2">{{ $t("rides.name") }} </th>
-                    <th class="is-size-2">{{ $t("rides.room") }} </th>
+                    <th class="is-size-2-desktop is-size-4-tablet is-size-5-mobile">{{ $t("rides.bustime") }}</th>
+                    <th class="is-size-2-desktop is-size-4-tablet is-size-5-mobile">{{ $t("rides.name") }}</th>
+                    <th class="is-size-2-desktop is-size-4-tablet is-size-5-mobile">{{ $t("rides.room") }}</th>
                 </tr>
             </thead>
             <tbody>
-                <template v-for="ride in paginatedRides" :key="ride.id">
-                    <tr v-if="ride.patients && ride.patients.length > 0">
-                        <td class="is-size-4 " :rowspan="ride.patients.length">{{
-                            formatTime(ride.departure_time) }}</td>
-                        <td class="is-size-4">{{ ride.patients[0].name }}</td>
-                        <td class="is-size-4">{{ ride.patients[0].room }}</td>
+                <template v-for="busGroup in paginatedBusGroups" :key="busGroup.departure_time">
+                    <tr v-if="busGroup.patients && busGroup.patients.length > 0">
+                        <td class="is-size-4" :rowspan="busGroup.patients.length">
+                            {{ formatTime(busGroup.departure_time) }}
+                        </td>
+                        <td class="is-size-4">{{ busGroup.patients[0].name }}</td>
+                        <td class="is-size-4">{{ busGroup.patients[0].room }}</td>
                     </tr>
-                    <tr v-for="patient in ride.patients.slice(1)" :key="patient.id">
+                    <tr v-for="patient in busGroup.patients.slice(1)" :key="patient.id">
                         <td class="is-size-4">{{ patient.name }}</td>
                         <td class="is-size-4">{{ patient.room }}</td>
                     </tr>
@@ -57,26 +58,26 @@ const apiUrl = process.env.VUE_APP_BACKEND_URL;
 export default {
     data() {
         return {
-            rides: [],
+            busGroups: [], // ✅ Renamed from 'rides'
             currentPage: 1,
             rowsPerPage: 9,
-            autoFlipInterval: null, // for auto pagination
-            flipIntervalTime: 30000, // time in milliseconds between flips
+            autoFlipInterval: null,
+            flipIntervalTime: 30000,
         };
     },
     computed: {
-        paginatedRides() {
-            if (this.rides && this.rides.length > 0) {
+        paginatedBusGroups() {
+            if (this.busGroups && this.busGroups.length > 0) {
                 const start = (this.currentPage - 1) * this.rowsPerPage;
                 const end = start + this.rowsPerPage;
-                return this.rides.slice(start, end);
+                return this.busGroups.slice(start, end);
             }
-            return []; // return empty array if rides is undefined or empty
+            return []; // Return empty array if busGroups is undefined or empty
         },
         totalPages() {
-            return this.rides && this.rides.length > 0
-                ? Math.ceil(this.rides.length / this.rowsPerPage)
-                : 1; // Ensure totalPages is at least 1 to avoid issues
+            return this.busGroups && this.busGroups.length > 0
+                ? Math.ceil(this.busGroups.length / this.rowsPerPage)
+                : 1;
         }
     },
     mounted() {
@@ -89,11 +90,28 @@ export default {
     methods: {
         async fetchRides() {
             try {
-                const response = await axios.get(`${apiUrl}/api/rides/today`);
-                console.log(response.data);
-                this.rides = response.data;
+                const response = await axios.get(`${apiUrl}/api/patients/rides-today/`);
+                console.log("🚀 API Response:", response.data);
+
+                // Group patients by bus_time
+                const grouped = {};
+                response.data.forEach(patient => {
+                    const timeKey = patient.bus_time?.substring(0, 5) || 'Ukendt';
+                    if (!grouped[timeKey]) {
+                        grouped[timeKey] = [];
+                    }
+                    grouped[timeKey].push(patient);
+                });
+
+                // Convert to array format for display
+                this.busGroups = Object.keys(grouped).map(bus_time => ({
+                    departure_time: bus_time,
+                    patients: grouped[bus_time]
+                }));
+
+                console.log("✅ Grouped Bus Groups:", this.busGroups);
             } catch (error) {
-                console.error('Error fetching rides:', error);
+                console.error("❌ Error fetching rides:", error);
             }
         },
         formatTime(time) {

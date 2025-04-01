@@ -7,7 +7,7 @@
       <PatientInfo :appointment="patientStore.appointment" :noMatchFound="patientStore.noMatchFound"
         @goBack="resetToAppointmentSetup" />
     </div>
-    <CookieConsent />
+    <!-- <CookieConsent /> -->
 
     <!-- Show error message if there's an actual error -->
     <div v-if="patientStore.errorMessage" class="notification is-danger">
@@ -19,7 +19,7 @@
 <script>
 import AppointmentSetup from '@/components/AppointmentSetup.vue';
 import PatientInfo from '@/components/PatientInfo.vue';
-import CookieConsent from '@/components/CookieConsent.vue';
+// import CookieConsent from '@/components/CookieConsent.vue';
 import { useCheckPatientStore } from '@/stores/checkPatientStore';
 
 export default {
@@ -27,7 +27,6 @@ export default {
   components: {
     AppointmentSetup,
     PatientInfo,
-    CookieConsent,
   },
   setup() {
     const patientStore = useCheckPatientStore();

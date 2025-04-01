@@ -9,7 +9,7 @@
         "busTime": "Bustid",
         "noAppointments": "Ingen aftaler fundet"
     },
-        "appSetup": {
+    "appSetup": {
         "heading": "Kørsel af patienter i Det Grønlandske Patienthjem",
         "para1": "Velkommen. Du kan registrere dine lægeaftaler i denne hjemmeside. Afhængigt af hvor din aftale er, vil du kunne se om du skal med bus eller taxa til hospitalet.",
         "para2": "Du kan indtaste grundlæggende oplsyninger om dig på denne side og vil kunne se oplysninger om din lægeaftale, hvis du har registreret din næste lægeaftale."
@@ -34,8 +34,8 @@
         "privacy": "Privatlivspolitik"
     },
     "confirm": {
-        "para1": "Se godt efter om du har udfyldt formularen rigtigt...",
-        "para2": "Vær opmærksom på at vi beregner tidspunktet...",
+        "para1": "Se godt efter om du har udfyldt formularen rigtigt. Du har muligheden for at starte forfra hvis du har lavet en fejl.",
+        "para2": "Vær opmærksom på at vi beregner tidspunktet for din busafgang ud fra de oplysninger du har givet os. Hvis det bliver nødvendigt at ændre din afgang, vil du blive kontaket af personalet.",
         "name": "Navn",
         "accommodation": "Indkvartering",
         "room": "Værelsesnummer",

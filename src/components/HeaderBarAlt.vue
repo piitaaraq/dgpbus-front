@@ -66,5 +66,18 @@ a:hover {
 .heading {
   font-family: 'Poppins';
   font-weight: 200;
+  font-size: 3rem;
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 1rem;
+  }
 }
 </style>

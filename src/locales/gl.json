@@ -35,7 +35,7 @@
     },
     "confirm": {
         "para1": "Paasissutissat immersorsimasatit qimerloorluakkit eqqortumik immersuisimanerit qulakkeerniarlugu. Immersukkatit tamarmik eqqortumik ajunngippata ingerlaqqissaatit, taamaangippallu uterlutit.",
-        "para2": "Malugiuk Peqqissartut Illuanniit aallarnissarnut piffissaq naatsorsorneqareermat taannalu bussit aallarfissaannik ateqarluni.",
+        "para2": "Malugiuk Peqqissartut Illuanniit aallarnissarnut piffissaq naatsorsorneqareermat taannalu bussit aallarfissaannik ateqarluni. Bussinik aallarfissat allanngortittariaqarpat sulisunit attavigineqarumaarputit.",
         "name": "Peqqissartup aqqa",
         "accommodation": "Inissinneqarfik",
         "room": "Inaata normua",
@@ -53,9 +53,9 @@
         "phone": "Tlf. normu",
         "heading": "Paasissutissat akuerikkit",
         "hasTaxi": "Taxamik inniminniissunneqarpoq",
-        "wheelchair":"Kaassuartakkanik issiasuua?",
-        "trolley":"Aneerussivinnik nassarpa?",
-        "companion":"Qanigisarnik nakorsiaqateqassava?"
+        "wheelchair": "Kaassuartakkanik issiasuua?",
+        "trolley": "Aneerussivinnik nassarpa?",
+        "companion": "Qanigisarnik nakorsiaqateqassava?"
     },
     "cookies": {
         "header": "Cookiesinik atuineq",
