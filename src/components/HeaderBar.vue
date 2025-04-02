@@ -110,38 +110,61 @@ export default {
       const authStore = useAuthStore();
       authStore.logout();
       this.$router.push({ name: 'LoginPage' });
+      this.isActive = false;
     },
     goHome() {
       this.$router.push({ name: 'HospitalList' });
     },
     toAdmin() {
       this.$router.push({ name: 'AdminDashboard' });
+      this.isActive = false;
     },
     toRegistration() {
       const checkPatientStore = useCheckPatientStore();
       checkPatientStore.resetStore();
       this.$router.push({ name: 'HospitalList' });
+      this.isActive = false;
     },
     toSchedule() {
       this.$router.push({ name: 'BusSchedule' });
+      this.isActive = false;
     },
     toRides() {
       this.$router.push({ name: 'RidesToday' });
+      this.isActive = false;
     },
     toTaxi() {
       this.$router.push({ name: 'TaxiUsersPublic' });
+      this.isActive = false;
     },
     setLanguage(lang) {
       this.$i18n.locale = lang;
       this.currentLanguage = lang;
+      this.isActive = false;
     },
     toggleMenu() {
       this.isActive = !this.isActive;
     },
+    handleClickOutside(event) {
+      if (!this.isActive) return;
+
+      const menu = this.$el.querySelector('.navbar-menu');
+      const burger = this.$el.querySelector('.navbar-burger');
+
+      if (
+        menu && !menu.contains(event.target) &&
+        burger && !burger.contains(event.target)
+      ) {
+        this.isActive = false;
+      }
+    }
   },
   mounted() {
     const authStore = useAuthStore();
     authStore.restoreToken(); // Restore the token when the component is mounted
+
+    // Listen for clicks outside the navbar to close the menu
+    document.addEventListener('click', this.handleClickOutside);
   },
 };
 </script>
