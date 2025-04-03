@@ -218,11 +218,6 @@ export default {
       }
     },
     async goToConfirmation() {
-      console.log("goToConfirmation started!");
-      console.log("Full form data before processing:", this.form);
-      // ✅ Log the accommodation_id specifically
-      console.log("Accommodation ID before setting in store:", this.form.accommodation_id);
-
       if (!this.form.accommodation_id) {
         console.warn("⚠️ Accommodation ID is missing! Check the dropdown selection.");
       }
@@ -237,24 +232,16 @@ export default {
         accommodation_id: selectedAccommodation ? selectedAccommodation.id : null,
       };
 
-      console.log("Accommodation value:", this.form.accommodation);
-      console.log(
-        "Comparison of accommodation result:",
-        this.form.accommodation === 'Det grønlandske Patienthjem'
-      );
-
 
       if (
         [1, 3, 7].includes(Number(this.form.hospital)) &&
         this.form.accommodation === 'Det grønlandske Patienthjem'
       ) {
         try {
-          console.log("Sending data for bus time calculation:...", formWithAccommodationId);
           const response = await axios.post(
             `${apiUrl}/api/patients/calculate_bus_time/`,
             formWithAccommodationId
           );
-          console.log("Bus time response:", response.data);
           const busTime = response.data.bus_time;
           formStore.setFormData({ ...formWithAccommodationId, busTime: busTime || null });
         } catch (error) {

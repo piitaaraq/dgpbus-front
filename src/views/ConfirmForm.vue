@@ -126,7 +126,6 @@ export default {
       try {
         const response = await axios.get(`${apiUrl}/api/hospitals/${this.formData.hospital}`);
         this.hospitalName = response.data.hospital_name;
-        console.log(this.hospitalName)
       } catch (error) {
         console.error('Error fetching hospital details:', error);
       }
