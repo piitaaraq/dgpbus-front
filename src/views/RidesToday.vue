@@ -91,7 +91,6 @@ export default {
         async fetchRides() {
             try {
                 const response = await axios.get(`${apiUrl}/api/patients/rides-today/`);
-                console.log("🚀 API Response:", response.data);
 
                 // Group patients by bus_time
                 const grouped = {};
@@ -109,7 +108,6 @@ export default {
                     patients: grouped[bus_time]
                 }));
 
-                console.log("✅ Grouped Bus Groups:", this.busGroups);
             } catch (error) {
                 console.error("❌ Error fetching rides:", error);
             }
