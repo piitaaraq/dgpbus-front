@@ -111,14 +111,13 @@ export default {
       try {
         // Submit formData to the backend via POST request
         await axios.post(`${apiUrl}/api/patients/`, this.formData);
-        alert('Submission success!');
 
         // Reset the store after successful submission
         const checkPatientStore = useCheckPatientStore(); // Access the store instance
         checkPatientStore.resetStore();
 
         // On successful submission, navigate to the homepage or a success page
-        this.$router.push({ name: 'HomePage' });
+        this.$router.push({ name: 'HospitalList' });
       } catch (error) {
         console.error('Error creating user:', error);
       }
