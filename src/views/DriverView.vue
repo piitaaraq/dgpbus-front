@@ -14,7 +14,15 @@
                 <tbody>
                     <tr v-for="group in groupedPatients" :key="group.departure_time">
                         <td>{{ formatTime(group.departure_time) }}</td>
-                        <td>{{ totalPassengers(group.patients) }}</td>
+                        <td>
+                            {{ totalPassengers(group.patients) }}
+                            <span v-if="hasWheelchair(group.patients)">
+                                <font-awesome-icon :icon="['fa', 'wheelchair']" class="ml-2" title="Wheelchair" />
+                            </span>
+                            <span v-if="hasTrolley(group.patients)">
+                                <font-awesome-icon :icon="['fa', 'baby-carriage']" class="ml-2" title="Trolley" />
+                            </span>
+                        </td>
                         <td>
                             <button class="button is-light" @click="viewGroup(group)">
                                 {{ $t("driver.viewButton") }}
@@ -44,7 +52,13 @@
                     <tr v-for="patient in selectedGroup.patients" :key="patient.id">
                         <td>
                             {{ patient.name }}
-                            <span v-if="patient.companion" class="has-text-grey is-size-7 ml-1">+1</span>
+                            <span v-if="patient.companion" class="has-text-grey is-size-7 ml-1"> +1</span>
+                            <span v-if="patient.trolley" class="has-text-grey is-size-7 ml-1" title="Kørestol"> +
+                                <font-awesome-icon :icon="['fa', 'baby-carriage']" class="icons" />
+                            </span>
+                            <span v-if="patient.wheelchair" class="has-text-grey is-size-7 ml-1" title="Barnevogn"> +
+                                <font-awesome-icon :icon="['fa', 'wheelchair']" class="icons" />
+                            </span>
                         </td>
                         <td>{{ patient.room }}</td>
                         <td>{{ patient.hospital_name }}</td>
@@ -66,9 +80,13 @@
 
 <script>
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'; // Import FontAwesome
 const apiUrl = process.env.VUE_APP_BACKEND_URL;
 
 export default {
+    components: {
+        FontAwesomeIcon, // Register FontAwesome component
+    },
     data() {
         return {
             groupedPatients: [],
@@ -114,6 +132,12 @@ export default {
         },
         formatTime(time) {
             return time ? time.substring(0, 5) : 'N/A';
+        },
+        hasWheelchair(patients) {
+            return patients.some(patient => patient.wheelchair);
+        },
+        hasTrolley(patients) {
+            return patients.some(patient => patient.trolley);
         }
     }
 };
