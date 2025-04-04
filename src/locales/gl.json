@@ -81,12 +81,16 @@
         "name": "Ateq",
         "room": "Inip normua",
         "status": "Ilaava?",
-        "checkedIn": "Aap",
-        "notCheckedIn": "Naamik",
-        "backButton": "Utimut",
+        "back": "Utimut",
         "toggle": "y/n",
         "ikkeMed": "Ilaanngilaq",
-        "med": "Ilaavoq"
+        "med": "Ilaavoq",
+        "checkedIn": "Ikivoq",
+        "notCheckedIn": "Suli ikinngilaq",
+        "checkIn": "Ikiguk",
+        "undo": "Utertiguk",
+        "action": "Nikisiguk",
+        "passengerCount": "Ilaasussat"
     },
     "formular": {
         "heading": "Nakorsiarnissat pillugu",

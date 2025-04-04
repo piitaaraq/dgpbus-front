@@ -78,12 +78,16 @@
         "name": "Navn",
         "room": "Værelsesnummer",
         "status": "Status",
-        "checkedIn": "Er med",
-        "notCheckedIn": "Ikke med",
-        "backButton": "Tilbage",
+        "back": "Tilbage",
         "toggle": "y/n",
         "ikkeMed": "Ikke med",
-        "med": "Er med"
+        "med": "Er med",
+        "checkedIn": "Tjekket ind",
+        "notCheckedIn": "Ikke tjekket ind",
+        "checkIn": "Tjek ind",
+        "undo": "Fortryd",
+        "action": "Handling",
+        "passengerCount": "Antal passagerer"
     },
     "formular": {
         "heading": "Om din lægeaftale",

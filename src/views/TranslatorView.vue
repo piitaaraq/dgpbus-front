@@ -11,6 +11,7 @@
                         <th>{{ $t("confirm.bustime") }}</th>
                         <th>{{ $t("confirm.name") }}</th>
                         <th>{{ $t("confirm.phone") }}</th>
+                        <th>{{ $t("confirm.accommodation") }}</th>
                         <th>{{ $t("confirm.appDate") }}</th>
                         <th>{{ $t("confirm.appTime") }}</th>
                         <th>{{ $t("confirm.department") }}</th>
@@ -22,6 +23,7 @@
                         <td>{{ formatTime(patient.bus_time) || '-' }}</td>
                         <td>{{ patient.name }}</td>
                         <td>{{ patient.phone_no }}</td>
+                        <td>{{ patient.accommodation.name }}</td>
                         <td>{{ formatDate(patient.appointment_date) }}</td>
                         <td>{{ formatTime(patient.appointment_time) }}</td>
                         <td>{{ patient.department }}</td>
