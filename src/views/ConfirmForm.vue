@@ -9,67 +9,37 @@
         {{ $t("confirm.para2") }}
       </p>
     </div>
-
-    <!-- Greyed-out box showing user input -->
     <div class="form-section">
-      <table class="table is-fullwidth">
-        <tr>
-          <th>{{ $t("confirm.name") }}</th>
-          <td>{{ formData.name }}</td>
-        </tr>
-        <tr>
-          <th>{{ $t("confirm.phone") }}</th>
-          <td>{{ formData.phone_no }}</td>
-        </tr>
-        <tr>
-          <th>{{ $t("confirm.accommodation") }}</th>
-          <td>{{ formData.accommodation }}</td>
-        </tr>
-        <tr>
-          <th>{{ $t("confirm.room") }}</th>
-          <td>{{ formData.room }}</td>
-        </tr>
-        <tr>
-          <th>{{ $t("confirm.hospital") }}</th>
-          <td>{{ hospitalName }}</td>
-        </tr>
-        <tr>
-          <th>{{ $t("confirm.appDate") }}</th>
-          <td>{{ formData.appointment_date }}</td>
-        </tr>
-        <tr>
-          <th>{{ $t("confirm.appTime") }}</th>
-          <td>{{ formData.appointment_time }}</td>
-        </tr>
-        <tr>
-          <th>{{ $t("confirm.department") }}</th>
-          <td>{{ formData.department }}</td>
-        </tr>
-        <tr>
-          <th>{{ $t("confirm.desc") }}</th>
-          <td>{{ formData.description }}</td>
-        </tr>
-        <tr>
-          <th>{{ $t("confirm.translator") }}</th>
-          <td>{{ formData.needs_translator ? $t("formular.radioY") : $t("formular.radioN") }}</td>
-        </tr>
-        <tr>
-          <th>{{ $t("confirm.wheelchair") }}</th>
-          <td>{{ formData.wheelchair ? $t("formular.radioY") : $t("formular.radioN") }}</td>
-        </tr>
-        <tr>
-          <th>{{ $t("confirm.trolley") }}</th>
-          <td>{{ formData.trolley ? $t("formular.radioY") : $t("formular.radioN") }}</td>
-        </tr>
-        <tr>
-          <th>{{ $t("confirm.companion") }}</th>
-          <td>{{ formData.companion ? $t("formular.radioY") : $t("formular.radioN") }}</td>
-        </tr>
-        <tr v-if="busTime">
-          <th>{{ $t("confirm.bustime") }}</th>
-          <td>{{ busTime }}</td>
-        </tr>
-      </table>
+      <div class="form-review">
+        <p><strong>{{ $t("confirm.name") }}:</strong> {{ formData.name }}</p>
+        <p><strong>{{ $t("confirm.phone") }}:</strong> {{ formData.phone_no }}</p>
+        <p><strong>{{ $t("confirm.accommodation") }}:</strong> {{ formData.accommodation }}</p>
+        <p><strong>{{ $t("confirm.room") }}:</strong> {{ formData.room }}</p>
+        <p><strong>{{ $t("confirm.hospital") }}:</strong> {{ hospitalName }}</p>
+        <p><strong>{{ $t("confirm.appDate") }}:</strong> {{ formData.appointment_date }}</p>
+        <p><strong>{{ $t("confirm.appTime") }}:</strong> {{ formData.appointment_time }}</p>
+        <p><strong>{{ $t("confirm.department") }}:</strong> {{ formData.department }}</p>
+        <p><strong>{{ $t("confirm.desc") }}:</strong> {{ formData.description }}</p>
+        <p>
+          <strong>{{ $t("confirm.translator") }}:</strong>
+          {{ formData.needs_translator ? $t("formular.radioY") : $t("formular.radioN") }}
+        </p>
+        <p>
+          <strong>{{ $t("confirm.wheelchair") }}:</strong>
+          {{ formData.wheelchair ? $t("formular.radioY") : $t("formular.radioN") }}
+        </p>
+        <p>
+          <strong>{{ $t("confirm.trolley") }}:</strong>
+          {{ formData.trolley ? $t("formular.radioY") : $t("formular.radioN") }}
+        </p>
+        <p>
+          <strong>{{ $t("confirm.companion") }}:</strong>
+          {{ formData.companion ? $t("formular.radioY") : $t("formular.radioN") }}
+        </p>
+        <p v-if="busTime"><strong>{{ $t("confirm.bustime") }}:</strong> {{ busTime }}</p>
+      </div>
+
+      <!-- Greyed-out box showing user input -->
 
       <!-- Confirm and Go Back buttons -->
       <div class="field is-grouped mt-4">
@@ -140,16 +110,42 @@ export default {
 <style scoped>
 .confirmation-form-container {
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.form-section {
+.form-review {
+  flex: 1;
+  border-left: 1px solid #eaeaea;
+  padding-left: 1.5rem;
+}
+
+.explanatory-text {
   flex: 1;
 }
 
 .table {
   max-width: 100%;
+}
+
+.form-review p {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-review strong {
+  display: inline-block;
+  min-width: 140px;
+}
+
+@media (max-width: 768px) {
+  .confirmation-form-container {
+    flex-direction: column;
+  }
+
+  .explanatory-text,
+  .form-review {
+    margin-bottom: 1.5rem;
+  }
 }
 </style>

@@ -83,7 +83,8 @@
         <div class="field">
           <label class="label">{{ $t("formular.desc") }}</label>
           <div class="control">
-            <textarea class="textarea" v-model="form.description" required></textarea>
+            <textarea class="textarea" v-model="form.description" :placeholder="$t('formular.placeholder')"
+              required></textarea>
           </div>
         </div>
 
@@ -150,12 +151,12 @@
         <!-- navbuttons -->
         <div class="field is-grouped mt-4" style="display: flex; gap: 10px">
           <div class="control">
-            <button class="button is-large is-primary" type="button" @click="goToConfirmation">
+            <button class="button is-primary" type="button" @click="goToConfirmation">
               {{ $t("formular.submit") }}
             </button>
           </div>
           <div class="control">
-            <button class="button is-large is-light" type="button" @click="goBack">
+            <button class="button is-light" type="button" @click="goBack">
               {{ $t("formular.back") }}
             </button>
           </div>
