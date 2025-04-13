@@ -90,7 +90,7 @@ export default {
         formatTime(time) {
             if (!time) return null;
             const date = new Date(`1970-01-01T${time}`);
-            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
         }
     }
 };
