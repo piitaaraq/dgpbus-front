@@ -1,56 +1,106 @@
 <template>
-  <div class="confirmation-form-container container px-3">
-    <div class="explanatory-text py-2">
-      <h3 class="title is-3 is-size-4-mobile">{{ $t("confirm.heading") }} </h3>
-      <p class="is-size-4">
+  <div class="container px-3 py-5">
+
+    <!-- Heading and Explanation -->
+    <div class="mb-5">
+      <h3 class="title is-3 is-size-4-mobile">{{ $t("confirm.heading") }}</h3>
+      <p class="is-size-5 mb-2">
         {{ $t("confirm.para1") }}
       </p>
-      <p v-if="busTime" class="is-size-4">
+      <p v-if="busTime" class="is-size-5">
         {{ $t("confirm.para2") }}
       </p>
     </div>
-    <div class="form-section">
-      <div class="form-review">
-        <p><strong>{{ $t("confirm.name") }}:</strong> {{ formData.name }}</p>
-        <p><strong>{{ $t("confirm.phone") }}:</strong> {{ formData.phone_no }}</p>
-        <p><strong>{{ $t("confirm.accommodation") }}:</strong> {{ formData.accommodation }}</p>
-        <p><strong>{{ $t("confirm.room") }}:</strong> {{ formData.room }}</p>
-        <p><strong>{{ $t("confirm.hospital") }}:</strong> {{ hospitalName }}</p>
-        <p><strong>{{ $t("confirm.appDate") }}:</strong> {{ formData.appointment_date }}</p>
-        <p><strong>{{ $t("confirm.appTime") }}:</strong> {{ formData.appointment_time }}</p>
-        <p><strong>{{ $t("confirm.department") }}:</strong> {{ formData.department }}</p>
-        <p><strong>{{ $t("confirm.desc") }}:</strong> {{ formData.description }}</p>
-        <p>
-          <strong>{{ $t("confirm.translator") }}:</strong>
-          {{ formData.needs_translator ? $t("formular.radioY") : $t("formular.radioN") }}
-        </p>
-        <p>
-          <strong>{{ $t("confirm.wheelchair") }}:</strong>
-          {{ formData.wheelchair ? $t("formular.radioY") : $t("formular.radioN") }}
-        </p>
-        <p>
-          <strong>{{ $t("confirm.trolley") }}:</strong>
-          {{ formData.trolley ? $t("formular.radioY") : $t("formular.radioN") }}
-        </p>
-        <p>
-          <strong>{{ $t("confirm.companion") }}:</strong>
-          {{ formData.companion ? $t("formular.radioY") : $t("formular.radioN") }}
-        </p>
-        <p v-if="busTime"><strong>{{ $t("confirm.bustime") }}:</strong> {{ busTime }}</p>
+
+    <!-- Confirmation Summary -->
+    <div class="box form-review mb-5 has-background-light">
+
+      <div class="field-row">
+        <strong>{{ $t("confirm.name") }}:</strong>
+        <span>{{ formData.name }}</span>
       </div>
 
-      <!-- Greyed-out box showing user input -->
-
-      <!-- Confirm and Go Back buttons -->
-      <div class="field is-grouped mt-4">
-        <div class="control">
-          <button class="button is-primary" @click="submitUserData">{{ $t("confirm.confirm") }} </button>
-          <!-- Button to accept entry -->
-        </div>
-        <div class="control">
-          <button class="button is-light" @click="goBack">{{ $t("confirm.back") }} </button>
-        </div>
+      <div class="field-row">
+        <strong>{{ $t("confirm.phone") }}:</strong>
+        <span>{{ formData.phone_no }}</span>
       </div>
+
+      <hr>
+
+      <div class="field-row">
+        <strong>{{ $t("confirm.accommodation") }}:</strong>
+        <span>{{ formData.accommodation }}</span>
+      </div>
+
+      <div class="field-row">
+        <strong>{{ $t("confirm.room") }}:</strong>
+        <span>{{ formData.room }}</span>
+      </div>
+
+      <hr>
+
+      <div class="field-row">
+        <strong>{{ $t("confirm.hospital") }}:</strong>
+        <span>{{ hospitalName }}</span>
+      </div>
+
+      <div class="field-row">
+        <strong>{{ $t("confirm.appDate") }}:</strong>
+        <span>{{ formData.appointment_date }}</span>
+      </div>
+
+      <div class="field-row">
+        <strong>{{ $t("confirm.appTime") }}:</strong>
+        <span>{{ formData.appointment_time }}</span>
+      </div>
+
+      <div class="field-row">
+        <strong>{{ $t("confirm.department") }}:</strong>
+        <span>{{ formData.department }}</span>
+      </div>
+
+      <div class="field-row">
+        <strong>{{ $t("confirm.desc") }}:</strong>
+        <span>{{ formData.description }}</span>
+      </div>
+
+      <hr>
+
+      <div class="field-row">
+        <strong>{{ $t("confirm.translator") }}:</strong>
+        <span>{{ formData.needs_translator ? $t("formular.radioY") : $t("formular.radioN") }}</span>
+      </div>
+
+      <div class="field-row">
+        <strong>{{ $t("confirm.wheelchair") }}:</strong>
+        <span>{{ formData.wheelchair ? $t("formular.radioY") : $t("formular.radioN") }}</span>
+      </div>
+
+      <div class="field-row">
+        <strong>{{ $t("confirm.trolley") }}:</strong>
+        <span>{{ formData.trolley ? $t("formular.radioY") : $t("formular.radioN") }}</span>
+      </div>
+
+      <div class="field-row">
+        <strong>{{ $t("confirm.companion") }}:</strong>
+        <span>{{ formData.companion ? $t("formular.radioY") : $t("formular.radioN") }}</span>
+      </div>
+
+      <div class="field-row" v-if="busTime">
+        <strong>{{ $t("confirm.bustime") }}:</strong>
+        <span>{{ busTime }}</span>
+      </div>
+
+    </div>
+
+    <!-- Buttons -->
+    <div class="buttons is-centered">
+      <button class="button is-primary" @click="submitUserData">
+        {{ $t("confirm.confirm") }}
+      </button>
+      <button class="button is-light" @click="goBack">
+        {{ $t("confirm.back") }}
+      </button>
     </div>
   </div>
 </template>
@@ -107,27 +157,8 @@ export default {
 };
 </script>
 
+
 <style scoped>
-.confirmation-form-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.form-review {
-  flex: 1;
-  border-left: 1px solid #eaeaea;
-  padding-left: 1.5rem;
-}
-
-.explanatory-text {
-  flex: 1;
-}
-
-.table {
-  max-width: 100%;
-}
-
 .form-review p {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
@@ -135,17 +166,58 @@ export default {
 
 .form-review strong {
   display: inline-block;
-  min-width: 140px;
+  min-width: 330px;
+  text-align: right;
 }
 
-@media (max-width: 768px) {
-  .confirmation-form-container {
+@media (max-width: 1023px) {
+
+  /* Bulma's breakpoint for desktop-down */
+  .form-review strong {
+    min-width: 0;
+    width: auto;
+    text-align: left;
+  }
+}
+
+.form-review hr {
+  margin: 1.5rem 0;
+  border: none;
+  height: 1px;
+  background-color: var(--bulma-primary-light);
+}
+
+.form-review p {
+  padding-left: 0.5rem;
+}
+
+.form-review .field-row {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+}
+
+.form-review .field-row strong {
+  display: inline-block;
+  min-width: 330px;
+  text-align: right;
+  margin-right: 1rem;
+}
+
+@media (max-width: 1023px) {
+  .form-review .field-row {
     flex-direction: column;
+    align-items: flex-start;
   }
 
-  .explanatory-text,
-  .form-review {
-    margin-bottom: 1.5rem;
+  .form-review .field-row strong {
+    min-width: unset;
+    width: auto;
+    text-align: left;
+    margin-right: 0;
+    margin-bottom: 0.25rem;
   }
 }
 </style>

@@ -1,42 +1,43 @@
 <template>
-  <div class="hospital-form-container container px-3">
-    <div class="explanatory-text mb-3">
+  <div class="container px-3 py-5">
+
+    <!-- Explanatory Text -->
+    <div class="mb-5">
       <h3 class="title is-3 is-size-4-mobile">{{ $t("formular.heading") }}</h3>
-      <p class="is-size-4 content">
+      <p class="is-size-5 content mb-2">
         {{ $t("hospitalform.para0", { hospital: hospitalName }) }}
       </p>
-      <p class="is-size-4 content">
-        {{ $t('hospitalform.para2') }}
+      <p class="is-size-5 content">
+        {{ $t("hospitalform.para2") }}
       </p>
     </div>
 
-    <div class="form-section">
-      <form @submit.prevent="submitForm">
+    <!-- Form Section -->
+    <form @submit.prevent="submitForm">
 
-        <!-- name -->
-        <div class="field">
-          <label class="label">{{ $t("formular.name") }}</label>
-          <div class="control">
-            <input class="input is-medium" type="text" :placeholder="$t('formular.namePlaceholder')" v-model="form.name"
-              required />
-          </div>
+      <!-- name -->
+      <div class="field">
+        <label class="label">{{ $t("formular.name") }}</label>
+        <div class="control">
+          <input class="input is-medium" type="text" :placeholder="$t('formular.namePlaceholder')" v-model="form.name"
+            required />
         </div>
+      </div>
 
-        <!-- phone -->
-        <div class="field">
-          <div class="field">
-            <label class="label">{{ $t("formular.phone") }}</label>
-            <div class="control">
-              <input class="input is-medium" type="text" v-model="form.phone_no" required />
-            </div>
-          </div>
+      <!-- phone -->
+      <div class="field">
+        <label class="label">{{ $t("formular.phone") }}</label>
+        <div class="control">
+          <input class="input is-medium" type="text" v-model="form.phone_no" required />
         </div>
+      </div>
 
-        <!-- accommodation -->
-        <div class="field">
+      <div class="columns is-multiline">
+
+        <div class="column is-half">
           <label class="label">{{ $t("formular.accommodation") }}</label>
           <div class="control">
-            <div class="select is-medium">
+            <div class="select is-medium is-fullwidth">
               <select v-model="form.accommodation" required>
                 <option value="">{{ $t("formular.selectAccommodation") }}</option>
                 <option v-for="accommodation in accommodations" :key="accommodation.id" :value="accommodation.name">
@@ -47,52 +48,56 @@
           </div>
         </div>
 
-        <!-- room -->
-        <div class="field">
+        <div class="column is-half">
           <label class="label">{{ $t("formular.room") }}</label>
           <div class="control">
             <input class="input is-medium" type="text" v-model="form.room" required />
           </div>
         </div>
 
-        <!-- appointment date -->
-        <div class="field">
+      </div>
+
+      <div class="columns is-multiline">
+
+        <div class="column is-half">
           <label class="label">{{ $t("formular.appDate") }}</label>
           <div class="control">
             <input class="input is-medium" type="date" v-model="form.appointment_date" required />
           </div>
         </div>
 
-        <!-- appointment time -->
-        <div class="field">
+        <div class="column is-half">
           <label class="label">{{ $t("formular.appTime") }}</label>
           <div class="control">
             <input class="input is-medium" type="time" v-model="form.appointment_time" required />
           </div>
         </div>
 
-        <!-- department -->
-        <div class="field">
-          <label class="label">{{ $t("formular.department") }}</label>
-          <div class="control">
-            <input class="input is-medium" type="text" v-model="form.department" required />
-          </div>
-        </div>
+      </div>
 
-        <!-- description -->
-        <div class="field">
-          <label class="label">{{ $t("formular.desc") }}</label>
-          <div class="control">
-            <textarea class="textarea" v-model="form.description" :placeholder="$t('formular.placeholder')"
-              required></textarea>
-          </div>
+      <!-- department -->
+      <div class="field">
+        <label class="label">{{ $t("formular.department") }}</label>
+        <div class="control">
+          <input class="input is-medium" type="text" v-model="form.department" required />
         </div>
+      </div>
 
-        <!-- translator  -->
-        <div class="field">
+      <!-- description -->
+      <div class="field">
+        <label class="label">{{ $t("formular.desc") }}</label>
+        <div class="control">
+          <textarea class="textarea" v-model="form.description" :placeholder="$t('formular.placeholder')"
+            required></textarea>
+        </div>
+      </div>
+
+      <div class="columns is-multiline">
+
+        <div class="column is-half">
           <label class="label">{{ $t("formular.translator") }}</label>
           <div class="control">
-            <label class="radio">
+            <label class="radio mr-2">
               <input type="radio" v-model="form.needs_translator" :value="true" />
               {{ $t("formular.radioY") }}
             </label>
@@ -103,11 +108,10 @@
           </div>
         </div>
 
-        <!-- wheelchair -->
-        <div class="field">
+        <div class="column is-half">
           <label class="label">{{ $t("formular.wheelchair") }}</label>
           <div class="control">
-            <label class="radio">
+            <label class="radio mr-2">
               <input type="radio" v-model="form.wheelchair" :value="true" />
               {{ $t("formular.radioY") }}
             </label>
@@ -118,11 +122,10 @@
           </div>
         </div>
 
-        <!-- trolley -->
-        <div class="field">
+        <div class="column is-half">
           <label class="label">{{ $t("formular.trolley") }}</label>
           <div class="control">
-            <label class="radio">
+            <label class="radio mr-2">
               <input type="radio" v-model="form.trolley" :value="true" />
               {{ $t("formular.radioY") }}
             </label>
@@ -133,11 +136,10 @@
           </div>
         </div>
 
-        <!-- companion -->
-        <div class="field">
+        <div class="column is-half">
           <label class="label">{{ $t("formular.companion") }}</label>
           <div class="control">
-            <label class="radio">
+            <label class="radio mr-2">
               <input type="radio" v-model="form.companion" :value="true" />
               {{ $t("formular.radioY") }}
             </label>
@@ -148,23 +150,25 @@
           </div>
         </div>
 
-        <!-- navbuttons -->
-        <div class="field is-grouped mt-4" style="display: flex; gap: 10px">
-          <div class="control">
-            <button class="button is-primary" type="button" @click="goToConfirmation">
-              {{ $t("formular.submit") }}
-            </button>
-          </div>
-          <div class="control">
-            <button class="button is-light" type="button" @click="goBack">
-              {{ $t("formular.back") }}
-            </button>
-          </div>
+      </div>
+
+      <!-- navbuttons -->
+      <div class="field is-grouped mt-4" style="gap: 10px">
+        <div class="control">
+          <button class="button is-primary" type="button" @click="goToConfirmation">
+            {{ $t("formular.submit") }}
+          </button>
         </div>
-      </form>
-    </div>
+        <div class="control">
+          <button class="button is-light" type="button" @click="goBack">
+            {{ $t("formular.back") }}
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
 </template>
+
 
 <script>
 import { useFormStore } from '@/stores/formStore';
@@ -263,47 +267,9 @@ export default {
 </script>
 
 <style scoped>
-/* Flexbox layout for wide screens */
-.hospital-form-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.explanatory-text {
-  flex: 1;
-  margin-right: 40px;
-  min-width: 300px;
-}
-
-.content {
-  font-size: 1.5rem;
-}
-
-.label {
-  font-size: 1.25rem;
-}
-
+.label,
 .radio {
   font-size: 1.25rem;
-}
-
-.form-section {
-  flex: 1;
-  min-width: 300px;
-}
-
-@media (max-width: 768px) {
-
-  /* Stack content vertically for small screens */
-  .hospital-form-container {
-    flex-direction: column;
-  }
-
-  .explanatory-text,
-  .form-section {
-    margin-right: 0;
-  }
 }
 
 .radio {
@@ -311,28 +277,16 @@ export default {
 }
 
 input::placeholder,
-textarea::placeholder {
-  color: black;
-  opacity: 1;
-}
-
+textarea::placeholder,
 input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
-  color: black;
-}
-
+textarea::-webkit-input-placeholder,
 input::-moz-placeholder,
-textarea::-moz-placeholder {
-  color: black;
-}
-
+textarea::-moz-placeholder,
 input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
-  color: black;
-}
-
+textarea:-ms-input-placeholder,
 input:-moz-placeholder,
 textarea:-moz-placeholder {
   color: black;
+  opacity: 1;
 }
 </style>
