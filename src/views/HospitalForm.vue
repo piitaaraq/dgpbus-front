@@ -244,7 +244,7 @@ export default {
       ) {
         try {
           const response = await axios.post(
-            `${apiUrl}/api/patients/calculate_bus_time/`,
+            `${apiUrl}/api/patients/calculate_bus_time/?_=${Date.now()}`,
             formWithAccommodationId
           );
           const busTime = response.data.bus_time;

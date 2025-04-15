@@ -177,6 +177,7 @@ export default {
     min-width: 0;
     width: auto;
     text-align: left;
+    font-size: 1rem;
   }
 }
 
@@ -218,6 +219,7 @@ export default {
     text-align: left;
     margin-right: 0;
     margin-bottom: 0.25rem;
+    font-size: 1rem;
   }
 }
 </style>

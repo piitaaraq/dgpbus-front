@@ -4,10 +4,9 @@
     <p class="p-content">{{ $t("hospitals.para1") }} </p>
     <div class="columns is-multiline">
       <!-- Loop through hospitals and display each as a card -->
-      <div class="column is-one-third-desktop is-half-tablet is-full-mobile" v-for="hospital in hospitals"
+      <div class="column is-one-quarter-desktop is-half-tablet is-full-mobile" v-for="hospital in hospitals"
         :key="hospital.id" @click="navigateToForm(hospital.id)">
         <div class="card hospital-card">
-          <!-- Card Image with 3:2 aspect ratio and centered logo -->
           <div class="card-image logo-wrapper">
             <figure class="image">
               <div class="logo-container">
@@ -19,8 +18,8 @@
 
           <!-- Card Content -->
           <div class="card-content">
-            <p class="title is-3 has-text-primary-light">{{ hospital.hospital_name }}</p>
-            <p class="subtitle has-text-info-light">{{ hospital.address }}</p>
+            <p class="title is-4 has-text-primary">{{ hospital.hospital_name }}</p>
+            <p class="subtitle is-6 has-text-info pt-2">{{ hospital.address }}</p>
           </div>
         </div>
       </div>
@@ -65,16 +64,16 @@ export default {
 <style scoped>
 .card {
   cursor: pointer;
-  min-height: 460px;
+  min-height: 320px;
   height: auto;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-radius: 10px;
+  /* transition: transform 0.3s ease, box-shadow 0.3s ease; */
+  border-radius: 4px;
   overflow: hidden;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.5s ease-in-out forwards;
-  background-color: #34495E;
+  /* box-shadow: none; */
+  /* opacity: 0; */
+  /* transform: translateY(20px); */
+  /* animation: fadeInUp 0.5s ease-in-out forwards; */
+  /* background-color: #34495E; */
 }
 
 @keyframes fadeInUp {
@@ -85,24 +84,27 @@ export default {
 }
 
 .card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  transform: none;
+  box-shadow: none;
 }
 
 .logo-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.5), rgba(0, 165, 207, 0.5));
-  backdrop-filter: blur(10px);
-  height: 300px;
+  /* background: linear-gradient(145deg, rgba(255, 255, 255, 0.5), rgba(0, 165, 207, 0.5)); */
+  background-color: var(--bulma-primary-light);
+  /* backdrop-filter: blur(10px); */
+  height: 160px;
+  padding: 0.75rem;
+  /* height: 200px; */
   /* Fixed height for logo container */
-  padding: 10px;
+  /* padding: 10px; */
   /* Padding around the logo */
 }
 
 .hospital-logo {
-  height: 80px;
+  height: 60px;
   width: auto;
   object-fit: contain;
 }
@@ -114,5 +116,16 @@ export default {
 
 .container {
   padding: 2rem 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .card {
+    min-height: 260px;
+    /* or whatever looks balanced on your content */
+  }
+
+  .logo-wrapper {
+    height: 160px;
+  }
 }
 </style>
