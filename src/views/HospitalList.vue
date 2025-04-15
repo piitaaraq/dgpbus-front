@@ -6,17 +6,12 @@
       <!-- Loop through hospitals and display each as a card -->
       <div class="column is-one-quarter-desktop is-half-tablet is-full-mobile" v-for="hospital in hospitals"
         :key="hospital.id" @click="navigateToForm(hospital.id)">
-        <div class="card hospital-card">
+        <div class="card">
           <div class="card-image logo-wrapper">
             <figure class="image">
-              <div class="logo-container">
-                <img v-if="hospital.image_path" :src="getImagePath(hospital.image_path)" :alt="hospital.hospital_name"
-                  class="hospital-logo" />
-              </div>
+              <font-awesome-icon :icon="['far', 'fa-hospital']" class="icons" />
             </figure>
           </div>
-
-          <!-- Card Content -->
           <div class="card-content">
             <p class="title is-4 has-text-primary">{{ hospital.hospital_name }}</p>
             <p class="subtitle is-6 has-text-info pt-2">{{ hospital.address }}</p>
@@ -66,14 +61,8 @@ export default {
   cursor: pointer;
   min-height: 320px;
   height: auto;
-  /* transition: transform 0.3s ease, box-shadow 0.3s ease; */
   border-radius: 4px;
   overflow: hidden;
-  /* box-shadow: none; */
-  /* opacity: 0; */
-  /* transform: translateY(20px); */
-  /* animation: fadeInUp 0.5s ease-in-out forwards; */
-  /* background-color: #34495E; */
 }
 
 @keyframes fadeInUp {
@@ -92,21 +81,13 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background: linear-gradient(145deg, rgba(255, 255, 255, 0.5), rgba(0, 165, 207, 0.5)); */
   background-color: var(--bulma-primary-light);
-  /* backdrop-filter: blur(10px); */
   height: 160px;
   padding: 0.75rem;
-  /* height: 200px; */
-  /* Fixed height for logo container */
-  /* padding: 10px; */
-  /* Padding around the logo */
 }
 
-.hospital-logo {
-  height: 60px;
-  width: auto;
-  object-fit: contain;
+.fa-hospital {
+  font-size: 5rem;
 }
 
 .subtitle {
@@ -121,7 +102,6 @@ export default {
 @media (max-width: 768px) {
   .card {
     min-height: 260px;
-    /* or whatever looks balanced on your content */
   }
 
   .logo-wrapper {
