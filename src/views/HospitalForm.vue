@@ -24,11 +24,22 @@
         </div>
       </div>
 
-      <!-- phone -->
-      <div class="field">
-        <label class="label">{{ $t("formular.phone") }}</label>
-        <div class="control">
-          <input class="input is-medium" type="text" v-model="form.phone_no" required />
+      <!-- d.o.b and phone -->
+
+      <div class="columns is-multiline">
+        <div class="column is-half">
+          <label class="label">{{ $t("formular.dob") }}</label>
+          <div class="control">
+            <input class="input is-medium" type="date" v-model="form.day_of_birth" required />
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="field">
+            <label class="label">{{ $t("formular.phone") }}</label>
+            <div class="control">
+              <input class="input is-medium" type="text" v-model="form.phone_no" required />
+            </div>
+          </div>
         </div>
       </div>
 

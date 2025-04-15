@@ -21,6 +21,11 @@
       </div>
 
       <div class="field-row">
+        <strong>{{ $t("confirm.dob") }}:</strong>
+        <span>{{ formData.day_of_birth }}</span>
+      </div>
+
+      <div class="field-row">
         <strong>{{ $t("confirm.phone") }}:</strong>
         <span>{{ formData.phone_no }}</span>
       </div>
