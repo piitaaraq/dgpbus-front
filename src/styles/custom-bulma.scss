@@ -8,22 +8,24 @@ $fjord-color: #5DAF83; // Call-to-action buttons, accent borders, highlights, su
 $seamist-color: #BDC3C7; // This light, almost ethereal shade works as a perfect neutral background for large sections, giving a clean and calm canvas to the content. It can be used for form fields, cards, or even alternating sections on a long page to break the monotony
 $bg-color: #ECF0F1; // background
 
-@use "bulma/sass" with (
+@use "bulma/sass" with ($primary: $deepslate-color,
+  $info: $mutedblue-color,
+  $link: $fjord-color,
+  $success: $seamist-color,
+  // $warning: $warning-color,
+  $body-background-color: #ECF0F1,
+  $breadcrumb-item-color: #00A5CF,
+  $breadcrumb-item-active-color: #25A18E,
+);
 
-    $primary: $deepslate-color,
-    $info: $mutedblue-color,
-    $link: $fjord-color,
-    $success: $seamist-color,
-    // $warning: $warning-color,
-    $body-background-color: #ECF0F1,
-    $breadcrumb-item-color: #00A5CF,
-    $breadcrumb-item-active-color: #25A18E,
-    );
-
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&family=Roboto:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
 
 
-html, body, #app {
+
+html,
+body,
+#app {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -35,7 +37,12 @@ html, body, #app {
 
 body {
   background-color: #ECF0F1;
-  
+
 }
+
+.title {
+  font-family: 'Roboto Flex', sans-serif;
+}
+
 // Import Bulma with the customized variables
 // @import "~bulma/bulma";

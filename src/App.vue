@@ -60,7 +60,13 @@ export default {
 
 <style>
 .title {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Roboto Flex', sans-serif;
+  font-weight: 200;
+}
+
+.container .title {
+  font-family: 'Roboto Flex', sans-serif;
+  font-weight: 300;
 }
 
 html {

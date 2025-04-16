@@ -283,6 +283,11 @@ export default {
   font-size: 1.25rem;
 }
 
+.label {
+  font-family: "Roboto Flex", sans-serif;
+  font-weight: 400;
+}
+
 .radio {
   margin-right: 30px;
 }

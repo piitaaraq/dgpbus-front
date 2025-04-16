@@ -1,6 +1,7 @@
 @charset "UTF-8";
 /* Bulma Utilities */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&family=Roboto:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
 :root {
   --bulma-control-radius: var(--bulma-radius);
   --bulma-control-radius-small: var(--bulma-radius-small);
@@ -21548,7 +21549,9 @@ has-background-danger.is-hoverable:active {
   pointer-events: all !important;
 }
 
-html, body, #app {
+html,
+body,
+#app {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -21560,6 +21563,10 @@ html, body, #app {
 
 body {
   background-color: #ECF0F1;
+}
+
+.title {
+  font-family: "Roboto Flex", sans-serif;
 }
 
 /*# sourceMappingURL=custom-bulma.css.map */

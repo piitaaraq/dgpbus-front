@@ -218,7 +218,7 @@ a:hover {
 
 
 .heading {
-  font-family: 'Poppins';
+  font-family: 'Roboto Flex';
   font-weight: 200;
   font-size: 3rem;
 }

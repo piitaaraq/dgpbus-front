@@ -16,83 +16,83 @@
     <div class="box form-review mb-5 has-background-light">
 
       <div class="field-row">
-        <strong>{{ $t("confirm.name") }}:</strong>
+        <p class="field-label">{{ $t("confirm.name") }}:</p>
         <span>{{ formData.name }}</span>
       </div>
 
       <div class="field-row">
-        <strong>{{ $t("confirm.dob") }}:</strong>
+        <p class="field-label">{{ $t("confirm.dob") }}:</p>
         <span>{{ formData.day_of_birth }}</span>
       </div>
 
       <div class="field-row">
-        <strong>{{ $t("confirm.phone") }}:</strong>
+        <p class="field-label">{{ $t("confirm.phone") }}:</p>
         <span>{{ formData.phone_no }}</span>
       </div>
 
       <hr>
 
       <div class="field-row">
-        <strong>{{ $t("confirm.accommodation") }}:</strong>
+        <p class="field-label">{{ $t("confirm.accommodation") }}:</p>
         <span>{{ formData.accommodation }}</span>
       </div>
 
       <div class="field-row">
-        <strong>{{ $t("confirm.room") }}:</strong>
+        <p class="field-label">{{ $t("confirm.room") }}:</p>
         <span>{{ formData.room }}</span>
       </div>
 
       <hr>
 
       <div class="field-row">
-        <strong>{{ $t("confirm.hospital") }}:</strong>
+        <p class="field-label">{{ $t("confirm.hospital") }}:</p>
         <span>{{ hospitalName }}</span>
       </div>
 
       <div class="field-row">
-        <strong>{{ $t("confirm.appDate") }}:</strong>
+        <p class="field-label">{{ $t("confirm.appDate") }}:</p>
         <span>{{ formData.appointment_date }}</span>
       </div>
 
       <div class="field-row">
-        <strong>{{ $t("confirm.appTime") }}:</strong>
+        <p class="field-label">{{ $t("confirm.appTime") }}:</p>
         <span>{{ formData.appointment_time }}</span>
       </div>
 
       <div class="field-row">
-        <strong>{{ $t("confirm.department") }}:</strong>
+        <p class="field-label">{{ $t("confirm.department") }}:</p>
         <span>{{ formData.department }}</span>
       </div>
 
       <div class="field-row">
-        <strong>{{ $t("confirm.desc") }}:</strong>
+        <p class="field-label">{{ $t("confirm.desc") }}:</p>
         <span>{{ formData.description }}</span>
       </div>
 
       <hr>
 
       <div class="field-row">
-        <strong>{{ $t("confirm.translator") }}:</strong>
+        <p class="field-label">{{ $t("confirm.translator") }}:</p>
         <span>{{ formData.needs_translator ? $t("formular.radioY") : $t("formular.radioN") }}</span>
       </div>
 
       <div class="field-row">
-        <strong>{{ $t("confirm.wheelchair") }}:</strong>
+        <p class="field-label">{{ $t("confirm.wheelchair") }}:</p>
         <span>{{ formData.wheelchair ? $t("formular.radioY") : $t("formular.radioN") }}</span>
       </div>
 
       <div class="field-row">
-        <strong>{{ $t("confirm.trolley") }}:</strong>
+        <p class="field-label">{{ $t("confirm.trolley") }}:</p>
         <span>{{ formData.trolley ? $t("formular.radioY") : $t("formular.radioN") }}</span>
       </div>
 
       <div class="field-row">
-        <strong>{{ $t("confirm.companion") }}:</strong>
+        <p class="field-label">{{ $t("confirm.companion") }}:</p>
         <span>{{ formData.companion ? $t("formular.radioY") : $t("formular.radioN") }}</span>
       </div>
 
       <div class="field-row" v-if="busTime">
-        <strong>{{ $t("confirm.bustime") }}:</strong>
+        <p class="field-label">{{ $t("confirm.bustime") }}:</p>
         <span>{{ busTime }}</span>
       </div>
 
@@ -169,7 +169,15 @@ export default {
   margin-bottom: 0.5rem;
 }
 
-.form-review strong {
+.form-review p {
+  display: inline-block;
+  min-width: 330px;
+  text-align: right;
+}
+
+.form-review .field-label {
+  font-family: "Roboto Flex", sans-serif;
+  font-weight: 300;
   display: inline-block;
   min-width: 330px;
   text-align: right;
@@ -178,9 +186,17 @@ export default {
 @media (max-width: 1023px) {
 
   /* Bulma's breakpoint for desktop-down */
-  .form-review strong {
+  .form-review p {
     min-width: 0;
     width: auto;
+    text-align: left;
+    font-size: 1rem;
+  }
+  .form-review .field-label {
+    min-width: 0;
+    width: auto;
+    font-family: "Roboto Flex", sans-serif;
+    font-weight: 300;
     text-align: left;
     font-size: 1rem;
   }
@@ -205,7 +221,10 @@ export default {
   align-items: baseline;
 }
 
-.form-review .field-row strong {
+
+.form-review .field-row .field-label {
+  font-family: "Roboto Flex", sans-serif;
+  font-weight: 300;
   display: inline-block;
   min-width: 330px;
   text-align: right;
@@ -218,7 +237,9 @@ export default {
     align-items: flex-start;
   }
 
-  .form-review .field-row strong {
+  .form-review .field-row .field-label {
+    font-family: "Roboto Flex", sans-serif;
+    font-weight: 300;
     min-width: unset;
     width: auto;
     text-align: left;

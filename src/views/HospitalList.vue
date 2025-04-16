@@ -65,6 +65,11 @@ export default {
   overflow: hidden;
 }
 
+.card-content .title {
+  font-family: 'Roboto Flex', sans-serif;
+  font-weight: 300;
+}
+
 @keyframes fadeInUp {
   to {
     opacity: 1;
