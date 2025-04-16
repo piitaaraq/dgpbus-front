@@ -21,6 +21,11 @@
       </div>
 
       <div class="field-row">
+        <p class="field-label">{{ $t("confirm.last_name") }}:</p>
+        <span>{{ formData.last_name }}</span>
+      </div>
+
+      <div class="field-row">
         <p class="field-label">{{ $t("confirm.dob") }}:</p>
         <span>{{ formData.day_of_birth }}</span>
       </div>
@@ -128,7 +133,7 @@ export default {
   },
   mounted() {
     if (this.formData.hospital) {
-        console.log(this.formData.hospital);
+      console.log(this.formData.hospital);
       this.fetchHospitalDetails();
     }
   },
@@ -189,6 +194,7 @@ export default {
     text-align: left;
     font-size: 1rem;
   }
+
   .form-review .field-label {
     min-width: 0;
     width: auto;

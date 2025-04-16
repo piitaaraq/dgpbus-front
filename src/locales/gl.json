@@ -37,6 +37,7 @@
         "para1": "Paasissutissat immersorsimasatit qimerloorluakkit eqqortumik immersuisimanerit qulakkeerniarlugu. Immersukkatit tamarmik eqqortumik ajunngippata ingerlaqqissaatit, taamaangippallu uterlutit.",
         "para2": "Malugiuk Peqqissartut Illuanniit aallarnissarnut piffissaq naatsorsorneqareermat taannalu bussit aallarfissaannik ateqarluni. Bussinik aallarfissat allanngortittariaqarpat sulisunit attavigineqarumaarputit.",
         "name": "Peqqissartup aqqa",
+        "last_name": "Kinguliaa",
         "dob": "Inuuik",
         "accommodation": "Inissinneqarfik",
         "room": "Inaata normua",
@@ -96,6 +97,7 @@
     "formular": {
         "heading": "Nakorsiarnissat pillugu",
         "name": "Atit",
+        "last_name": "Kinguliaa",
         "dob": "Inuuik",
         "namePlaceholder": "Siulequt kinguliarlu",
         "accommodation": "Inissinneqarfik",

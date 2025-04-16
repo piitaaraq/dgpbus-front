@@ -10,6 +10,7 @@
                     <tr>
                         <th>{{ $t("confirm.bustime") }}</th>
                         <th>{{ $t("confirm.name") }}</th>
+                        <th>{{ $t("confirm.dob") }}</th>
                         <th>{{ $t("confirm.phone") }}</th>
                         <th>{{ $t("confirm.accommodation") }}</th>
                         <th>{{ $t("confirm.appDate") }}</th>
@@ -21,7 +22,8 @@
                 <tbody>
                     <tr v-for="patient in sortedPatients(patients)" :key="patient.id">
                         <td>{{ formatTime(patient.bus_time) || '-' }}</td>
-                        <td>{{ patient.name }}</td>
+                        <td>{{ patient.name }} {{ patient.last_name }}</td>
+                        <td>{{ formatDate(patient.day_of_birth) }}</td>
                         <td>{{ patient.phone_no }}</td>
                         <td>{{ patient.accommodation.name }}</td>
                         <td>{{ formatDate(patient.appointment_date) }}</td>

@@ -37,6 +37,7 @@
         "para1": "Se godt efter om du har udfyldt formularen rigtigt. Du har muligheden for at starte forfra hvis du har lavet en fejl.",
         "para2": "Vær opmærksom på at vi beregner tidspunktet for din busafgang ud fra de oplysninger du har givet os. Hvis det bliver nødvendigt at ændre din afgang, vil du blive kontaket af personalet.",
         "name": "Navn",
+        "last_name": "Efternavn",
         "dob": "Fødselsdag",
         "accommodation": "Indkvartering",
         "room": "Værelsesnummer",
@@ -93,6 +94,7 @@
     "formular": {
         "heading": "Om din lægeaftale",
         "name": "Navn",
+        "last_name": "Efternavn",
         "dob": "Fødselsdag",
         "namePlaceholder": "For- og efternavn",
         "accommodation": "Indkvartering",

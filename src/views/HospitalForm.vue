@@ -16,11 +16,22 @@
     <form @submit.prevent="submitForm">
 
       <!-- name -->
-      <div class="field">
-        <label class="label">{{ $t("formular.name") }}</label>
-        <div class="control">
-          <input class="input is-medium" type="text" :placeholder="$t('formular.namePlaceholder')" v-model="form.name"
-            required />
+      <div class="columns is-multiline">
+        <div class="column is-half">
+          <div class="field">
+            <label class="label">{{ $t("formular.name") }}</label>
+            <div class="control">
+              <input class="input is-medium" type="text" v-model="form.name" required />
+            </div>
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="field">
+            <label class="label">{{ $t("formular.last_name") }}</label>
+            <div class="control">
+              <input class="input is-medium" type="text" v-model="form.last_name" required />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -197,6 +208,7 @@ export default {
       accommodations: [],
       form: {
         name: checkPatientStore.name || '',
+        last_name: checkPatientStore.last_name || '',
         accommodation: checkPatientStore.accommodation || '',
         room: checkPatientStore.room || '',
         phone_no: '',
