@@ -128,6 +128,7 @@ export default {
   },
   mounted() {
     if (this.formData.hospital) {
+        console.log(this.formData.hospital);
       this.fetchHospitalDetails();
     }
   },
@@ -169,19 +170,15 @@ export default {
   margin-bottom: 0.5rem;
 }
 
-.form-review p {
+.form-review .field-row .field-label {
+  font-family: "Roboto Flex", sans-serif;
+  font-weight: 400;
   display: inline-block;
   min-width: 330px;
   text-align: right;
+  margin-right: 1rem;
 }
 
-.form-review .field-label {
-  font-family: "Roboto Flex", sans-serif;
-  font-weight: 300;
-  display: inline-block;
-  min-width: 330px;
-  text-align: right;
-}
 
 @media (max-width: 1023px) {
 
@@ -196,7 +193,7 @@ export default {
     min-width: 0;
     width: auto;
     font-family: "Roboto Flex", sans-serif;
-    font-weight: 300;
+    font-weight: 400;
     text-align: left;
     font-size: 1rem;
   }
@@ -213,23 +210,6 @@ export default {
   padding-left: 0.5rem;
 }
 
-.form-review .field-row {
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-}
-
-
-.form-review .field-row .field-label {
-  font-family: "Roboto Flex", sans-serif;
-  font-weight: 300;
-  display: inline-block;
-  min-width: 330px;
-  text-align: right;
-  margin-right: 1rem;
-}
 
 @media (max-width: 1023px) {
   .form-review .field-row {
