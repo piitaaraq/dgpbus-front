@@ -65,10 +65,6 @@ const routes = [
     name: 'ResetPasswordRequest',
     component: ResetPasswordRequest,
     meta: {
-      breadcrumbs: [
-        { name: "home", link: "/" },
-        { name: "reset-password" }
-      ]
     }
   },
   {
@@ -76,10 +72,6 @@ const routes = [
     name: 'ResetPasswordView',
     component: ResetPasswordView,
     meta: {
-      breadcrumbs: [
-        { name: "home", link: "/" },
-        { name: "reset-password" }
-      ]
     }
   },
   {
@@ -222,6 +214,7 @@ const routes = [
       requiresStaff: true,
       breadcrumbs: [
         { name: "home", link: "/" },
+        { name: "dashboard", link: "/dashboard" },
         { name: "taxi" }
       ]
     },
