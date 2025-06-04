@@ -1,7 +1,6 @@
 // src/router/index.js
 
-import { createRouter, createWebHistory } from 'vue-router';
-// import HomePage from '../views/HomePage.vue';  // Ensure the paths are correct
+import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router';
 import AboutPage from '../views/AboutPage.vue'; // Ensure the paths are correct
 import HospitalForm from '../views/HospitalForm.vue'; // Import HospitalForm component
 import ConfirmForm from '../views/ConfirmForm.vue';
@@ -17,6 +16,8 @@ import TranslatorView from '@/views/TranslatorView.vue';
 import PrivacyPage from '@/views/PrivacyPage.vue';
 import Cookies from 'js-cookie';  // Import js-cookie to access the token from cookies
 import AllAppointments from '@/views/AllAppointments.vue';
+import ResetPasswordRequest from '@/views/ResetPasswordRequest.vue';
+import ResetPasswordView from '@/views/ResetPasswordView.vue';
 
 
 const routes = [
@@ -59,17 +60,28 @@ const routes = [
       ]
     }
   },
-  // {
-  //   path: '/hospitaler',
-  //   name: 'HospitalList',
-  //   component: HospitalList,
-  //   meta: {
-  //     breadcrumbs: [
-  //       { name: "home", link: "/" },
-  //       { name: "hospitals" }
-  //     ]
-  //   }
-  // },
+  {
+    path: '/reset-password-request',
+    name: 'ResetPasswordRequest',
+    component: ResetPasswordRequest,
+    meta: {
+      breadcrumbs: [
+        { name: "home", link: "/" },
+        { name: "reset-password" }
+      ]
+    }
+  },
+  {
+    path: '/reset-password',
+    name: 'ResetPasswordView',
+    component: ResetPasswordView,
+    meta: {
+      breadcrumbs: [
+        { name: "home", link: "/" },
+        { name: "reset-password" }
+      ]
+    }
+  },
   {
     path: '/hospital/:id', // Dynamic route for HospitalForm with :id as a parameter
     name: 'HospitalForm',
@@ -270,15 +282,16 @@ const routes = [
   }
 ];
 
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: isDevelopment ? createWebHashHistory() : createWebHistory(process.env.BASE_URL),
   routes,
+  parseQuery: (query) => Object.fromEntries(new URLSearchParams(query)),
   scrollBehavior(to, from, savedPosition) {
-    // If there is a saved position (e.g., user clicked back), restore it
     if (savedPosition) {
       return savedPosition;
     } else {
-      // Otherwise, scroll to the top of the page
       return { top: 0 };
     }
   }

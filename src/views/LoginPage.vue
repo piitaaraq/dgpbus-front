@@ -24,8 +24,13 @@
             </div>
             <div>
                 <p>
-                    <router-link to="/registrer">Registrer</router-link> dig som bruger hvis du ikke er oprettet endnu.
+                    Hvis du ikke er oprettet som bruger endnu, kan bruge knappen nedenfor til at registrere dig. Hvis du
+                    har glemt din adgangskode, bruger du knappen ved siden af til at nulstille din adganskode.
                 </p>
+                <div class="buttons">
+                    <router-link to="/registrer" class="button is-secondary is-small">Registrer</router-link>
+                    <button class="button is-secondary is-small" @click="toReset">Nulstil adgangskode</button>
+                </div>
             </div>
             <p v-if="errorMessage" class="has-text-danger">{{ errorMessage }}</p>
         </form>
@@ -45,6 +50,9 @@ export default {
         };
     },
     methods: {
+        toReset() {
+            this.$router.push({ name: 'ResetPasswordRequest' });  // Navigate to reset password page
+        },
         async loginUser() {
             this.loading = true;  // Show loader
             this.errorMessage = '';  // Reset error message
