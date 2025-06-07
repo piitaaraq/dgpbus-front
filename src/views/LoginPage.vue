@@ -24,11 +24,10 @@
             </div>
             <div>
                 <p>
-                    Hvis du ikke er oprettet som bruger endnu, kan bruge knappen nedenfor til at registrere dig. Hvis du
-                    har glemt din adgangskode, bruger du knappen ved siden af til at nulstille din adganskode.
+                    Hvis du
+                    har glemt din adgangskode, bruger du knappen nedenunder til at nulstille din adganskode.
                 </p>
                 <div class="buttons">
-                    <router-link to="/registrer" class="button is-secondary is-small">Registrer</router-link>
                     <button class="button is-secondary is-small" @click="toReset">Nulstil adgangskode</button>
                 </div>
             </div>
