@@ -50,14 +50,14 @@ const routes = [
     }
   },
   {
-    path: '/registrer',
-    name: 'RegisterUser',
-    component: () => import('@/views/Register.vue'),
+    path: '/register-invite',
+    name: 'RegisterInvite',
+    component: () => import('@/views/RegisterInvite.vue'),
     meta: {
-      breadcrumbs: [
-        { name: "home", link: "/" },
-        { name: "register" }
-      ]
+        breadcrumbs: [
+            { name: "home", link: "/" },
+            { name: "invite-register" }
+        ]
     }
   },
   {
