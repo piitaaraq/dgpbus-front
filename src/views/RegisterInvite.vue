@@ -59,6 +59,7 @@ export default {
     },
     methods: {
         async submitPassword() {
+            console.log("Submitting signed token:", this.signed);
             this.loading = true;
             this.successMessage = '';
             this.errorMessage = '';
@@ -70,7 +71,7 @@ export default {
             }
 
             try {
-                await axios.post(`${apiUrl}/api/siteuser/invite/confirm/`, {
+                await axios.post(`${apiUrl}/api/siteusers/invite-confirm/`, {
                     signed: this.signed,
                     password: this.password
                 });
