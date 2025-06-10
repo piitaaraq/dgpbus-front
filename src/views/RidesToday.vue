@@ -1,35 +1,53 @@
 <template>
     <div class="rides-today-container container is-fluid">
         <h3 class="title is-1">{{ $t("rides.heading") }}</h3>
-
-        <table v-if="paginatedBusGroups.length > 0" class="table is-fullwidth">
-            <thead>
-                <tr>
-                    <th class="is-size-2-desktop is-size-4-tablet is-size-5-mobile">{{ $t("rides.bustime") }}</th>
-                    <th class="is-size-2-desktop is-size-4-tablet is-size-5-mobile">{{ $t("rides.name") }}</th>
-                    <th class="is-size-2-desktop is-size-4-tablet is-size-5-mobile">{{ $t("rides.room") }}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <template v-for="busGroup in paginatedBusGroups" :key="busGroup.departure_time">
-                    <tr v-if="busGroup.patients && busGroup.patients.length > 0">
-                        <td class="is-size-4" :rowspan="busGroup.patients.length">
-                            {{ formatTime(busGroup.departure_time) }}
-                        </td>
-                        <td class="is-size-4">{{ busGroup.patients[0].name }}</td>
-                        <td class="is-size-4">{{ busGroup.patients[0].room }}</td>
+        <div v-if="!isMobile">
+            <table v-if="paginatedBusGroups.length > 0" class="table is-fullwidth">
+                <thead>
+                    <tr>
+                        <th class="is-size-2-desktop is-size-4-tablet is-size-5-mobile">{{ $t("rides.bustime") }}</th>
+                        <th class="is-size-2-desktop is-size-4-tablet is-size-5-mobile">{{ $t("rides.name") }}</th>
+                        <th class="is-size-2-desktop is-size-4-tablet is-size-5-mobile">{{ $t("rides.room") }}</th>
                     </tr>
-                    <tr v-for="patient in busGroup.patients.slice(1)" :key="patient.id">
-                        <td class="is-size-4">{{ patient.name }}</td>
-                        <td class="is-size-4">{{ patient.room }}</td>
-                    </tr>
-                </template>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <template v-for="busGroup in paginatedBusGroups" :key="busGroup.departure_time">
+                        <tr v-if="busGroup.patients && busGroup.patients.length > 0">
+                            <td class="is-size-4" :rowspan="busGroup.patients.length">
+                                {{ formatTime(busGroup.departure_time) }}
+                            </td>
+                            <td class="is-size-4">{{ busGroup.patients[0].name }}</td>
+                            <td class="is-size-4">{{ busGroup.patients[0].room }}</td>
+                        </tr>
+                        <tr v-for="patient in busGroup.patients.slice(1)" :key="patient.id">
+                            <td class="is-size-4">{{ patient.name }}</td>
+                            <td class="is-size-4">{{ patient.room }}</td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+            <p v-else class="is-size-2 is-size-4-mobile">
+                {{ $t("rides.noRides") }}
+            </p>
+        </div>
 
-        <p v-else class="is-size-2 is-size-4-mobile">
-            {{ $t("rides.noRides") }}
-        </p>
+
+        <!-- Mobile/list view -->
+        <div v-else>
+            <div v-for="busGroup in paginatedBusGroups" :key="busGroup.departure_time" class="mb-5">
+                <h4 class="is-size-4 has-text-weight-bold mb-2">
+                    {{ formatTime(busGroup.departure_time) }}
+                </h4>
+                <div v-for="patient in busGroup.patients" :key="patient.id" class="py-2 px-3 has-background-light mb-1"
+                    style="border-radius: 6px;">
+                    <p class="is-size-5"><strong>{{ patient.name }}</strong> - <span class="is-size-6 has-text-grey">{{
+                        patient.room
+                            }}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Pagination Controls -->
         <nav class="pagination is-small" role="navigation" aria-label="pagination">
@@ -63,6 +81,7 @@ export default {
             rowsPerPage: 9,
             autoFlipInterval: null,
             flipIntervalTime: 30000,
+            isMobile: window.innerWidth <= 768
         };
     },
     computed: {
@@ -83,11 +102,16 @@ export default {
     mounted() {
         this.fetchRides();
         this.startAutoFlip();
+        window.addEventListener('resize', this.checkMobile);
     },
     beforeUnmount() {
         this.clearAutoFlip(); // Clear the interval when the component is unmounted
+        window.removeEventListener('resize', this.checkMobile);
     },
     methods: {
+        checkMobile() {
+            this.isMobile = window.innerWidth <= 768;
+        },
         async fetchRides() {
             try {
                 const response = await axios.get(`${apiUrl}/api/patients/rides-today/`);
