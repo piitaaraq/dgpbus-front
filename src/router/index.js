@@ -310,4 +310,51 @@ router.beforeEach((to, from, next) => {
   }
 });
 
+router.afterEach((to) => {
+  const isExempt = to.path.startsWith('/info/');
+
+  // Always load the script once
+  if (!window.__cookieConsentScriptLoaded) {
+    const script = document.createElement('script');
+    script.src = 'https://www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js';
+    script.charset = 'UTF-8';
+    script.onload = () => {
+      window.__cookieConsentScriptLoaded = true;
+
+      if (!isExempt) {
+        window.cookieconsent.run({
+          notice_banner_type: "simple",
+          consent_type: "express",
+          palette: "dark",
+          language: "da",
+          page_load_consent_levels: ["strictly-necessary"],
+          notice_banner_reject_button_hide: false,
+          preferences_center_close_button_hide: false,
+          page_refresh_confirmation_buttons: false,
+          website_name: "bus.patienthjem.dk - Patientkørsel",
+          website_privacy_policy_url: "https://bus.patienthjem.dk/privacy"
+        });
+        window.__cookieConsentInitialized = true;
+      }
+    };
+    document.body.appendChild(script);
+  } else if (!isExempt && !window.__cookieConsentInitialized) {
+    // Script already loaded, run the banner if needed
+    window.cookieconsent.run({
+      notice_banner_type: "simple",
+      consent_type: "express",
+      palette: "dark",
+      language: "da",
+      page_load_consent_levels: ["strictly-necessary"],
+      notice_banner_reject_button_hide: false,
+      preferences_center_close_button_hide: false,
+      page_refresh_confirmation_buttons: false,
+      website_name: "bus.patienthjem.dk - Patientkørsel",
+      website_privacy_policy_url: "https://bus.patienthjem.dk/privacy"
+    });
+    window.__cookieConsentInitialized = true;
+  }
+});
+
+
 export default router;
