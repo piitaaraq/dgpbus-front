@@ -1,10 +1,5 @@
 <template>
   <div id="app" class="app-layout">
-    <!-- Conditional HeaderBar rendering -->
-    <template v-if="!hideHeader">
-      <HeaderBar v-if="useDefaultHeader" class="has-background-primary" />
-      <HeaderBarAlt v-else class="has-background-primary" />
-    </template>
     <!-- Conditional Breadcrumbs rendering -->
     <BreadCrumb v-if="showBreadcrumbs" :breadcrumbs="$route.meta.breadcrumbs" class="pt-3" />
 
@@ -19,16 +14,16 @@
 </template>
 
 <script>
-import HeaderBar from './components/HeaderBar.vue';
-import HeaderBarAlt from './components/HeaderBarAlt.vue'; // Import the alternate header
+// import HeaderBar from './components/HeaderBar.vue';
+// import HeaderBarAlt from './components/HeaderBarAlt.vue'; // Import the alternate header
 import SiteFooter from './components/SiteFooter.vue';
 import BreadCrumb from './components/BreadCrumb.vue';
 
 export default {
   name: 'App',
   components: {
-    HeaderBar,
-    HeaderBarAlt,
+    // HeaderBar,
+    // HeaderBarAlt,
     SiteFooter,
     BreadCrumb
   },
@@ -58,42 +53,4 @@ export default {
 };
 </script>
 
-<style>
-.title {
-  font-family: 'Roboto Flex', sans-serif;
-  font-weight: 200;
-}
-
-.container .title {
-  font-family: 'Roboto Flex', sans-serif;
-  font-weight: 300;
-}
-
-html {
-  overflow-x: hidden;
-  max-width: 100vw;
-}
-
-.body {
-  font-family: 'Roboto', sans-serif;
-  color: #2C3E50;
-  background-color: #ECF0F1;
-  overflow-x: hidden;
-  max-width: 100vw;
-}
-
-.table {
-  background-color: #ECF0F1;
-}
-
-* {
-  box-sizing: inherit;
-}
-
-img,
-video {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-</style>
+<style></style>

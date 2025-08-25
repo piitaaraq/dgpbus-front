@@ -18,12 +18,12 @@
                     <!-- Second Column: Links -->
                     <div class="column">
                         <p>
-                            <a @click="goToPrivacy">Privacy Policy</a> |
+                            <a class="has-text-link" @click="goToPrivacy">Privacy Policy</a> |
                             <a @click="goToAbout">About</a> |
                             License: <a href="https://opensource.org/licenses/MIT">MIT</a> <br>
                             <font-awesome-icon :icon="['fas', 'copyright']" /> {{ startYear }}{{ startYear !==
                                 currentYear ?
-                            ' - ' + currentYear : '' }} Det grønlandske Patienthjem
+                                ' - ' + currentYear : '' }} Det grønlandske Patienthjem
                         </p>
                     </div>
                 </div>
@@ -63,15 +63,10 @@ export default {
 <style scoped>
 .footer {
     padding: 20px;
-    background-color: #ECF0F1;
+    /* background-color: #ECF0F1; */
     border-top: 1px solid #ddd;
 }
 
-.footer a {
-    color: #3273dc;
-    /* Adjust to your desired link color */
-    text-decoration: none;
-}
 
 .footer a:hover {
     text-decoration: underline;

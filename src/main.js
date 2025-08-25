@@ -12,7 +12,7 @@ import gl from './locales/gl.json';
 import da from './locales/da.json';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGlobe, faLanguage, faSignOutAlt, faBus, faCircleXmark, faClock, faCopyright, faUser, faCalendarCheck, faTaxi, faArrowLeft, faWheelchair, faBabyCarriage } from '@fortawesome/free-solid-svg-icons'; // Import specific icons
-import { faHospital } from '@fortawesome/free-regular-svg-icons';
+import { faClock as farClock, faCalendar as farCalendar, faHospital } from '@fortawesome/free-regular-svg-icons';
 
 const pinia = createPinia();
 
@@ -28,7 +28,7 @@ const i18n = createI18n({
 setupAxiosCsrf();
 
 // Add icons to the library
-library.add(faGlobe, faLanguage, faSignOutAlt, faBus, faCircleXmark, faClock, faCopyright, faUser, faCalendarCheck, faTaxi, faArrowLeft, faWheelchair, faBabyCarriage, faHospital);
+library.add(faGlobe, faLanguage, faSignOutAlt, faBus, faCircleXmark, faClock, farClock, faCopyright, faUser, faCalendarCheck, farCalendar, faTaxi, faArrowLeft, faWheelchair, faBabyCarriage, faHospital);
 
 const app = createApp(App)
 
