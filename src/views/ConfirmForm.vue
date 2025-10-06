@@ -118,39 +118,93 @@
 <script>
 import axios from 'axios';
 import { useFormStore } from '@/stores/formStore';
-import { useCheckPatientStore } from '@/stores/checkPatientStore'; // Adjust the path if necessary
+import { useCheckPatientStore } from '@/stores/checkPatientStore';
 const apiUrl = process.env.VUE_APP_BACKEND_URL;
+
+function ensureSeconds(t) {
+  if (!t) return t;
+  return t.length === 5 ? `${t}:00` : t;
+}
 
 export default {
   data() {
     const formStore = useFormStore();
-    console.log('FormData on load:', formStore.formData);
     return {
       hospitalName: '',
-      formData: formStore.formData, // Bind formData from the store
-      busTime: formStore.formData.busTime, // Extract busTime for easier use
+      formData: formStore.formData,   // contains: name, last_name, day_of_birth, phone_no, room, hospital (ID), accommodation_id, appointment_date, appointment_time, department, description, needs_translator, wheelchair, trolley, companion, busTime?
+      busTime: formStore.formData.busTime || null,
     };
   },
   mounted() {
     if (this.formData.hospital) {
-      console.log(this.formData.hospital);
       this.fetchHospitalDetails();
     }
   },
   methods: {
     async submitUserData() {
+      const token = localStorage.getItem('auth_token');
+      const auth = token ? { headers: { Authorization: `Bearer ${token}` } } : {};
+
       try {
-        // Submit formData to the backend via POST request
-        await axios.post(`${apiUrl}/api/patients/`, this.formData);
+        // 1) Create Patient (personal-only)
+        const patientPayload = {
+          name: this.formData.name,
+          last_name: this.formData.last_name,
+          day_of_birth: this.formData.day_of_birth || null,
+          phone_no: this.formData.phone_no || null,
+          room: this.formData.room || null,
+          // remember usual accommodation for convenience (optional)
+          default_accommodation: this.formData.accommodation_id ?? null,
+        };
 
-        // Reset the store after successful submission
-        const checkPatientStore = useCheckPatientStore(); // Access the store instance
-        checkPatientStore.resetStore();
+        const { data: patient } = await axios.post(
+          `${apiUrl}/api/patients/`,
+          patientPayload,
+          auth
+        );
 
-        // On successful submission, navigate to the homepage or a success page
+        // 2) Create Appointment (link via patient_id)
+        const apptPayload = {
+          patient_id: patient.id,
+          hospital_id: Number(this.formData.hospital),                // must be numeric ID
+          accommodation_id: this.formData.accommodation_id ?? null,
+
+          appointment_date: this.formData.appointment_date,           // "YYYY-MM-DD"
+          appointment_time: ensureSeconds(this.formData.appointment_time), // "HH:MM:SS"
+
+          // If you computed a bus time earlier, treat it as manual override; else let backend compute
+          bus_time_manual: this.busTime ?? null,
+
+          translator: !!this.formData.needs_translator,
+          has_taxi: !!this.formData.has_taxi,
+          wheelchair: !!this.formData.wheelchair,
+          trolley: !!this.formData.trolley,
+          companion: !!this.formData.companion,
+          status: !!this.formData.status, // if present in your form data
+
+          department: this.formData.department || '',
+          description: this.formData.description || '',
+          // departure_location: this.formData.departure_location || '', // include if you collect it
+        };
+
+        await axios.post(`${apiUrl}/api/appointments/`, apptPayload, auth);
+
+        // Success → reset + navigate
+        const checkStore = useCheckPatientStore();
+        const formStore = useFormStore();
+
+        (checkStore.$reset?.() || checkStore.resetStore?.());
+        (formStore.$reset?.() || formStore.resetStore?.());
+
         this.$router.push({ name: 'HospitalList' });
       } catch (error) {
-        console.error('Error creating user:', error);
+        console.error('Error creating patient/appointment:', error?.response?.data || error.message);
+        const status = error?.response?.status;
+        if (status === 401 || status === 403) {
+          alert('Du skal være logget ind for at oprette aftalen (eller åbne for offentlig oprettelse i backend).');
+        } else {
+          alert('Noget gik galt under oprettelse. Prøv igen.');
+        }
       }
     },
     async fetchHospitalDetails() {
@@ -162,7 +216,7 @@ export default {
       }
     },
     goBack() {
-      this.$router.go(-1); // Navigate back to the form page
+      this.$router.go(-1);
     },
   },
 };

@@ -11,18 +11,28 @@
                     <th>{{ $t("appointments.appointmentDate") }}</th>
                     <th>{{ $t("appointments.appointmentTime") }}</th>
                     <th>{{ $t("appointments.busTime") }}</th>
+                    <th>Tolk</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="ride in rides" :key="ride.id">
-                    <td>{{ ride.name }}</td>
-                    <td>{{ ride.accommodation ? ride.accommodation.name : 'N/A' }}</td>
+                    <td>{{ ride.patient_name }} {{ ride.patient_last_name }}</td>
+                    <td>{{ ride.accommodation_name || 'N/A' }}</td>
                     <td>{{ ride.hospital_name }}</td>
                     <td>{{ formatDate(ride.appointment_date) }}</td>
                     <td>{{ formatTime(ride.appointment_time) }}</td>
-                    <td>{{ ride.bus_time ? formatTime(ride.bus_time) : 'Taxa' }}</td>
+                    <td>
+                        {{ getBusTime(ride) ? formatTime(getBusTime(ride)) : 'Taxa' }}
+                    </td>
+                    <td class="has-text-centered">
+                        <font-awesome-icon v-if="ride.translator === true" :icon="['fas', 'check']"
+                            class="has-text-success" title="Tolk: ja" />
+                        <font-awesome-icon v-else :icon="['fas', 'xmark']" class="has-text-danger" title="Tolk: nej" />
+                    </td>
+
                 </tr>
             </tbody>
+
         </table>
 
         <p v-else class="is-size-2 is-size-4-mobile">
@@ -32,7 +42,8 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
+import api from '@/api';
 const apiUrl = process.env.VUE_APP_BACKEND_URL;
 
 export default {
@@ -47,26 +58,24 @@ export default {
     },
     methods: {
         async fetchRides() {
-            try {
-                const response = await axios.get(`${apiUrl}/api/patients/alle-aftaler`);
-
-                // Sort the data by appointment_date
-                this.rides = response.data.sort((a, b) => new Date(a.appointment_date) - new Date(b.appointment_date));
-            } catch (error) {
-                console.error('Error fetching rides:', error);
-            }
-        },
-        formatTime(time) {
-            return time ? time.substring(0, 5) : '';
-        },
-        formatDate(date) {
-            return new Date(date).toLocaleDateString('da-DK', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit'
+            const response = await api.get(`${apiUrl}/api/appointments/alle-aftaler/`);
+            console.log('Fetched rides:', response.data);
+            // sort by date then time
+            this.rides = response.data.sort((a, b) => {
+                const d = new Date(a.appointment_date) - new Date(b.appointment_date);
+                return d !== 0 ? d : a.appointment_time.localeCompare(b.appointment_time);
             });
-        }
+        },
+        getBusTime(ride) {
+            // prefer the effective time, fall back to manual/computed if needed
+            return ride.bus_time_effective || ride.bus_time_manual || ride.bus_time_computed || null;
+        },
+        formatTime(t) { return t ? t.slice(0, 5) : ''; },
+        formatDate(d) {
+            return new Date(d).toLocaleDateString('da-DK', { year: 'numeric', month: '2-digit', day: '2-digit' });
+        },
     }
+
 };
 </script>
 

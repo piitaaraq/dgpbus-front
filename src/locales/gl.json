@@ -106,7 +106,12 @@
         "appDate": "Nakorsiarfissap ullua",
         "appTime": "Nakorsiarfissamut piffissaq",
         "department": "Napparsimmavimmi immikkoortoq",
+        "existingAppointments": "Nakorsiarfissat siornatigut nalunaarsoreersimasut",
+        "noAppointments": "Peqqissartup nakorsiarfissaanik nalunaarsugaateqanngilagut",
+        "newAppointment": "Nakorsiarnissamik nutaamik nalunaarsuineq",
         "desc": "Allaaserinera",
+        "findAppointments": "Ingerlaqqigit",
+        "patientInfo": "Peqqissartoq pillugu",
         "placeholder": "Napparsimmavimmi peqqissartoq suniarpa?",
         "translator": "Oqalutsimik pisariaqartitsivit?",
         "radioY": "Aap",
@@ -162,7 +167,8 @@
         "bustime": "Bussit aallarfissaat",
         "name": "Ateq",
         "room": "Inip normua",
-        "noRides": "Ullumikkut bussertussanik nalunaarsuisoqarsimanngilaq."
+        "noRides": "Ullumikkut bussertussanik nalunaarsuisoqarsimanngilaq.",
+        "hospital":"Napparsimavik"
     },
     "schedules": {
         "heading": "Bussit angalanerannut pilersaarutit",

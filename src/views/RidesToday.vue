@@ -5,9 +5,12 @@
             <table v-if="paginatedBusGroups.length > 0" class="table is-fullwidth">
                 <thead>
                     <tr>
-                        <th class="is-size-2-desktop is-size-4-tablet is-size-5-mobile">{{ $t("rides.bustime") }}</th>
+                        <th class="is-size-2-desktop is-size-4-tablet is-size-5-mobile">{{
+                            $t("rides.bustime") }}</th>
                         <th class="is-size-2-desktop is-size-4-tablet is-size-5-mobile">{{ $t("rides.name") }}</th>
                         <th class="is-size-2-desktop is-size-4-tablet is-size-5-mobile">{{ $t("rides.room") }}</th>
+                        <th class="has-text-left is-size-2-desktop is-size-4-tablet is-size-5-mobile">{{
+                            $t("rides.hospital") }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -18,13 +21,16 @@
                             </td>
                             <td class="is-size-4">{{ busGroup.patients[0].name }}</td>
                             <td class="is-size-4">{{ busGroup.patients[0].room }}</td>
+                            <td class="is-size-4">{{ busGroup.patients[0].hospital_name }}</td>
                         </tr>
                         <tr v-for="patient in busGroup.patients.slice(1)" :key="patient.id">
                             <td class="is-size-4">{{ patient.name }}</td>
                             <td class="is-size-4">{{ patient.room }}</td>
+                            <td class="is-size-4">{{ patient.hospital_name }}</td>
                         </tr>
                     </template>
                 </tbody>
+
             </table>
             <p v-else class="is-size-2 is-size-4-mobile">
                 {{ $t("rides.noRides") }}
@@ -112,63 +118,78 @@ export default {
         checkMobile() {
             this.isMobile = window.innerWidth <= 768;
         },
+
         async fetchRides() {
             try {
-                const response = await axios.get(`${apiUrl}/api/patients/rides-today/`);
+                const { data: appts } = await axios.get(`${apiUrl}/api/appointments/rides-today/`);
 
-                // Group patients by bus_time
+                // helper: "HH:MM:SS" -> "HH:MM"
+                const hhmm = (s) => (s ? s.slice(0, 5) : 'Ukendt');
+
+                // Group by effective bus time (manual or computed)
                 const grouped = {};
-                response.data.forEach(patient => {
-                    const timeKey = patient.bus_time?.substring(0, 5) || 'Ukendt';
-                    if (!grouped[timeKey]) {
-                        grouped[timeKey] = [];
-                    }
-                    grouped[timeKey].push(patient);
+                appts.forEach(a => {
+                    const key = hhmm(a.bus_time_effective); // ← new field
+                    (grouped[key] ||= []).push({
+                        id: a.id,
+                        name: a.patient_name ?? '',   // ← from serializer
+                        room: a.patient_room ?? '',   // ← from serializer (add this field if you haven't)
+                        hospital_name: a.hospital_name || '',
+                        // Keep anything else you want to render later:
+                        appointment_time: a.appointment_time, // "HH:MM:SS"
+                        hospital: a.hospital,                 // id
+                        accommodation: a.accommodation,       // id or null
+                    });
                 });
 
-                // Convert to array format for display
-                this.busGroups = Object.keys(grouped).map(bus_time => ({
-                    departure_time: bus_time,
-                    patients: grouped[bus_time]
-                }));
+                // Convert to array and sort time buckets; put "Ukendt" last
+                this.busGroups = Object.entries(grouped)
+                    .map(([departure_time, patients]) => ({ departure_time, patients }))
+                    .sort((a, b) => {
+                        if (a.departure_time === 'Ukendt') return 1;
+                        if (b.departure_time === 'Ukendt') return -1;
+                        return a.departure_time.localeCompare(b.departure_time);
+                    });
 
             } catch (error) {
                 console.error("❌ Error fetching rides:", error);
             }
         },
+
         formatTime(time) {
             return time ? time.substring(0, 5) : '';
         },
+
         nextPage() {
             if (this.currentPage < this.totalPages) {
                 this.currentPage++;
             } else {
-                this.currentPage = 1; // Go back to the first page
+                this.currentPage = 1;
             }
-            this.resetAutoFlip(); // Reset auto flip when navigating manually
+            this.resetAutoFlip();
         },
+
         setPage(page) {
             this.currentPage = page;
-            this.resetAutoFlip(); // Reset auto flip when a page number is clicked
+            this.resetAutoFlip();
         },
+
         startAutoFlip() {
-            // Automatically flip the pages every 30 seconds (or custom interval)
             this.autoFlipInterval = setInterval(() => {
                 this.nextPage();
             }, this.flipIntervalTime);
         },
+
         clearAutoFlip() {
-            // Clear the current interval if it exists
-            if (this.autoFlipInterval) {
-                clearInterval(this.autoFlipInterval);
-            }
+            if (this.autoFlipInterval) clearInterval(this.autoFlipInterval);
         },
+
         resetAutoFlip() {
-            // Reset the auto flip by clearing and restarting the interval
             this.clearAutoFlip();
             this.startAutoFlip();
         }
     }
+
 };
 </script>
 
@@ -184,5 +205,9 @@ export default {
 
 .pagination {
     margin-top: 20px;
+}
+
+.table th {
+    text-align: left;
 }
 </style>

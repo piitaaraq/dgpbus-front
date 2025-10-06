@@ -98,13 +98,18 @@
         "dob": "Fødselsdag",
         "namePlaceholder": "For- og efternavn",
         "accommodation": "Indkvartering",
+        "existingAppointments": "Eksisterende aftaler",
+        "noAppointments": "Ingen aftaler fundet",
+        "newAppointment": "Registrer ny aftale",
         "selectAccommodation": "Hvor bor du?",
         "room": "Værelsesnummer",
         "appDate": "Dato for lægeaftale",
         "appTime": "Tidspunkt",
         "department": "Afdeling på hospitalet",
         "desc": "Beskrivelse",
+        "findAppointments": "Videre",
         "placeholder": "Hvad skal patienten på hospitalet? ",
+        "patientInfo": "Om patienten",
         "translator": "Har du brug for en tolk?",
         "radioN": "Nej",
         "radioY": "Ja",
@@ -167,7 +172,8 @@
         "bustime": "Afgangstid",
         "name": "Navn",
         "room": "Værelsesnummer",
-        "noRides": "Ingen kørsler registreret for i dag."
+        "noRides": "Ingen kørsler registreret for i dag.",
+        "hospital":"Hospital"
     },
     "schedules": {
         "heading": "Køreplaner",
