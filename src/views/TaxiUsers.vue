@@ -19,7 +19,7 @@
             </thead>
             <tbody>
                 <tr v-for="patient in upcomingPatients" :key="patient.id" :class="{ 'has-taxi': patient.has_taxi }">
-                    <td>{{ patient.patient_name }}</td>
+                    <td>{{ patient.patient_name }} {{ patient.patient_last_name }}</td>
                     <td>{{ getPhone(patient) }}</td>
                     <td>{{ patient.accommodation_name || 'N/A' }}</td>
                     <td>{{ formatDate(patient.appointment_date) }}</td>
@@ -41,7 +41,6 @@
 
 <script>
 import api from '@/api';
-const apiUrl = process.env.VUE_APP_BACKEND_URL;
 
 export default {
     data() {
@@ -66,7 +65,7 @@ export default {
     methods: {
         async fetchPatients() {
             try {
-                const { data } = await api.get(`${apiUrl}/api/appointments/taxi-users/`);
+                const { data } = await api.get('appointments/taxi-users/');
                 this.patients = data;
                 console.log('taxi-users:', data);
             } catch (error) {
@@ -75,7 +74,7 @@ export default {
         },
         async toggleTaxi(patient) {
             try {
-                const { data } = await api.patch(`${apiUrl}/api/appointments/${patient.id}/toggle-taxi/`);
+                const { data } = await api.patch('appointments/${patient.id}/toggle-taxi/');
                 patient.has_taxi = data.has_taxi;
             } catch (error) {
                 console.error('Error toggling taxi status:', error);

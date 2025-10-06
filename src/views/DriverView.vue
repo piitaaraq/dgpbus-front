@@ -78,9 +78,8 @@
 </template>
 
 <script>
-import api from '@/api'; // uses your interceptor for auth
+import api from '@/api';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-const apiUrl = process.env.VUE_APP_BACKEND_URL;
 
 export default {
     components: { FontAwesomeIcon },
@@ -100,7 +99,7 @@ export default {
         },
         async fetchRidesToday() {
             try {
-                const { data } = await api.get(`${apiUrl}/api/appointments/rides-today/`);
+                const { data } = await api.get('appointments/rides-today/');
                 const grouped = {};
 
                 data.forEach(p => {
@@ -135,7 +134,7 @@ export default {
         },
         async toggleCheckIn(patient) {
             try {
-                const { data } = await api.patch(`${apiUrl}/api/appointments/${patient.id}/toggle-status/`);
+                const { data } = await api.patch('appointments/${patient.id}/toggle-status/');
                 patient.status = data.status; // update local status
             } catch (error) {
                 console.error('Error toggling check-in status:', error);

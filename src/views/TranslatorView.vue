@@ -22,7 +22,7 @@
                 <tbody>
                     <tr v-for="appt in sortedAppointments(appts)" :key="appt.id">
                         <td>{{ formatTime(getBusTime(appt)) || '-' }}</td>
-                        <td>{{ appt.patient_name }}</td>
+                        <td>{{ appt.patient_name }} {{ appt.patient_last_name }}</td>
                         <td>{{ getDob(appt) }}</td>
                         <td>{{ getPhone(appt) }}</td>
                         <td>{{ appt.accommodation_name || 'N/A' }}</td>
@@ -39,7 +39,6 @@
 
 <script>
 import api from '@/api';
-const apiUrl = process.env.VUE_APP_BACKEND_URL;
 
 export default {
     data() {
@@ -60,7 +59,8 @@ export default {
     methods: {
         async fetchPatients() {
             try {
-                const { data } = await api.get(`${apiUrl}/api/appointments/translator-view/`);
+                const { data } = await api.get('appointments/translator-view/');
+                console.log('translator-view data:', data);
                 this.appointments = data;
             } catch (e) {
                 console.error('Error fetching translator view:', e);

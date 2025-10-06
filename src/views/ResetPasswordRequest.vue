@@ -25,8 +25,7 @@
 </template>
 
 <script>
-import axios from 'axios';
-const apiUrl = process.env.VUE_APP_BACKEND_URL;
+import api from '@/api';
 
 export default {
     data() {
@@ -44,7 +43,7 @@ export default {
             this.errorMessage = '';
 
             try {
-                await axios.post(`${apiUrl}/api/siteusers/password-reset-request/`, { email: this.email });
+                await api.post('siteusers/password-reset-request/', { email: this.email });
                 this.successMessage = 'Hvis din e-mail findes, er der sendt et nulstillingslink.';
             } catch (error) {
                 this.errorMessage = 'Der opstod en fejl. Prøv igen.';

@@ -32,8 +32,7 @@
 </template>
 
 <script>
-import axios from 'axios';
-const apiUrl = process.env.VUE_APP_BACKEND_URL;
+import api from '@/api';
 
 export default {
     data() {
@@ -71,7 +70,7 @@ export default {
             }
 
             try {
-                await axios.post(`${apiUrl}/api/siteusers/invite-confirm/`, {
+                await api.post('siteusers/invite-confirm/', {
                     signed: this.signed,
                     password: this.password
                 });

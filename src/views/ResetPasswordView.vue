@@ -23,8 +23,7 @@
 </template>
 
 <script>
-import axios from 'axios';
-const apiUrl = process.env.VUE_APP_BACKEND_URL;
+import api from '@/api';
 
 export default {
     data() {
@@ -48,7 +47,7 @@ export default {
             this.errorMessage = '';
 
             try {
-                await axios.post(`${apiUrl}/api/siteusers/password-reset-confirm/`, {
+                await api.post('siteusers/password-reset-confirm/', {
                     signed: this.signed,
                     new_password: this.newPassword,
                 });

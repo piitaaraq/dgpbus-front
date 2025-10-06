@@ -217,7 +217,6 @@
 import { useFormStore } from '@/stores/formStore';
 import { useCheckPatientStore } from '@/stores/checkPatientStore';
 import api from '@/api';
-const apiUrl = process.env.VUE_APP_BACKEND_URL;
 
 export default {
   props: ['id'],
@@ -362,7 +361,7 @@ export default {
 
     async fetchHospitalDetails() {
       try {
-        const { data } = await api.get(`${apiUrl}/api/hospitals/${this.id}`);
+        const { data } = await api.get('hospitals/${this.id}');
         this.hospitalName = data.hospital_name || data.name || '';
       } catch (e) {
         console.error('Error fetching hospital details:', e);
@@ -371,7 +370,7 @@ export default {
 
     async fetchAccommodations() {
       try {
-        const { data } = await api.get(`${apiUrl}/api/accommodations/`);
+        const { data } = await api.get('accommodations/');
         this.accommodations = data;
       } catch (e) {
         console.error('Error fetching accommodations:', e);
@@ -412,7 +411,7 @@ export default {
           room: this.form.room,
           accommodation: this.form.accommodation,
         };
-        const { data } = await api.get(`${apiUrl}/api/appointments/find-patient/`, { params });
+        const { data } = await api.get('appointments/find-patient/', { params });
         this.existing = Array.isArray(data) ? data : [];
       } catch (e) {
         if (e?.response?.status === 404) {
@@ -447,7 +446,7 @@ export default {
             appointment_date: this.form.appointment_date,
             appointment_time: ensureSeconds(this.form.appointment_time),
           };
-          const { data } = await api.post(`${apiUrl}/api/appointments/calculate-bus-time/`, payload);
+          const { data } = await api.post('appointments/calculate-bus-time/', payload);
           formStore.setFormData({ ...normalized, busTime: data?.bus_time || null });
         } catch (err) {
           console.error('Bus-time error:', err?.response?.data || err.message);

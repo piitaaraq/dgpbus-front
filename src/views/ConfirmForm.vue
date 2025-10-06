@@ -116,10 +116,9 @@
 </template>
 
 <script>
-import axios from 'axios';
+import api from '@/api';
 import { useFormStore } from '@/stores/formStore';
 import { useCheckPatientStore } from '@/stores/checkPatientStore';
-const apiUrl = process.env.VUE_APP_BACKEND_URL;
 
 function ensureSeconds(t) {
   if (!t) return t;
@@ -157,8 +156,8 @@ export default {
           default_accommodation: this.formData.accommodation_id ?? null,
         };
 
-        const { data: patient } = await axios.post(
-          `${apiUrl}/api/patients/`,
+        const { data: patient } = await api.post(
+          'patients/',
           patientPayload,
           auth
         );
@@ -187,7 +186,7 @@ export default {
           // departure_location: this.formData.departure_location || '', // include if you collect it
         };
 
-        await axios.post(`${apiUrl}/api/appointments/`, apptPayload, auth);
+        await api.post('appointments/', apptPayload, auth);
 
         // Success → reset + navigate
         const checkStore = useCheckPatientStore();
@@ -209,7 +208,7 @@ export default {
     },
     async fetchHospitalDetails() {
       try {
-        const response = await axios.get(`${apiUrl}/api/hospitals/${this.formData.hospital}`);
+        const response = await api.get('hospitals/${this.formData.hospital}');
         this.hospitalName = response.data.hospital_name;
       } catch (error) {
         console.error('Error fetching hospital details:', error);

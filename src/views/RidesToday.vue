@@ -76,8 +76,7 @@
 </template>
 
 <script>
-import axios from 'axios';
-const apiUrl = process.env.VUE_APP_BACKEND_URL;
+import api from '@/api';
 
 export default {
     data() {
@@ -121,7 +120,7 @@ export default {
 
         async fetchRides() {
             try {
-                const { data: appts } = await axios.get(`${apiUrl}/api/appointments/rides-today/`);
+                const { data: appts } = await api.get('appointments/rides-today/');
 
                 // helper: "HH:MM:SS" -> "HH:MM"
                 const hhmm = (s) => (s ? s.slice(0, 5) : 'Ukendt');

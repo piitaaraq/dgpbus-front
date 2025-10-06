@@ -38,8 +38,7 @@
 </template>
 
 <script>
-import axios from 'axios';
-const apiUrl = process.env.VUE_APP_BACKEND_URL;
+import api from '@/api';
 
 export default {
     name: "RegisterUser",
@@ -64,7 +63,7 @@ export default {
 
             try {
                 // Send registration request for SiteUser
-                await axios.post(`${apiUrl}/api/siteusers/register/`, {
+                await api.post('siteusers/register/', {
                     email: this.email,
                     password: this.password,
                 });

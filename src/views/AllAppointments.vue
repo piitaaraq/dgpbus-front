@@ -44,7 +44,6 @@
 <script>
 // import axios from 'axios';
 import api from '@/api';
-const apiUrl = process.env.VUE_APP_BACKEND_URL;
 
 export default {
     name: 'AllAppointments',
@@ -58,7 +57,7 @@ export default {
     },
     methods: {
         async fetchRides() {
-            const response = await api.get(`${apiUrl}/api/appointments/alle-aftaler/`);
+            const response = await api.get('appointments/alle-aftaler/');
             console.log('Fetched rides:', response.data);
             // sort by date then time
             this.rides = response.data.sort((a, b) => {

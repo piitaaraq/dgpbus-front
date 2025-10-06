@@ -36,8 +36,7 @@
 
 
 <script>
-import axios from 'axios';
-const apiUrl = process.env.VUE_APP_BACKEND_URL;
+import api from '@/api';
 
 export default {
     data() {
@@ -54,7 +53,7 @@ export default {
             const rideId = parseInt(this.$route.params.id);
             try {
                 // Fetch all rides for today
-                const response = await axios.get(`${apiUrl}/api/rides/today`);
+                const response = await api.get('rides/today/');
                 const todayRides = response.data;
 
                 // Find the departure_time of the selected ride
@@ -83,7 +82,7 @@ export default {
         async confirmAllUpdates() {
             this.isLoading = true;
             try {
-                const response = await axios.patch(`${apiUrl}/api/rides/${this.ride.id}/toggle-status/`);
+                const response = await api.patch('rides/${this.ride.id}/toggle-status/');
                 this.ride.status = response.data.status;
                 alert(this.$t("driver.updateSuccess"));
             } catch (error) {

@@ -23,8 +23,7 @@
 </template>
 
 <script>
-import axios from 'axios';
-const apiUrl = process.env.VUE_APP_BACKEND_URL
+import api from '@/api';
 
 export default {
   data() {
@@ -38,7 +37,7 @@ export default {
   methods: {
     async fetchHospitals() {
       try {
-        const response = await axios.get(`${apiUrl}/api/hospitals/`);
+        const response = await api.get('hospitals/');
         this.hospitals = response.data.filter(hospital => hospital.id !== 8); // Assign the hospital data to the component's state
       } catch (error) {
         console.error("Error fetching hospital data:", error);

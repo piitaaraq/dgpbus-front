@@ -30,8 +30,7 @@
 
 
 <script>
-import axios from 'axios';
-const apiUrl = process.env.VUE_APP_BACKEND_URL
+import api from '@/api';
 
 
 export default {
@@ -54,7 +53,7 @@ export default {
     methods: {
         async fetchSchedules() {
             try {
-                const response = await axios.get(`${apiUrl}/api/schedules/`);
+                const response = await api.get('schedules/');
                 this.schedules = response.data;
 
                 // Group schedules by departure location
