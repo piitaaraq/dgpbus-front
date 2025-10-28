@@ -193,7 +193,7 @@
         "room": "Værelsesnummer",
         "phone": "Tlf. nr.",
         "appDate": "Dato for lægeaftale",
-        "appTime": "Tidspunkt",
+        "appTime": "Tidspunkt for lægeaftale",
         "hospital": "Hospital",
         "department": "Afdeling på hospitalet",
         "hasTaxi": "Har taxa",
