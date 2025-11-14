@@ -34,30 +34,6 @@
                     </div>
                     <div class="column is-6">
                         <div class="field">
-                            <label class="label">Hospital</label>
-                            <div class="control">
-                                <div class="select is-fullwidth" :class="{ 'is-loading': isLoadingHospitals }">
-                                    <select v-model="form.hospital_id">
-                                        <option value="">-- Vælg hospital --</option>
-                                        <option v-for="hospital in hospitals" :key="hospital.id" :value="hospital.id">
-                                            {{ hospital.hospital_name }}
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column is-6">
-                        <div class="field">
-                            <label class="label">Afdeling</label>
-                            <div class="control">
-                                <input v-model="form.department" class="input" type="text"
-                                    placeholder="F.eks. Ortopædkirurgi" />
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column is-6">
-                        <div class="field">
                             <label class="label">Aftale Dato</label>
                             <div class="control">
                                 <input v-model="form.appointment_date" class="input" type="date"
@@ -196,8 +172,6 @@ export default {
                 patient_name: '',
                 patient_last_name: '',
                 patient_room: '',
-                hospital_id: null,
-                department: '',
                 appointment_date: '',
                 appointment_time: '',
                 bus_time_manual: '',
@@ -208,10 +182,8 @@ export default {
                 companion: false
             },
             schedules: [],
-            hospitals: [],
             busTimeOption: 'AUTO', // 'AUTO', 'MANUAL', or 'TAXI'
             isLoadingSchedule: false,
-            isLoadingHospitals: false,
             isSaving: false,
             computedBusTime: 'Beregnes...'
         };
@@ -222,7 +194,6 @@ export default {
                 if (newVal) {
                     this.loadAppointmentData(newVal);
                     this.fetchSchedules(newVal.appointment_date);
-                    this.fetchHospitals();
                 }
             },
             immediate: true
@@ -234,8 +205,6 @@ export default {
                 patient_name: appointment.patient_name || '',
                 patient_last_name: appointment.patient_last_name || '',
                 patient_room: appointment.patient_room || '',
-                hospital_id: appointment.hospital_id || null,
-                department: appointment.department || '',
                 appointment_date: appointment.appointment_date || '',
                 appointment_time: appointment.appointment_time || '',
                 bus_time_manual: appointment.bus_time_manual || '',
@@ -283,19 +252,6 @@ export default {
                 this.isLoadingSchedule = false;
             }
         },
-        async fetchHospitals() {
-            this.isLoadingHospitals = true;
-            try {
-                const response = await api.get('hospitals/');
-                this.hospitals = response.data;
-                console.log('Fetched hospitals:', this.hospitals);
-            } catch (error) {
-                console.error('Error fetching hospitals:', error);
-                this.$emit('error', { message: 'Kunne ikke hente hospitaler' });
-            } finally {
-                this.isLoadingHospitals = false;
-            }
-        },
         onDateChange() {
             // Refetch schedules when date changes
             console.log('Date changed to:', this.form.appointment_date);
@@ -336,17 +292,28 @@ export default {
 
             this.isSaving = true;
             try {
+                // Only send fields that the serializer accepts for writing
+                // Don't send patient_name, patient_last_name, patient_room as they're read-only
                 const dataToSave = {
-                    ...this.form,
-                    bus_time_manual: busTimeToSave
+                    appointment_date: this.form.appointment_date,
+                    appointment_time: this.form.appointment_time,
+                    bus_time_manual: busTimeToSave,
+                    description: this.form.description,
+                    translator: this.form.translator,
+                    trolley: this.form.trolley,
+                    wheelchair: this.form.wheelchair,
+                    companion: this.form.companion
                 };
 
                 console.log('Saving appointment:', dataToSave);
                 const response = await api.patch(`appointments/${this.appointment.id}/`, dataToSave);
+                console.log('Save response:', response.data);
                 this.$emit('saved', response.data);
                 this.close();
             } catch (error) {
                 console.error('Error updating appointment:', error);
+                console.error('Error response:', error.response?.data);
+                console.error('Error status:', error.response?.status);
                 this.$emit('error', error);
             } finally {
                 this.isSaving = false;
