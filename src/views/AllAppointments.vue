@@ -98,6 +98,7 @@
                     <th>{{ $t("appointments.appointmentTime") }}</th>
                     <th>{{ $t("appointments.busTime") }}</th>
                     <th>Tolk</th>
+                    <th>Handlinger</th>
                 </tr>
             </thead>
             <tbody>
@@ -115,23 +116,45 @@
                             class="has-text-success" title="Tolk: ja" />
                         <font-awesome-icon v-else :icon="['fas', 'xmark']" class="has-text-danger" title="Tolk: nej" />
                     </td>
+                    <td>
+                        <div class="buttons are-small">
+                            <button class="button is-info" @click="openEditModal(ride)" title="Rediger">
+                                <span class="icon">
+                                    <font-awesome-icon :icon="['fas', 'edit']" />
+                                </span>
+                            </button>
+                            <button class="button is-danger" @click="deleteAppointment(ride.id)" title="Slet">
+                                <span class="icon">
+                                    <font-awesome-icon :icon="['fas', 'trash']" />
+                                </span>
+                            </button>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>
+
         <p v-else class="is-size-2 is-size-4-mobile">
             {{ filters.name || filters.accommodation || filters.hospital || filters.translator || filters.dateFrom ||
                 filters.dateTo
                 ? "Ingen aftaler matcher dine filtre"
                 : $t("appointments.noAppointments") }}
         </p>
+        <!-- Edit Modal Component -->
+        <EditAppointmentModal :is-active="isEditModalActive" :appointment="selectedAppointment" @close="closeEditModal"
+            @saved="handleAppointmentSaved" @error="handleSaveError" />
     </div>
 </template>
 
 <script>
 import api from '@/api';
+import EditAppointmentModal from '@/components/EditAppointmentModal.vue';
 
 export default {
     name: 'AllAppointments',
+    components: {
+        EditAppointmentModal
+    },
     data() {
         return {
             rides: [],
@@ -142,7 +165,9 @@ export default {
                 translator: '',
                 dateFrom: '',
                 dateTo: ''
-            }
+            },
+            isEditModalActive: false,
+            selectedAppointment: null
         };
     },
     computed: {
@@ -213,6 +238,36 @@ export default {
         formatTime(t) { return t ? t.slice(0, 5) : ''; },
         formatDate(d) {
             return new Date(d).toLocaleDateString('da-DK', { year: 'numeric', month: '2-digit', day: '2-digit' });
+        },
+        openEditModal(appointment) {
+            this.selectedAppointment = appointment;
+            this.isEditModalActive = true;
+        },
+        closeEditModal() {
+            this.isEditModalActive = false;
+            this.selectedAppointment = null;
+        },
+        async handleAppointmentSaved(updatedAppointment) {
+            console.log('Appointment saved:', updatedAppointment);
+            this.$toast?.success('Aftale opdateret');
+            await this.fetchRides(); // Refresh the list
+        },
+        handleSaveError(error) {
+            console.error('Save error:', error);
+            this.$toast?.error('Fejl ved opdatering af aftale');
+        },
+        async deleteAppointment(id) {
+            if (!confirm('Er du sikker på, at du vil slette denne aftale?')) {
+                return;
+            }
+            try {
+                await api.delete(`appointments/${id}/`);
+                this.$toast?.success('Aftale slettet');
+                await this.fetchRides();
+            } catch (error) {
+                console.error('Error deleting appointment:', error);
+                this.$toast?.error('Fejl ved sletning af aftale');
+            }
         }
     }
 };
