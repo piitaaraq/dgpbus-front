@@ -12,7 +12,7 @@
                         <div class="field">
                             <label class="label">Fornavn</label>
                             <div class="control">
-                                <input v-model="form.patient_name" class="input" type="text" />
+                                <input v-model="form.patient_name" class="input" type="text" disabled />
                             </div>
                         </div>
                     </div>
@@ -20,7 +20,7 @@
                         <div class="field">
                             <label class="label">Efternavn</label>
                             <div class="control">
-                                <input v-model="form.patient_last_name" class="input" type="text" />
+                                <input v-model="form.patient_last_name" class="input" type="text" disabled />
                             </div>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                         <div class="field">
                             <label class="label">Værelse</label>
                             <div class="control">
-                                <input v-model="form.patient_room" class="input" type="text" />
+                                <input v-model="form.patient_room" class="input" type="text" disabled />
                             </div>
                         </div>
                     </div>
@@ -119,7 +119,7 @@
                             <div class="control">
                                 <label class="checkbox">
                                     <input v-model="form.trolley" type="checkbox" />
-                                    Rollator
+                                    Båre
                                 </label>
                             </div>
                             <div class="control">
