@@ -134,7 +134,7 @@ export default {
         },
         async toggleCheckIn(patient) {
             try {
-                const { data } = await api.patch('appointments/${patient.id}/toggle-status/');
+                const { data } = await api.patch(`appointments/${patient.id}/toggle-status/`);
                 patient.status = data.status; // update local status
             } catch (error) {
                 console.error('Error toggling check-in status:', error);
