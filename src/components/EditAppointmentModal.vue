@@ -143,7 +143,7 @@
                             <div class="control">
                                 <label class="checkbox">
                                     <input v-model="form.trolley" type="checkbox" />
-                                    Båre
+                                    Rollator
                                 </label>
                             </div>
                             <div class="control">
