@@ -2,7 +2,7 @@
 
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router';
 import AboutPage from '../views/AboutPage.vue'; // Ensure the paths are correct
-import HospitalForm from '../views/HospitalForm.vue'; // Import HospitalForm component
+// import HospitalForm from '../views/HospitalForm.vue'; // Import HospitalForm component
 import ConfirmForm from '../views/ConfirmForm.vue';
 import HospitalList from '@/views/HospitalList.vue';
 import EditForm from '../views/EditForm.vue';
@@ -18,6 +18,8 @@ import Cookies from 'js-cookie';  // Import js-cookie to access the token from c
 import AllAppointments from '@/views/AllAppointments.vue';
 import ResetPasswordRequest from '@/views/ResetPasswordRequest.vue';
 import ResetPasswordView from '@/views/ResetPasswordView.vue';
+import HospitalAppointmentFlow from '@/components/HospitalAppointmentFlow.vue';
+
 
 
 const routes = [
@@ -76,8 +78,8 @@ const routes = [
   },
   {
     path: '/hospital/:id', // Dynamic route for HospitalForm with :id as a parameter
-    name: 'HospitalForm',
-    component: HospitalForm,
+    name: 'HospitalAppointmentFlow',
+    component: HospitalAppointmentFlow,
     props: true, // Pass the route parameters as props to the component
     meta: {
       breadcrumbs: [

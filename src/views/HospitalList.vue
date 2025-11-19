@@ -49,7 +49,7 @@ export default {
       return require(`@/assets/hospitals/${imageFilename}`);
     },
     navigateToForm(hospitalId) {
-      this.$router.push({ name: 'HospitalForm', params: { id: hospitalId } }); // Navigate to form
+      this.$router.push({ name: 'HospitalAppointmentFlow', params: { id: hospitalId } }); // Navigate to form
     },
   },
 };
